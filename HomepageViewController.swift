@@ -29,18 +29,9 @@ class HomepageViewController: UIViewController {
     
     @IBAction func signIn(sender: UIButton) {
         FIRAuth.auth()?.signInWithEmail(user.email, password: user.password, completion: nil)
-        print(user.email)
-        print(user.password)
-        print(user.name)
     }
     // MARK: Navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let createAccount = segue.destinationViewController as! CreateAccountViewController
-    }
-    
-    @IBAction func unwindToHomepage(segue: UIStoryboardSegue) {
-        
-    }
+    @IBAction func unwindToHomepage(segue: UIStoryboardSegue) {}
     
     // MARK: NSCoding
     func hasAccount() -> Bool {
