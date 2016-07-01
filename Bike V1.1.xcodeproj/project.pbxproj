@@ -20,6 +20,7 @@
 		270FCB531D23AD7B003DFCF9 /* BikeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270FCB521D23AD7B003DFCF9 /* BikeTableViewCell.swift */; };
 		270FCB571D244502003DFCF9 /* bikeClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270FCB561D244502003DFCF9 /* bikeClass.swift */; };
 		270FCB5B1D24D6A0003DFCF9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 270FCB5A1D24D6A0003DFCF9 /* GoogleService-Info.plist */; };
+		270FCB5F1D26EB51003DFCF9 /* workoutClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270FCB5E1D26EB51003DFCF9 /* workoutClass.swift */; };
 		FE042283AB1B5FB0CE77A14A /* Pods_Bike_V1_1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8DBDEA353CED0BE004CED65 /* Pods_Bike_V1_1.framework */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +53,7 @@
 		270FCB521D23AD7B003DFCF9 /* BikeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BikeTableViewCell.swift; sourceTree = "<group>"; };
 		270FCB561D244502003DFCF9 /* bikeClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = bikeClass.swift; sourceTree = "<group>"; };
 		270FCB5A1D24D6A0003DFCF9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		270FCB5E1D26EB51003DFCF9 /* workoutClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = workoutClass.swift; sourceTree = "<group>"; };
 		2A2559F3A7B9396C3C19C33E /* Pods-Bike V1.1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bike V1.1.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bike V1.1/Pods-Bike V1.1.release.xcconfig"; sourceTree = "<group>"; };
 		6DD976B14511F57E3C89903F /* Pods-Bike V1.1Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bike V1.1Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bike V1.1Tests/Pods-Bike V1.1Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		CD4E4C7AB69A12893695AEDE /* Pods-Bike V1.1.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bike V1.1.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bike V1.1/Pods-Bike V1.1.debug.xcconfig"; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 				270FCB201D23405D003DFCF9 /* AppDelegate.swift */,
 				270FCB491D234095003DFCF9 /* userClass.swift */,
 				270FCB561D244502003DFCF9 /* bikeClass.swift */,
+				270FCB5E1D26EB51003DFCF9 /* workoutClass.swift */,
 				270FCB291D23405D003DFCF9 /* LaunchScreen.storyboard */,
 				270FCB2C1D23405D003DFCF9 /* Info.plist */,
 				270FCB5A1D24D6A0003DFCF9 /* GoogleService-Info.plist */,
@@ -354,6 +357,7 @@
 				270FCB511D23ACB0003DFCF9 /* BikeTableViewController.swift in Sources */,
 				270FCB571D244502003DFCF9 /* bikeClass.swift in Sources */,
 				270FCB211D23405D003DFCF9 /* AppDelegate.swift in Sources */,
+				270FCB5F1D26EB51003DFCF9 /* workoutClass.swift in Sources */,
 				270FCB4B1D234095003DFCF9 /* userClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
