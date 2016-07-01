@@ -20,7 +20,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SHl-aA-zIr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="920" y="-602"/>
+            <point key="canvasLocation" x="1331" y="-590"/>
         </scene>
         <!--CreateAccount-->
         <scene sceneID="tne-QT-ifu">
@@ -88,7 +88,71 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <exit id="oRs-m7-zSi" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="403" y="358"/>
+            <point key="canvasLocation" x="2078" y="342"/>
+        </scene>
+        <!--Title-->
+        <scene sceneID="ow4-ZY-JtZ">
+            <objects>
+                <tableViewController id="pB2-9T-dbQ" customClass="BikeTableViewController" customModule="Bike_V1_1" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" sectionHeaderHeight="28" sectionFooterHeight="28" id="my6-Bf-c2q">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="BikeTableViewCell" rowHeight="90" id="Sei-ii-n0Z" customClass="BikeTableViewCell" customModule="Bike_V1_1" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="600" height="90"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Sei-ii-n0Z" id="aI5-UM-NHJ">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="89.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="bike name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c65-6Z-i6d">
+                                            <rect key="frame" x="8" y="8" width="79" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="wheel info" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="63L-zC-3gl">
+                                            <rect key="frame" x="9" y="34" width="78" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="size info" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fsM-Y5-spk">
+                                            <rect key="frame" x="8" y="60" width="63" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <accessibility key="accessibilityConfiguration" identifier="BikeTableViewCell"/>
+                                <connections>
+                                    <outlet property="bikeNameDisplay" destination="c65-6Z-i6d" id="jvL-tV-ZRD"/>
+                                    <outlet property="sizeInfoDisplay" destination="fsM-Y5-spk" id="IDj-6K-Lk7"/>
+                                    <outlet property="wheelInfoDisplay" destination="63L-zC-3gl" id="fJJ-sc-bA6"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="pB2-9T-dbQ" id="mqT-ZN-sgX"/>
+                            <outlet property="delegate" destination="pB2-9T-dbQ" id="rRm-Fd-0Ny"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Title" id="27W-nK-Fd5">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="hfl-wW-cbq"/>
+                        <barButtonItem key="leftBarButtonItem" title="Item" systemItem="cancel" id="gLe-sS-3hH">
+                            <connections>
+                                <action selector="cancelButton:" destination="pB2-9T-dbQ" id="gaE-Ja-C1J"/>
+                                <segue destination="4ok-BU-1dG" kind="unwind" identifier="unwindFromBikeslistToHomepage" unwindAction="unwindToHomepage:" id="5fM-Zf-rFy"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Lfy-IS-OOj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="4ok-BU-1dG" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1331" y="2025"/>
         </scene>
         <!--Homepage-->
         <scene sceneID="O9V-ub-uEK">
@@ -102,21 +166,41 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E9D-aw-E3l">
-                                <rect key="frame" x="138" y="147" width="181" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2hF-8a-t3P">
-                                <rect key="frame" x="162" y="198" width="45" height="30"/>
-                                <state key="normal" title="sign in"/>
-                                <connections>
-                                    <action selector="signIn:" destination="bja-Uc-7Zy" eventType="touchUpInside" id="Bw9-KM-xb1"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="cqF-NE-AyI">
+                                <rect key="frame" x="138" y="147" width="67" height="105"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" axis="vertical" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="yc8-2o-Ecu">
+                                        <rect key="frame" x="0.0" y="0.0" width="67" height="105"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E9D-aw-E3l">
+                                                <rect key="frame" x="0.0" y="0.0" width="42" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2hF-8a-t3P">
+                                                <rect key="frame" x="0.0" y="33" width="45" height="30"/>
+                                                <state key="normal" title="sign in"/>
+                                                <connections>
+                                                    <action selector="signIn:" destination="bja-Uc-7Zy" eventType="touchUpInside" id="Bw9-KM-xb1"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ga3-XR-hcO">
+                                                <rect key="frame" x="0.0" y="75" width="67" height="30"/>
+                                                <state key="normal" title="See Bikes"/>
+                                                <connections>
+                                                    <segue destination="bf3-77-65P" kind="presentation" identifier="toBikesFromHomepage" id="5ez-5N-OVw"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="cqF-NE-AyI" firstAttribute="leading" secondItem="Zpp-Em-kR7" secondAttribute="leadingMargin" constant="20" id="KRd-io-SYG"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="Fq5-TX-L8h"/>
                     <connections>
@@ -126,7 +210,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lFe-7w-ozx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1331" y="358"/>
+            <point key="canvasLocation" x="1331" y="342"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="UHK-0A-ooA">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bf3-77-65P" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Efw-XQ-Oup">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="pB2-9T-dbQ" kind="relationship" relationship="rootViewController" id="cbk-sm-tDc"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xAd-OJ-wJd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1321" y="1161"/>
         </scene>
     </scenes>
 </document>

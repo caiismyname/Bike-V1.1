@@ -14,7 +14,7 @@ class userClass: NSObject, NSCoding {
     var name: String!
     var email: String!
     var password: String!
-    var bike: String?
+    var bike: bikeClass?
     
     // MARK: Archiving Paths
     
@@ -30,7 +30,7 @@ class userClass: NSObject, NSCoding {
     }
     
     // MARK: Init.
-    init(name: String!, email: String!, password: String!, bike: String?){
+    init(name: String!, email: String!, password: String!, bike: bikeClass?){
         // Is Failable Initializer
         self.name = name
         self.email = email
@@ -53,7 +53,7 @@ class userClass: NSObject, NSCoding {
         let name = aDecoder.decodeObjectForKey(PropertyKey.nameKey) as! String
         let email = aDecoder.decodeObjectForKey(PropertyKey.emailKey) as! String
         let password = aDecoder.decodeObjectForKey(PropertyKey.passwordKey) as! String
-        let bike = aDecoder.decodeObjectForKey(PropertyKey.bikeKey) as? String
+        let bike = aDecoder.decodeObjectForKey(PropertyKey.bikeKey) as? bikeClass
         
         self.init(name: name, email: email, password: password, bike: bike)
     }

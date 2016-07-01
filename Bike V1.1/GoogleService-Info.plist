@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>414787462546-ju46l8s3eevmgfun5nsnk0g9icfo4i5v.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.414787462546-ju46l8s3eevmgfun5nsnk0g9icfo4i5v</string>
+	<key>API_KEY</key>
+	<string>AIzaSyA7L6Luogfisf-3lqxAR5TQAo9jk3wL_Sc</string>
+	<key>GCM_SENDER_ID</key>
+	<string>414787462546</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>l.Bike-V1-1</string>
+	<key>PROJECT_ID</key>
+	<string>bike-v1</string>
+	<key>STORAGE_BUCKET</key>
+	<string>bike-v1.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:414787462546:ios:b26c4fd2c8b2f87c</string>
+	<key>DATABASE_URL</key>
+	<string>https://bike-v1.firebaseio.com</string>
+</dict>
+</plist>

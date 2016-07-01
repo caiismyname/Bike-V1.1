@@ -8,6 +8,7 @@ target 'Bike V1.1' do
   # Pods for Bike V1.1
   pod ‘Firebase’
   pod 'Firebase/Auth'
+  pod 'Firebase/Database'
 
 
   target 'Bike V1.1Tests' do
