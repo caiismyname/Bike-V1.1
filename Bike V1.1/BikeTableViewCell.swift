@@ -10,7 +10,6 @@ import UIKit
 
 class BikeTableViewCell: UITableViewCell {
     // MARK: Properties
-    
     @IBOutlet weak var bikeNameDisplay: UILabel!
     @IBOutlet weak var wheelInfoDisplay: UILabel!
     @IBOutlet weak var sizeInfoDisplay: UILabel!

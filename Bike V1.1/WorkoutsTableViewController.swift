@@ -7,11 +7,47 @@
 //
 
 import UIKit
+import Firebase
 
 class WorkoutsTableViewController: UITableViewController {
-
+    
+    var workoutList = [workoutClass]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        workoutList = loadWorkoutList()!
+        
+        // Watcher thing that auto refreshes when FB DB changes
+        // As of right now, it replaces the whole bike list
+        // to cover all cases (append, delete, change)
+        
+        // FB init.
+        let ref = FIRDatabase.database().reference()
+        let workoutRef = ref.child("workouts")
+        
+        var tempWorkoutList = [workoutClass]()
+        
+        workoutRef.observeEventType(.Value, withBlock: { snapshot in
+            for child in snapshot.children {
+                // Create workoutClass object from FB data
+                let type = child.value["type"] as! String
+                let unit = child.value["unit"] as! String
+                let duration = child.value["duration"] as! [Int]
+                let reps = child.value["reps"] as! [Int]
+                let week = child.value["week"] as! [AnyObject]
+                
+                let workoutObject = workoutClass(type: type, duration: duration, reps: reps, unit: unit, week: week)
+                tempWorkoutList.append(workoutObject)
+                
+                // Save as you go, otherwise it'll just save an empty list b/c asycnchrony.
+                self.saveWorkoutList(tempWorkoutList)
+            }
+            
+            }, withCancelBlock: { error in
+                print(error.description)
+        })
+        
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -29,23 +65,25 @@ class WorkoutsTableViewController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return workoutList.count
     }
 
-    /*
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
+        let cellIdentifier = "workoutTableViewCell"
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! WorkoutsTableViewCell
+            
+        let workout = workoutList[indexPath.row]
+        cell.typeLabel.text = workout.type
 
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
@@ -91,5 +129,21 @@ class WorkoutsTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    // MARK: NSCoding
+    
+    func saveWorkoutList(workoutListName: [workoutClass]){
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(workoutListName, toFile: workoutClass.ArchiveURL.path!)
+        if isSuccessfulSave {
+            print("WorkoutList Saved")
+        }
+        else {
+            print("Failed to save WorkoutList")
+        }
+    }
+    
+    func loadWorkoutList() -> [workoutClass]? {
+        return NSKeyedUnarchiver.unarchiveObjectWithFile(workoutClass.ArchiveURL.path!) as? [workoutClass]
+    }
 
 }

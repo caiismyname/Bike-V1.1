@@ -10,9 +10,9 @@ import UIKit
 
 class WorkoutsTableViewCell: UITableViewCell {
     // MARK: Properties
-    @IBOutlet weak var weekLabel: UIView!
-    @IBOutlet weak var typeLabel: UIView!
-    @IBOutlet weak var payloadLabel: UIView!
+    @IBOutlet weak var typeLabel: UILabel!
+    @IBOutlet weak var weekLabel: UILabel!
+    @IBOutlet weak var payloadLabel: UILabel!
     
     
     override func awakeFromNib() {

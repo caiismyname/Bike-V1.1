@@ -143,7 +143,13 @@ class BikeTableViewController: UITableViewController {
     // MARK: NSCoding
     
     func saveBikeList(bikeListName: [bikeClass]){
-        NSKeyedArchiver.archiveRootObject(bikeListName, toFile: bikeClass.ArchiveURL.path!)
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(bikeListName, toFile: bikeClass.ArchiveURL.path!)
+        if isSuccessfulSave {
+            print("BikeList Saved")
+        }
+        else {
+            print("Failed to save BikeList")
+        }
     }
     
     func loadBikeList() -> [bikeClass]? {

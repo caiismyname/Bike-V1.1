@@ -49,5 +49,5 @@ class HomepageViewController: UIViewController {
         let loadedUser = (NSKeyedUnarchiver.unarchiveObjectWithFile(userClass.ArchiveURL.path!) as? userClass)!
         self.user = loadedUser
     }
-    
+
 }
