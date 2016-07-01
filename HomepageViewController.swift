@@ -31,7 +31,6 @@ class HomepageViewController: UIViewController {
         FIRAuth.auth()?.signInWithEmail(user.email, password: user.password, completion: nil)
     }
     
-    
     // MARK: Navigation
     @IBAction func unwindToHomepage(segue: UIStoryboardSegue) {}
     
