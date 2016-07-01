@@ -26,9 +26,9 @@ class WorkoutsTableViewController: UITableViewController {
         let ref = FIRDatabase.database().reference()
         let workoutRef = ref.child("workouts")
         
-        var tempWorkoutList = [workoutClass]()
-        
         workoutRef.observeEventType(.Value, withBlock: { snapshot in
+            // This temp decleration must be inside the .observeEventType so that it resets with every refresh. Otherwise, you'll just append the old list
+            var tempWorkoutList = [workoutClass]()
             for child in snapshot.children {
                 // Create workoutClass object from FB data
                 let type = child.value["type"] as! String
@@ -40,8 +40,11 @@ class WorkoutsTableViewController: UITableViewController {
                 let workoutObject = workoutClass(type: type, duration: duration, reps: reps, unit: unit, week: week)
                 tempWorkoutList.append(workoutObject)
                 
-                // Save as you go, otherwise it'll just save an empty list b/c asycnchrony.
+                // To avoid callbacks, the new (refreshed) bikeList is saved, loaded, and the view is reloaded
+                // for every workout. It doesn't seem to affect the appearence, so we're cool.
                 self.saveWorkoutList(tempWorkoutList)
+                self.workoutList = self.loadWorkoutList()!
+                self.tableView.reloadData()
             }
             
             }, withCancelBlock: { error in

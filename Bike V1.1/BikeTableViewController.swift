@@ -31,6 +31,7 @@ class BikeTableViewController: UITableViewController {
         let bikeListRef = ref.child("bikeList")
         
         bikeListRef.observeEventType(.Value, withBlock: { snapshot in
+            // This temp decleration must be inside the .observeEventType so that it resets with every refresh. Otherwise, you'll just append the old list
             var tempBikeList = [bikeClass]()
             for child in snapshot.children {
                 // Creating bikeClass object from FB DB data
