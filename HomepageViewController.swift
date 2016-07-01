@@ -31,7 +31,6 @@ class HomepageViewController: UIViewController {
         FIRAuth.auth()?.signInWithEmail(user.email, password: user.password, completion: nil)
     }
     
-    
     // MARK: Navigation
     @IBAction func unwindToHomepage(segue: UIStoryboardSegue) {}
     
@@ -50,5 +49,5 @@ class HomepageViewController: UIViewController {
         let loadedUser = (NSKeyedUnarchiver.unarchiveObjectWithFile(userClass.ArchiveURL.path!) as? userClass)!
         self.user = loadedUser
     }
-    
+
 }

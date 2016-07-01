@@ -126,10 +126,13 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
                     }
                     else {
                         print("User signed in")
-                        self.pullData() { (bikes) in
-                            // Callback for pullData, so everything's loaded when we go to the homepage
+                        self.pullBikeListData() { (bikes) in
+                            // Callback for pullBikeListData, so everything's loaded when we go to the homepage
                             // To homescreen!
-                            self.performSegueWithIdentifier("unwindFromCreateAccountToHomepage", sender: self)
+                            self.pullWorkoutsData() { (workouts) in
+                                // Callback for pullWorkoutsData, so everything's loaded when we go to the homepage
+                                self.performSegueWithIdentifier("unwindFromCreateAccountToHomepage", sender: self)
+                            }
                         }
                     }
                 }
@@ -159,12 +162,29 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
     }
     
     func saveBikeList(bikeListName: [bikeClass]){
-        NSKeyedArchiver.archiveRootObject(bikeListName, toFile: bikeClass.ArchiveURL.path!)
+       let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(bikeListName, toFile: bikeClass.ArchiveURL.path!)
+        if isSuccessfulSave {
+            print("BikeList Saved")
+        }
+        else {
+            print("Failed to save BikeList")
+        }
     }
+    
+    func saveWorkoutList(workoutListName: [workoutClass]){
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(workoutListName, toFile: workoutClass.ArchiveURL.path!)
+        if isSuccessfulSave {
+            print("WorkoutList Saved")
+        }
+        else {
+            print("Failed to save WorkoutList")
+        }
+    }
+    
     
     //MARK: Preperations for other views
     
-    func pullData(completion: (listOfBikes: [bikeClass]) -> Void) {
+    func pullBikeListData(completion: (listOfBikes: [bikeClass]) -> Void) {
         // This takes everything from bikeList in FB, makes them into bikeClass objects, and appends said objects to bikeList array
         
         // Firebase Init
@@ -187,13 +207,47 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
                 
                 // Save as you go, otherwise it'll just save an empty list b/c asycnchrony.
                 self.saveBikeList(tempBikeList)
-                print("saved")
             }
             
             }, withCancelBlock: { error in
                 print(error.description)
         })
         completion(listOfBikes: tempBikeList)
+    }
+    
+    func pullWorkoutsData(completion: (listOfWorkouts: [workoutClass]) -> Void) {
+        
+        // Firebase Init
+        var ref = FIRDatabaseReference.init()
+        ref = FIRDatabase.database().reference()
+        let workoutRef = ref.child("workouts")
+        
+        var tempWorkoutList = [workoutClass]()
+        
+        // Iterate through all children of workoutList (see prev. decleration of path)
+        workoutRef.observeEventType(.Value, withBlock: { snapshot in
+            for child in snapshot.children {
+                print(child)
+                // Create workoutClass object from FB data
+                let type = child.value["type"] as! String
+                let unit = child.value["unit"] as! String
+                let duration = child.value["duration"] as! [Int]
+                let reps = child.value["duration"] as! [Int]
+                let week = child.value["duration"] as! [AnyObject]
+                
+                let workoutObject = workoutClass(type: type, duration: duration, reps: reps, unit: unit, week: week)
+                tempWorkoutList.append(workoutObject)
+                
+                // Save as you go, otherwise it'll just save an empty list b/c asycnchrony.
+                self.saveWorkoutList(tempWorkoutList)
+            }
+            
+            }, withCancelBlock: { error in
+                print(error.description)
+        })
+        
+        completion(listOfWorkouts: tempWorkoutList)
+        
     }
 
 }

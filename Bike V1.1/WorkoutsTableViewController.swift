@@ -1,26 +1,22 @@
 //
-//  BikeTableViewController.swift
-//  
+//  WorkoutsTableViewController.swift
+//  Bike V1.1
 //
-//  Created by David Cai on 6/29/16.
-//
+//  Created by David Cai on 7/1/16.
+//  Copyright © 2016 David Cai. All rights reserved.
 //
 
 import UIKit
 import Firebase
 
-
-
-class BikeTableViewController: UITableViewController {
+class WorkoutsTableViewController: UITableViewController {
     
-    //MARK: Properties
-    var bikeList = [bikeClass]()
+    var workoutList = [workoutClass]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Loading the saved list of bikes, to avoid FB calls
-        bikeList = loadBikeList()!
+        workoutList = loadWorkoutList()!
         
         // Watcher thing that auto refreshes when FB DB changes
         // As of right now, it replaces the whole bike list
@@ -28,29 +24,31 @@ class BikeTableViewController: UITableViewController {
         
         // FB init.
         let ref = FIRDatabase.database().reference()
-        let bikeListRef = ref.child("bikeList")
+        let workoutRef = ref.child("workouts")
         
-        bikeListRef.observeEventType(.Value, withBlock: { snapshot in
-            var tempBikeList = [bikeClass]()
+        var tempWorkoutList = [workoutClass]()
+        
+        workoutRef.observeEventType(.Value, withBlock: { snapshot in
             for child in snapshot.children {
-                // Creating bikeClass object from FB DB data
-                let bikeName = child.value["name"] as! String
-                let size = child.value["size"] as! String
-                let wheels = child.value["wheels"] as! String
+                // Create workoutClass object from FB data
+                let type = child.value["type"] as! String
+                let unit = child.value["unit"] as! String
+                let duration = child.value["duration"] as! [Int]
+                let reps = child.value["reps"] as! [Int]
+                let week = child.value["week"] as! [AnyObject]
                 
-                let bikeObject = bikeClass(bikeName: bikeName, wheels: wheels, size: size, status: nil)
-                tempBikeList.append(bikeObject)
+                let workoutObject = workoutClass(type: type, duration: duration, reps: reps, unit: unit, week: week)
+                tempWorkoutList.append(workoutObject)
                 
-                // To avoid callbacks, the new (refreshed) bikeList is saved, loaded, and the view is reloaded
-                // for every bike. It doesn't seem to affect the appearence, so we're cool.
-                self.saveBikeList(tempBikeList)
-                self.bikeList = self.loadBikeList()!
-                self.tableView.reloadData()
+                // Save as you go, otherwise it'll just save an empty list b/c asycnchrony.
+                self.saveWorkoutList(tempWorkoutList)
             }
             
+            }, withCancelBlock: { error in
+                print(error.description)
         })
-
         
+
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -62,28 +60,26 @@ class BikeTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return bikeList.count
+        // #warning Incomplete implementation, return the number of rows
+        return workoutList.count
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        // Take info from bikeList array and puts them into cells
-        let cellIdentifier = "BikeTableViewCell"
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! BikeTableViewCell
-        
-        let bike = bikeList[indexPath.row]
-
-        cell.bikeNameDisplay.text = bike.bikeName
-        cell.wheelInfoDisplay.text = bike.wheels
-        cell.sizeInfoDisplay.text = bike.size
+        let cellIdentifier = "workoutTableViewCell"
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! WorkoutsTableViewCell
+            
+        let workout = workoutList[indexPath.row]
+        cell.typeLabel.text = workout.type
 
         return cell
     }
@@ -134,26 +130,20 @@ class BikeTableViewController: UITableViewController {
     }
     */
     
-    // MARK: Actions
-
-    @IBAction func cancelButton(sender: UIBarButtonItem) {
-        self.performSegueWithIdentifier("unwindFromBikelistToHomepage", sender: self)
-    }
-    
     // MARK: NSCoding
     
-    func saveBikeList(bikeListName: [bikeClass]){
-        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(bikeListName, toFile: bikeClass.ArchiveURL.path!)
+    func saveWorkoutList(workoutListName: [workoutClass]){
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(workoutListName, toFile: workoutClass.ArchiveURL.path!)
         if isSuccessfulSave {
-            print("BikeList Saved")
+            print("WorkoutList Saved")
         }
         else {
-            print("Failed to save BikeList")
+            print("Failed to save WorkoutList")
         }
     }
     
-    func loadBikeList() -> [bikeClass]? {
-        return NSKeyedUnarchiver.unarchiveObjectWithFile(bikeClass.ArchiveURL.path!) as? [bikeClass]
+    func loadWorkoutList() -> [workoutClass]? {
+        return NSKeyedUnarchiver.unarchiveObjectWithFile(workoutClass.ArchiveURL.path!) as? [workoutClass]
     }
-    
+
 }

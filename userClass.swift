@@ -39,6 +39,7 @@ class userClass: NSObject, NSCoding {
         
         super.init()
         
+        
     }
     
     // MARK: NSCoding
