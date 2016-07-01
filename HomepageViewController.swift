@@ -23,13 +23,15 @@ class HomepageViewController: UIViewController {
         }
         else {
             performSegueWithIdentifier("toCreateAccount", sender: self)
-        }
-        
+        }  
     }
     
+    // MARK: Actions
     @IBAction func signIn(sender: UIButton) {
         FIRAuth.auth()?.signInWithEmail(user.email, password: user.password, completion: nil)
     }
+    
+    
     // MARK: Navigation
     @IBAction func unwindToHomepage(segue: UIStoryboardSegue) {}
     
@@ -48,5 +50,5 @@ class HomepageViewController: UIViewController {
         let loadedUser = (NSKeyedUnarchiver.unarchiveObjectWithFile(userClass.ArchiveURL.path!) as? userClass)!
         self.user = loadedUser
     }
-
+    
 }
