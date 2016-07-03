@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -119,19 +120,19 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="bike name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c65-6Z-i6d">
-                                            <rect key="frame" x="8" y="8" width="79" height="21"/>
+                                            <rect key="frame" x="8" y="8" width="125" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="wheel info" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="63L-zC-3gl">
-                                            <rect key="frame" x="9" y="34" width="78" height="21"/>
+                                            <rect key="frame" x="9" y="34" width="124" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="size info" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fsM-Y5-spk">
-                                            <rect key="frame" x="8" y="60" width="63" height="21"/>
+                                            <rect key="frame" x="8" y="60" width="125" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -139,10 +140,12 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <accessibility key="accessibilityConfiguration" identifier="BikeTableViewCell"/>
+                                <gestureRecognizers/>
                                 <connections>
                                     <outlet property="bikeNameDisplay" destination="c65-6Z-i6d" id="jvL-tV-ZRD"/>
                                     <outlet property="sizeInfoDisplay" destination="fsM-Y5-spk" id="IDj-6K-Lk7"/>
                                     <outlet property="wheelInfoDisplay" destination="63L-zC-3gl" id="fJJ-sc-bA6"/>
+                                    <segue destination="GIv-ez-UXl" kind="show" identifier="fromBikelistToBikeDetailView" id="qAj-5R-ilm"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -165,6 +168,77 @@
                 <exit id="4ok-BU-1dG" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1321" y="2027"/>
+        </scene>
+        <!--Bike Detail View Controller-->
+        <scene sceneID="7dt-Sn-RWe">
+            <objects>
+                <viewController id="GIv-ez-UXl" customClass="BikeDetailViewController" customModule="Bike_V1_1" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cge-1G-HMo"/>
+                        <viewControllerLayoutGuide type="bottom" id="F97-HX-WhV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="r7x-j5-ZcZ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="wLK-4L-lcI">
+                                <rect key="frame" x="20" y="85" width="360" height="490"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Size" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QuB-ap-AmF">
+                                        <rect key="frame" x="0.0" y="0.0" width="33" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Wheels" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bd9-rT-fMx">
+                                        <rect key="frame" x="0.0" y="33" width="57" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1N7-kc-Q0m">
+                                        <rect key="frame" x="0.0" y="65" width="50" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Riders" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4bc-aS-OIA">
+                                        <rect key="frame" x="0.0" y="98" width="49" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" placeholderIntrinsicWidth="360" placeholderIntrinsicHeight="360" translatesAutoresizingMaskIntoConstraints="NO" id="gQD-Pi-cKf">
+                                        <rect key="frame" x="0.0" y="130" width="360" height="360"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="gQD-Pi-cKf" secondAttribute="height" multiplier="1:1" id="don-VP-J5a"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="t2C-h2-OTp">
+                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="KSK-GV-pmH">
+                            <connections>
+                                <action selector="doneButton:" destination="GIv-ez-UXl" id="Tl7-n1-ux5"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="bikeImageView" destination="gQD-Pi-cKf" id="hOq-p1-BdE"/>
+                        <outlet property="ridersLabel" destination="4bc-aS-OIA" id="26W-Ja-2Uf"/>
+                        <outlet property="sizeLabel" destination="QuB-ap-AmF" id="Pbe-k3-IIi"/>
+                        <outlet property="statusLabel" destination="1N7-kc-Q0m" id="Dz3-1A-7hc"/>
+                        <outlet property="wheelsLabel" destination="Bd9-rT-fMx" id="u1D-9f-e9e"/>
+                        <segue destination="jx4-WE-vdT" kind="unwind" identifier="unwindFromBikeDetailViewToBikelist" unwindAction="unwindToBikelist:" id="To2-jn-O7e"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3Ya-dY-d4M" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="jx4-WE-vdT" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1321" y="2737"/>
         </scene>
         <!--Homepage-->
         <scene sceneID="O9V-ub-uEK">
@@ -330,5 +404,26 @@
             </objects>
             <point key="canvasLocation" x="2148" y="1161"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="qeP-lQ-suU">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pmQ-LG-KJk" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="nh3-hF-LoN">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="GIv-ez-UXl" kind="relationship" relationship="rootViewController" id="RyG-je-QWA"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8gI-ZM-Gmq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="605" y="2737"/>
+        </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="qAj-5R-ilm"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -124,22 +124,37 @@ class BikeTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
-
+    
+    @IBAction func unwindToBikelist(segue: UIStoryboardSegue) {}
+    
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "fromBikelistToBikeDetailView" {
+            
+            // Grab which bike initiated the segue
+            let selectedBikeCell = sender as! BikeTableViewCell
+            let indexPath = tableView.indexPathForCell(selectedBikeCell)!
+            let selectedBike = bikeList[indexPath.row]
+            
+            // Send that bike info over to the BikeDetailView
+            let bikeDetailView = segue.destinationViewController as! BikeDetailViewController
+            bikeDetailView.thisBike = selectedBike
+            
+        }
     }
-    */
+    
+    
+    
     
     // MARK: Actions
 
     @IBAction func cancelButton(sender: UIBarButtonItem) {
         self.performSegueWithIdentifier("unwindFromBikelistToHomepage", sender: self)
     }
-    
+
     // MARK: NSCoding
     
     func saveBikeList(bikeListName: [bikeClass]){
