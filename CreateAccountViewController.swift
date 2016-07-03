@@ -9,21 +9,34 @@
 import UIKit
 import Firebase
 
-class CreateAccountViewController: UIViewController, UITextFieldDelegate {
+var thisUser = userClass(firstName: "foo", lastName: "foo", college: "fo", email: "foo", password: "foo", bike: nil)
+
+class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     
     // MARK: Properties
-    @IBOutlet weak var createName: UITextField!
+    
+    @IBOutlet weak var createFirstName: UITextField!
+    @IBOutlet weak var createLastName: UITextField!
+    @IBOutlet weak var createCollege: UIPickerView!
     @IBOutlet weak var createEmail: UITextField!
     @IBOutlet weak var createPassword: UITextField!
     @IBOutlet weak var createButton: UIButton!
-
+    
+    
     var thisUser: userClass!
+    let listOfColleges = [" ", "Don't Pick this one", "Will Rice", "Not this one"]
+    var userCollege: String!
     
     override func viewDidLoad() {
-        createName.delegate = self
+        // Delegation
+        createFirstName.delegate = self
+        createLastName.delegate = self
+        createCollege.delegate = self
+        createCollege.dataSource = self
         createEmail.delegate = self
         createPassword.delegate = self
         createButton.enabled = false
+       
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,14 +44,10 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    
-    
-    
-    
     // MARK: UITextfield Delegate
     func isNameValid() -> Bool {
         // true if not empty, false if empty
-        return !(createName.text?.isEmpty)!
+        return !((createFirstName.text?.isEmpty)! && (createLastName.text?.isEmpty)!)
     }
     
     func isEmailValid() -> Bool {
@@ -72,22 +81,44 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
         // Moves user along through the textFields
         
         createButton.enabled = isNameValid() && isEmailValid() && isPasswordValid()
-        if textField == createName {
-            createName.resignFirstResponder()
+        if textField == createFirstName {
+            createFirstName.resignFirstResponder()
+            createLastName.becomeFirstResponder()
+        }
+        else if textField == createLastName {
+            createLastName.resignFirstResponder()
             createEmail.becomeFirstResponder()
         }
+        
         else if textField == createEmail {
             createEmail.resignFirstResponder()
             createPassword.becomeFirstResponder()
         }
         else {
             createPassword.resignFirstResponder()
+            
         }
         
         // b/c it returns a Bool. Not sure why this is here tbh
         return true
     }
     
+    // MARK: Picker Delegate and datasource
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return listOfColleges.count
+    }
+    
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return listOfColleges[row]
+    }
+    
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        self.userCollege = listOfColleges[row]
+    }
     
     
     // MARK: Actions
@@ -97,12 +128,14 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
         // other funcs will have run and failed.
         
         // Resign, in case they are still FR
-        createName.resignFirstResponder()
+        createFirstName.resignFirstResponder()
+        createLastName.resignFirstResponder()
+        createCollege.resignFirstResponder()
         createEmail.resignFirstResponder()
         createPassword.resignFirstResponder()
         
         // Create new userClass object
-        thisUser = userClass.init(name: createName.text!, email: createEmail.text!, password: createPassword.text!, bike: nil)
+        thisUser = userClass.init(firstName: createFirstName.text!, lastName: createLastName.text!, college: self.userCollege, email: createEmail.text!, password: createPassword.text!, bike: nil)
         
         saveUser()
         
@@ -128,10 +161,14 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
                         print("User signed in")
                         self.pullBikeListData() { (bikes) in
                             // Callback for pullBikeListData, so everything's loaded when we go to the homepage
-                            // To homescreen!
+                            print("bike list pulled")
                             self.pullWorkoutsData() { (workouts) in
                                 // Callback for pullWorkoutsData, so everything's loaded when we go to the homepage
-                                self.performSegueWithIdentifier("unwindFromCreateAccountToHomepage", sender: self)
+                                print("workouts pulled")
+                                self.createdDBEntries(self.thisUser) { (foo) in
+                                    print("DB Entries created")
+                                    self.performSegueWithIdentifier("unwindFromCreateAccountToHomepage", sender: self)
+                                }
                             }
                         }
                     }
@@ -146,7 +183,8 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
     // MARK: Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let homepage = segue.destinationViewController as! HomepageViewController
-        homepage.user = thisUser
+        homepage.words.text = thisUser.firstName + thisUser.college
+
     }
     
     
@@ -181,16 +219,76 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    func loadBikeList() -> [bikeClass]? {
+        return NSKeyedUnarchiver.unarchiveObjectWithFile(bikeClass.ArchiveURL.path!) as? [bikeClass]
+    }
+    
+    func loadWorkoutList() -> [workoutClass]? {
+        return NSKeyedUnarchiver.unarchiveObjectWithFile(workoutClass.ArchiveURL.path!) as? [workoutClass]
+    }
     
     //MARK: Preperations for other views
+    
+    func createdDBEntries(user: userClass, completion: (foo: String) -> Void) {
+        // Creating and setting the user in the DB in the /users/[username] and /colleges/[college]/users/[username]
+        
+        // Firebase Init
+        var ref = FIRDatabaseReference.init()
+        ref = FIRDatabase.database().reference()
+        
+        // username is the Dict. key for the user entries
+        let username = user.college + user.firstName + user.lastName
+        // Full name is the human readable name of the person
+        let fullname = user.firstName + " " + user.lastName
+        
+        // First DB entry, /users/[username]
+        //
+        //
+        
+        // Top-level User list
+        let userRef = ref.child("users/\(username)")
+        
+        // Dict. representation of values in /users/[username] entry
+        let userRefPayload = ["college": user.college, "email": user.email, "name": fullname]
+        //  Uploads to FB DB | Setting the value of users/[username]
+        userRef.setValue(userRefPayload) { (error: NSError?, database: FIRDatabaseReference) in
+            if (error != nil) {
+                print(error?.description)
+            }
+            else {
+                print("users/username values set")
+            }
+        }
+
+        
+        // Second DB entry, /colleges/[college]/users/username/
+        //
+        //
+        
+        let collegeUserRef = ref.child("colleges/\(thisUser.college)/users/\(username)")
+        
+        collegeUserRef.setValue("true") { (error: NSError?, database: FIRDatabaseReference) in
+            if (error != nil) {
+                print(error?.description)
+            }
+            else {
+                print("college/[college]/users/[username] value set")
+            }
+        }
+        
+        completion(foo: "FOO")
+
+    }
     
     func pullBikeListData(completion: (listOfBikes: [bikeClass]) -> Void) {
         // This takes everything from bikeList in FB, makes them into bikeClass objects, and appends said objects to bikeList array
         
         // Firebase Init
+        
+        print("beginning pull of bikes")
         var ref = FIRDatabaseReference.init()
         ref = FIRDatabase.database().reference()
-        let bikeListRef = ref.child("bikeList")
+        let bikeListRef = ref.child("colleges/wrc/bikeList/")
         
         var tempBikeList = [bikeClass]()
         
@@ -200,52 +298,65 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
                 // Create bikeClass object from FB data
                 let bikeName = child.value["name"] as! String
                 let size = child.value["size"] as! String
+                let riders = child.value["riders"] as! [String]
                 let wheels = child.value["wheels"] as! String
                 
-                let bikeObject = bikeClass(bikeName: bikeName, wheels: wheels, size: size, status: nil)
+                print(bikeName)
+                
+                let bikeObject = bikeClass(bikeName: bikeName, wheels: wheels, size: size, riders: riders, status: nil)
                 tempBikeList.append(bikeObject)
                 
+                print(tempBikeList)
                 // Save as you go, otherwise it'll just save an empty list b/c asycnchrony.
                 self.saveBikeList(tempBikeList)
+                print(self.loadBikeList())
             }
             
             }, withCancelBlock: { error in
                 print(error.description)
         })
+    
         completion(listOfBikes: tempBikeList)
     }
     
     func pullWorkoutsData(completion: (listOfWorkouts: [workoutClass]) -> Void) {
         
         // Firebase Init
+        print("beginning workout pull")
         var ref = FIRDatabaseReference.init()
         ref = FIRDatabase.database().reference()
-        let workoutRef = ref.child("workouts")
+        let workoutRef = ref.child("colleges/wrc/workouts")
         
         var tempWorkoutList = [workoutClass]()
         
         // Iterate through all children of workoutList (see prev. decleration of path)
         workoutRef.observeEventType(.Value, withBlock: { snapshot in
             for child in snapshot.children {
-                print(child)
                 // Create workoutClass object from FB data
                 let type = child.value["type"] as! String
                 let unit = child.value["unit"] as! String
                 let duration = child.value["duration"] as! [Int]
-                let reps = child.value["duration"] as! [Int]
-                let week = child.value["duration"] as! [AnyObject]
+                let reps = child.value["reps"] as! [Int]
+                let week = child.value["week"] as! [String]
+                let usersHaveCompleted = child.value["usersHaveCompleted"] as! [String]
                 
-                let workoutObject = workoutClass(type: type, duration: duration, reps: reps, unit: unit, week: week)
+                print(type)
+                
+                let workoutObject = workoutClass(type: type, duration: duration, reps: reps, unit: unit, usersHaveCompleted: usersHaveCompleted, week: week)
                 tempWorkoutList.append(workoutObject)
+                
+                print(tempWorkoutList)
                 
                 // Save as you go, otherwise it'll just save an empty list b/c asycnchrony.
                 self.saveWorkoutList(tempWorkoutList)
+                print(self.loadWorkoutList())
             }
             
             }, withCancelBlock: { error in
                 print(error.description)
         })
         
+
         completion(listOfWorkouts: tempWorkoutList)
         
     }

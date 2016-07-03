@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class WorkoutsTableViewController: UITableViewController {
+class WorkoutsTableViewController: UITableViewController{
     
     var workoutList = [workoutClass]()
     
@@ -17,14 +17,15 @@ class WorkoutsTableViewController: UITableViewController {
         super.viewDidLoad()
         
         workoutList = loadWorkoutList()!
-        
+        tableView.backgroundColor = UIColor.blackColor()
+
         // Watcher thing that auto refreshes when FB DB changes
         // As of right now, it replaces the whole bike list
         // to cover all cases (append, delete, change)
         
         // FB init.
         let ref = FIRDatabase.database().reference()
-        let workoutRef = ref.child("workouts")
+        let workoutRef = ref.child("colleges/\(thisUser.college)/workouts")
         
         workoutRef.observeEventType(.Value, withBlock: { snapshot in
             // This temp decleration must be inside the .observeEventType so that it resets with every refresh. Otherwise, you'll just append the old list
@@ -35,9 +36,10 @@ class WorkoutsTableViewController: UITableViewController {
                 let unit = child.value["unit"] as! String
                 let duration = child.value["duration"] as! [Int]
                 let reps = child.value["reps"] as! [Int]
-                let week = child.value["week"] as! [AnyObject]
-                
-                let workoutObject = workoutClass(type: type, duration: duration, reps: reps, unit: unit, week: week)
+                let week = child.value["week"] as! [String]
+                let usersHaveCompleted = child.value["usersHaveCompleted"] as! [String]
+            
+                let workoutObject = workoutClass(type: type, duration: duration, reps: reps, unit: unit, usersHaveCompleted: usersHaveCompleted, week: week)
                 tempWorkoutList.append(workoutObject)
                 
                 // To avoid callbacks, the new (refreshed) bikeList is saved, loaded, and the view is reloaded
@@ -82,19 +84,49 @@ class WorkoutsTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! WorkoutsTableViewCell
             
         let workout = workoutList[indexPath.row]
-        cell.typeLabel.text = workout.type
 
+        let weekInfo = "\(workout.week[0])  | \(workout.week[1])"
+        var payload = ""
+        
+        let payloadIndexMax = workout.duration.count
+        for index in 0..<payloadIndexMax {
+            payload += "\(workout.reps[index])x\(workout.duration[index]) | "
+        }
+        payload += workout.unit
+        
+        cell.typeLabel.text = workout.type
+        cell.weekLabel.text = weekInfo
+        cell.payloadLabel.text = payload
+        
+        
+        // So nothing (visually) changes when cell is selected
+        cell.selectionStyle = .None
+        
         return cell
     }
     
 
-    /*
+    
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return true
     }
-    */
+    
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {}
+    
+    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        let completeAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Complete") { (action:UITableViewRowAction!, index:NSIndexPath) in
+            let cellIdentifier = "workoutTableViewCell"
+            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: index) as! WorkoutsTableViewCell
+            
+            cell.backgroundColor = UIColor.blueColor()
+            self.tableView.reloadData()
+            
+        }
+        
+        return [completeAction]
+    }
 
     /*
     // Override to support editing the table view.
@@ -107,6 +139,7 @@ class WorkoutsTableViewController: UITableViewController {
         }    
     }
     */
+    
 
     /*
     // Override to support rearranging the table view.
@@ -133,6 +166,8 @@ class WorkoutsTableViewController: UITableViewController {
     }
     */
     
+    
+    
     // MARK: NSCoding
     
     func saveWorkoutList(workoutListName: [workoutClass]){
@@ -149,4 +184,6 @@ class WorkoutsTableViewController: UITableViewController {
         return NSKeyedUnarchiver.unarchiveObjectWithFile(workoutClass.ArchiveURL.path!) as? [workoutClass]
     }
 
+    
+    
 }

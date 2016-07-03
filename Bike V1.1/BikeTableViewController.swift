@@ -9,8 +9,6 @@
 import UIKit
 import Firebase
 
-
-
 class BikeTableViewController: UITableViewController {
     
     //MARK: Properties
@@ -28,7 +26,7 @@ class BikeTableViewController: UITableViewController {
         
         // FB init.
         let ref = FIRDatabase.database().reference()
-        let bikeListRef = ref.child("bikeList")
+        let bikeListRef = ref.child("colleges/\(thisUser.college)/bikeList")
         
         bikeListRef.observeEventType(.Value, withBlock: { snapshot in
             // This temp decleration must be inside the .observeEventType so that it resets with every refresh. Otherwise, you'll just append the old list
@@ -38,8 +36,9 @@ class BikeTableViewController: UITableViewController {
                 let bikeName = child.value["name"] as! String
                 let size = child.value["size"] as! String
                 let wheels = child.value["wheels"] as! String
+                let riders = child.value["riders"] as? [String]
                 
-                let bikeObject = bikeClass(bikeName: bikeName, wheels: wheels, size: size, status: nil)
+                let bikeObject = bikeClass(bikeName: bikeName, wheels: wheels, size: size, riders: riders, status: nil)
                 tempBikeList.append(bikeObject)
                 
                 // To avoid callbacks, the new (refreshed) bikeList is saved, loaded, and the view is reloaded

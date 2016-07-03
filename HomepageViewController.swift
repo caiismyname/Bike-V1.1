@@ -12,23 +12,23 @@ import Firebase
 class HomepageViewController: UIViewController {
     
     //MARK: Properties
-    var user: userClass!
     @IBOutlet weak var words: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("viewdidload")
         if hasAccount() {
             loadUser()
-            words.text = user.name
+            self.words.text = thisUser.firstName + thisUser.lastName
         }
         else {
             performSegueWithIdentifier("toCreateAccount", sender: self)
-        }  
+        }
     }
     
     // MARK: Actions
     @IBAction func signIn(sender: UIButton) {
-        FIRAuth.auth()?.signInWithEmail(user.email, password: user.password, completion: nil)
+        FIRAuth.auth()?.signInWithEmail(thisUser.email, password: thisUser.password, completion: nil)
     }
     
     // MARK: Navigation
@@ -47,7 +47,11 @@ class HomepageViewController: UIViewController {
     
     func loadUser(){
         let loadedUser = (NSKeyedUnarchiver.unarchiveObjectWithFile(userClass.ArchiveURL.path!) as? userClass)!
-        self.user = loadedUser
+        thisUser = loadedUser
     }
-
+    
+    func loadBikeList() -> [bikeClass]? {
+        return NSKeyedUnarchiver.unarchiveObjectWithFile(bikeClass.ArchiveURL.path!) as? [bikeClass]
+    }
+    
 }

@@ -15,7 +15,9 @@ class workoutClass: NSObject, NSCoding {
     var duration: [Int]
     var reps: [Int]
     var unit: String
-    var week: [AnyObject]
+    var usersHaveCompleted: [String]
+    // This list should have an initialized key/value "init:true", so it will exist immediately
+    var week: [String]
     
     // MARK: Archiving Paths
     
@@ -28,15 +30,17 @@ class workoutClass: NSObject, NSCoding {
         static let durationKey = "duration"
         static let repsKey = "reps"
         static let unitKey = "unit"
+        static let usersHaveCompletedKey = "usersHaveCompleted"
         static let weekKey = "week"
     }
     
     // MARK: Init.
-    init(type: String!, duration: [Int]!, reps: [Int]!, unit: String!, week: [AnyObject]!){
+    init(type: String!, duration: [Int]!, reps: [Int]!, unit: String!, usersHaveCompleted: [String]!, week: [String]!){
         self.type = type
         self.duration = duration
         self.reps = reps
         self.unit = unit
+        self.usersHaveCompleted = usersHaveCompleted
         self.week = week
         
         super.init()
@@ -48,6 +52,7 @@ class workoutClass: NSObject, NSCoding {
         aCoder.encodeObject(duration, forKey: PropertyKey.durationKey)
         aCoder.encodeObject(reps, forKey: PropertyKey.repsKey)
         aCoder.encodeObject(unit, forKey: PropertyKey.unitKey)
+        aCoder.encodeObject(usersHaveCompleted, forKey: PropertyKey.usersHaveCompletedKey)
         aCoder.encodeObject(week, forKey: PropertyKey.weekKey)
     }
     
@@ -56,8 +61,9 @@ class workoutClass: NSObject, NSCoding {
         let duration = aDecoder.decodeObjectForKey(PropertyKey.durationKey) as! [Int]
         let reps = aDecoder.decodeObjectForKey(PropertyKey.repsKey) as! [Int]
         let unit = aDecoder.decodeObjectForKey(PropertyKey.unitKey) as! String
-        let week = aDecoder.decodeObjectForKey(PropertyKey.weekKey) as! [AnyObject]
+        let usersHaveCompleted = aDecoder.decodeObjectForKey(PropertyKey.usersHaveCompletedKey) as! [String]
+        let week = aDecoder.decodeObjectForKey(PropertyKey.weekKey) as! [String]
         
-        self.init(type: type, duration: duration, reps: reps, unit: unit, week: week)
+        self.init(type: type, duration: duration, reps: reps, unit: unit, usersHaveCompleted: usersHaveCompleted, week: week)
     }
 }
