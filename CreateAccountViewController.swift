@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-var thisUser = userClass(firstName: "foo", lastName: "foo", college: "fo", email: "foo", password: "foo", bike: nil)
+var thisUser = userClass(firstName: "foo", lastName: "foo", userName: "foo", college: "fo", email: "foo", password: "foo", bike: nil)
 
 class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     
@@ -24,7 +24,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
     
     
     var thisUser: userClass!
-    let listOfColleges = [" ", "Don't Pick this one", "Will Rice", "Not this one"]
+    let listOfColleges = [" ", "Don't Pick this one", "wrc", "Not this one"]
     var userCollege: String!
     
     override func viewDidLoad() {
@@ -134,8 +134,10 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
         createEmail.resignFirstResponder()
         createPassword.resignFirstResponder()
         
+        let createUserName = userCollege + createFirstName.text! + createLastName.text!
+        
         // Create new userClass object
-        thisUser = userClass.init(firstName: createFirstName.text!, lastName: createLastName.text!, college: self.userCollege, email: createEmail.text!, password: createPassword.text!, bike: nil)
+        thisUser = userClass.init(firstName: createFirstName.text!, lastName: createLastName.text!, userName: createUserName, college: self.userCollege, email: createEmail.text!, password: createPassword.text!, bike: nil)
         
         saveUser()
         
@@ -237,7 +239,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
         ref = FIRDatabase.database().reference()
         
         // username is the Dict. key for the user entries
-        let username = user.college + user.firstName + user.lastName
+        let username = user.userName
         // Full name is the human readable name of the person
         let fullname = user.firstName + " " + user.lastName
         
@@ -249,7 +251,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
         let userRef = ref.child("users/\(username)")
         
         // Dict. representation of values in /users/[username] entry
-        let userRefPayload = ["college": user.college, "email": user.email, "name": fullname]
+        let userRefPayload = ["college": user.college, "email": user.email, "name": fullname, "bike":"None"]
         //  Uploads to FB DB | Setting the value of users/[username]
         userRef.setValue(userRefPayload) { (error: NSError?, database: FIRDatabaseReference) in
             if (error != nil) {
@@ -288,7 +290,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
         print("beginning pull of bikes")
         var ref = FIRDatabaseReference.init()
         ref = FIRDatabase.database().reference()
-        let bikeListRef = ref.child("colleges/wrc/bikeList/")
+        let bikeListRef = ref.child("colleges/\(thisUser.college)/bikeList/")
         
         var tempBikeList = [bikeClass]()
         
@@ -301,15 +303,16 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
                 let riders = child.value["riders"] as! [String]
                 let wheels = child.value["wheels"] as! String
                 
-                print(bikeName)
+                let childsnap = child as! FIRDataSnapshot
+                let bikeUsername = childsnap.key
+    
                 
-                let bikeObject = bikeClass(bikeName: bikeName, wheels: wheels, size: size, riders: riders, status: nil)
+                let bikeObject = bikeClass(bikeName: bikeName, wheels: wheels, size: size, riders: riders, status: nil, bikeUsername: bikeUsername)
                 tempBikeList.append(bikeObject)
                 
                 print(tempBikeList)
                 // Save as you go, otherwise it'll just save an empty list b/c asycnchrony.
                 self.saveBikeList(tempBikeList)
-                print(self.loadBikeList())
             }
             
             }, withCancelBlock: { error in
@@ -325,7 +328,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
         print("beginning workout pull")
         var ref = FIRDatabaseReference.init()
         ref = FIRDatabase.database().reference()
-        let workoutRef = ref.child("colleges/wrc/workouts")
+        let workoutRef = ref.child("colleges/\(thisUser.college)/workouts")
         
         var tempWorkoutList = [workoutClass]()
         

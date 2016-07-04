@@ -33,19 +33,26 @@ class BikeTableViewController: UITableViewController {
             var tempBikeList = [bikeClass]()
             for child in snapshot.children {
                 // Creating bikeClass object from FB DB data
+                
                 let bikeName = child.value["name"] as! String
                 let size = child.value["size"] as! String
                 let wheels = child.value["wheels"] as! String
                 let riders = child.value["riders"] as? [String]
                 
-                let bikeObject = bikeClass(bikeName: bikeName, wheels: wheels, size: size, riders: riders, status: nil)
-                tempBikeList.append(bikeObject)
+                // To get key of bike entry, turn the "child" element into an FIRDataSnapshot object, which can then have .key called on it
+                let childsnap = child as! FIRDataSnapshot
+                let bikeUsername = childsnap.key as! String
                 
-                // To avoid callbacks, the new (refreshed) bikeList is saved, loaded, and the view is reloaded
-                // for every bike. It doesn't seem to affect the appearence, so we're cool.
+                
+                let bikeObject = bikeClass(bikeName: bikeName, wheels: wheels, size: size, riders: riders, status: nil, bikeUsername: bikeUsername)
+                print(bikeObject.bikeUsername)
+                
+                
+                tempBikeList.append(bikeObject)
                 self.saveBikeList(tempBikeList)
                 self.bikeList = self.loadBikeList()!
                 self.tableView.reloadData()
+
             }
             
         })
@@ -57,6 +64,7 @@ class BikeTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -82,7 +90,7 @@ class BikeTableViewController: UITableViewController {
         let bike = bikeList[indexPath.row]
 
         cell.bikeNameDisplay.text = bike.bikeName
-        cell.wheelInfoDisplay.text = bike.wheels
+        cell.wheelInfoDisplay.text = bike.bikeUsername
         cell.sizeInfoDisplay.text = bike.size
 
         return cell

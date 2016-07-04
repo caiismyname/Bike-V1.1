@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class BikeDetailViewController: UIViewController {
     // MARK: Properties
@@ -50,5 +51,21 @@ class BikeDetailViewController: UIViewController {
     @IBAction func doneButton(sender: UIBarButtonItem) {
         performSegueWithIdentifier("unwindFromBikeDetailViewToBikelist", sender: self)
     }
+    
+    @IBAction func setBikeButton(sender: UIBarButtonItem) {
+        // Updating the bike's list of riders
+        var ref = FIRDatabaseReference.init()
+        ref = FIRDatabase.database().reference()
+        let bikeRef = ref.child("colleges/\(thisUser.college)/bikeList/\(thisBike!.bikeUsername)/riders")
+        
+        let index = thisBike?.riders?.count
+        bikeRef.updateChildValues(["\(index!)": thisUser.userName])
+        
+        // Updating the user's data
+        let userRef = ref.child("users/\(thisUser.userName)/bike")
+        userRef.setValue(thisBike?.bikeUsername)
+        
+    }
+    
 
 }
