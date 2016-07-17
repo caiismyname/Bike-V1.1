@@ -27,6 +27,8 @@ class BikeDetailViewController: UIViewController {
         sizeLabel.text = thisBike?.size
         wheelsLabel.text = thisBike?.wheels
         statusLabel.text = thisBike?.status
+        print("THISBIKEthISBIKETHISBIKE")
+        print(thisBike?.bikeUsername)
         
     }
 
@@ -60,6 +62,36 @@ class BikeDetailViewController: UIViewController {
         
         let index = thisBike?.riders?.count
         bikeRef.updateChildValues(["\(index!)": thisUser.userName])
+        
+        // Removing user from other bikes
+        let bikeListRef = ref.child("colleges/\(thisUser.college)/bikeList")
+        
+        bikeListRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
+            // Iterating through the bikes
+            for child in snapshot.children {
+                // To grab bike's username for removing riders
+                let childSnap = child as! FIRDataSnapshot
+                let bikeName = childSnap.key
+                print("bikeusername")
+                print(bikeName)
+                
+                // Iterating through the riders of the bike
+                let riders = child.value["riders"] as! [String]
+                // In FB, lists are stored as dicts with the index as the key, so the removal REF must use that index
+                var index = 0
+                
+                for rider in riders {
+                    if thisUser.userName == rider && bikeName != self.thisBike!.bikeUsername {
+                        let indexString = String(index)
+                        let removedUserRef = bikeListRef.child("/\(bikeName)/riders/\(indexString)")
+                        removedUserRef.removeValue()
+                    }
+                    index += 1
+                }
+            }
+        })
+        
+        
         
         // Updating the user's data
         let userRef = ref.child("users/\(thisUser.userName)/bike")

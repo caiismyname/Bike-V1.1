@@ -45,7 +45,7 @@ class BikeTableViewController: UITableViewController {
                 
                 
                 let bikeObject = bikeClass(bikeName: bikeName, wheels: wheels, size: size, riders: riders, status: nil, bikeUsername: bikeUsername)
-                print(bikeObject.bikeUsername)
+                //print(bikeObject.bikeUsername)
                 
                 
                 tempBikeList.append(bikeObject)
