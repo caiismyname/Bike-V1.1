@@ -22,13 +22,35 @@ class BikeDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("User has selected: \(thisBike!.bikeUsername)")
         
         self.title = thisBike?.bikeName
         sizeLabel.text = thisBike?.size
         wheelsLabel.text = thisBike?.wheels
         statusLabel.text = thisBike?.status
-        print("THISBIKEthISBIKETHISBIKE")
-        print(thisBike?.bikeUsername)
+        
+        // FB is needed to get the *actual* names of the riders b/c the user dict is not stored locally
+        var ref = FIRDatabaseReference.init()
+        ref = FIRDatabase.database().reference()
+        
+        var riderList = String()
+        
+        for rider in thisBike!.riders! {
+            if rider != "init" {
+                let riderRef = ref.child("users/\(rider)")
+                riderRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
+                    let actualName = snapshot.value!["name"] as! String
+                    riderList += "\(actualName), "
+                    
+                    // Yeah this is bad, but a callback would be so much messier
+                    self.ridersLabel.text = riderList
+                })
+            }
+        }
+        
+        
+        
+        
         
     }
 
