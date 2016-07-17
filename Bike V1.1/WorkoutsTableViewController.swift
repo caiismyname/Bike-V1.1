@@ -119,21 +119,45 @@ class WorkoutsTableViewController: UITableViewController{
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
-        return true
+        let workout = self.workoutList[indexPath.row]
+        
+        if workout.usersHaveCompleted.contains(thisUser.userName){
+            return false
+        }
+        else {
+            return true
+        }
     }
     
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {}
     
     override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        
+        let ref = FIRDatabase.database().reference()
+        
+        // Grab the workout to be updated
+        let workout = self.workoutList[indexPath.row]
+        let workoutUsername = workout.workoutUsername
+        
+        let undoAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Undo") { (action:UITableViewRowAction!, index:NSIndexPath) in
+
+            // Update the workout's usersHaveCompleted List in FB
+            let workoutRef = ref.child("colleges/\(thisUser.college)/workouts/\(workoutUsername)/usersHaveCompleted")
+            
+            if let workoutIndex = workout.usersHaveCompleted.indexOf(thisUser.userName){
+                workoutRef.child("/\(workoutIndex)").removeValue()
+            }
+            
+            // Update the user's completedwo List in FB
+            let userRef = ref.child("users/\(thisUser.userName)/completedwo")
+            
+            if let userIndex = thisUser.completedWorkouts.indexOf(workoutUsername){
+                userRef.child("/\(userIndex)").removeValue()
+            }
+        }
+        
         let completeAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Complete") { (action:UITableViewRowAction!, index:NSIndexPath) in
-            let cellIdentifier = "workoutTableViewCell"
-            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! WorkoutsTableViewCell
             
-            // Grab the workout to be updated
-            let workout = self.workoutList[indexPath.row]
-            let workoutUsername = workout.workoutUsername
-            
-            let ref = FIRDatabase.database().reference()
             // Update the workout's usersHaveCompleted List in FB
             let workoutRef = ref.child("colleges/\(thisUser.college)/workouts/\(workoutUsername)/usersHaveCompleted")
             let workoutIndex = workout.usersHaveCompleted.count
@@ -144,9 +168,6 @@ class WorkoutsTableViewController: UITableViewController{
             let userRef = ref.child("users/\(thisUser.userName)/completedwo")
             let userIndex = thisUser.completedWorkouts.count
             userRef.updateChildValues(["\(userIndex)": workoutUsername])
-            
-            
-            self.tableView.reloadData()
             
         }
         
