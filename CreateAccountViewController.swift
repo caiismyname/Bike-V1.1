@@ -295,7 +295,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
         var tempBikeList = [bikeClass]()
         
         // Iterate through all children of bikeList (see prev. decleration of path)
-        bikeListRef.observeEventType(.Value, withBlock: { snapshot in
+        bikeListRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
             for child in snapshot.children {
                 // Create bikeClass object from FB data
                 let bikeName = child.value["name"] as! String
@@ -333,7 +333,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
         var tempWorkoutList = [workoutClass]()
         
         // Iterate through all children of workoutList (see prev. decleration of path)
-        workoutRef.observeEventType(.Value, withBlock: { snapshot in
+        workoutRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
             for child in snapshot.children {
                 // Create workoutClass object from FB data
                 let type = child.value["type"] as! String
