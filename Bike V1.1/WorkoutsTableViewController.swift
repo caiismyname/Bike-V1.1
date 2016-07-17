@@ -17,10 +17,9 @@ class WorkoutsTableViewController: UITableViewController{
         super.viewDidLoad()
         
         workoutList = loadWorkoutList()!
-        tableView.backgroundColor = UIColor.blackColor()
 
         // Watcher thing that auto refreshes when FB DB changes
-        // As of right now, it replaces the whole bike list
+        // As of right now, it replaces the whole workout list
         // to cover all cases (append, delete, change)
         
         // FB init.
@@ -38,8 +37,11 @@ class WorkoutsTableViewController: UITableViewController{
                 let reps = child.value["reps"] as! [Int]
                 let week = child.value["week"] as! [String]
                 let usersHaveCompleted = child.value["usersHaveCompleted"] as! [String]
+                
+                let childSnap = child as! FIRDataSnapshot
+                let workoutUsername = childSnap.key
             
-                let workoutObject = workoutClass(type: type, duration: duration, reps: reps, unit: unit, usersHaveCompleted: usersHaveCompleted, week: week)
+                let workoutObject = workoutClass(type: type, duration: duration, reps: reps, unit: unit, usersHaveCompleted: usersHaveCompleted, week: week, workoutUsername: workoutUsername)
                 tempWorkoutList.append(workoutObject)
                 
                 // To avoid callbacks, the new (refreshed) bikeList is saved, loaded, and the view is reloaded
@@ -98,7 +100,14 @@ class WorkoutsTableViewController: UITableViewController{
         cell.weekLabel.text = weekInfo
         cell.payloadLabel.text = payload
         
-        
+        if workout.usersHaveCompleted.contains(thisUser.userName) {
+            cell.backgroundColor = UIColor.clearColor()
+        }
+        else {
+            // If they have not completed the workout
+            cell.backgroundColor = UIColor.redColor()
+        }
+
         // So nothing (visually) changes when cell is selected
         cell.selectionStyle = .None
         
@@ -118,9 +127,25 @@ class WorkoutsTableViewController: UITableViewController{
     override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         let completeAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Complete") { (action:UITableViewRowAction!, index:NSIndexPath) in
             let cellIdentifier = "workoutTableViewCell"
-            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: index) as! WorkoutsTableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! WorkoutsTableViewCell
             
-            cell.backgroundColor = UIColor.blueColor()
+            // Grab the workout to be updated
+            let workout = self.workoutList[indexPath.row]
+            let workoutUsername = workout.workoutUsername
+            
+            let ref = FIRDatabase.database().reference()
+            // Update the workout's usersHaveCompleted List in FB
+            let workoutRef = ref.child("colleges/\(thisUser.college)/workouts/\(workoutUsername)/usersHaveCompleted")
+            let workoutIndex = workout.usersHaveCompleted.count
+            workoutRef.updateChildValues(["\(workoutIndex)": thisUser.userName])
+            
+            
+            // Update the user's completedwo List in FB
+            let userRef = ref.child("users/\(thisUser.userName)/completedwo")
+            let userIndex = thisUser.completedWorkouts.count
+            userRef.updateChildValues(["\(userIndex)": workoutUsername])
+            
+            
             self.tableView.reloadData()
             
         }

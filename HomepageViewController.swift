@@ -19,7 +19,7 @@ class HomepageViewController: UIViewController {
         print("viewdidload")
         if hasAccount() {
             loadUser()
-            self.words.text = thisUser.firstName + thisUser.lastName
+            self.words.text = thisUser.firstName + " " + thisUser.lastName
         }
         else {
             performSegueWithIdentifier("toCreateAccount", sender: self)

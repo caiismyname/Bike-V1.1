@@ -30,8 +30,7 @@ class BikeDetailViewController: UIViewController {
         statusLabel.text = thisBike?.status
         
         // FB is needed to get the *actual* names of the riders b/c the user dict is not stored locally
-        var ref = FIRDatabaseReference.init()
-        ref = FIRDatabase.database().reference()
+        let ref = FIRDatabase.database().reference()
         
         var riderList = String()
         
@@ -47,10 +46,6 @@ class BikeDetailViewController: UIViewController {
                 })
             }
         }
-        
-        
-        
-        
         
     }
 
@@ -78,8 +73,7 @@ class BikeDetailViewController: UIViewController {
     
     @IBAction func setBikeButton(sender: UIBarButtonItem) {
         // Updating the bike's list of riders
-        var ref = FIRDatabaseReference.init()
-        ref = FIRDatabase.database().reference()
+        let ref = FIRDatabase.database().reference()
         let bikeRef = ref.child("colleges/\(thisUser.college)/bikeList/\(thisBike!.bikeUsername)/riders")
         
         let index = thisBike?.riders?.count

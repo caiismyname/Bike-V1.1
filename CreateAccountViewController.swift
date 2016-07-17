@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-var thisUser = userClass(firstName: "foo", lastName: "foo", userName: "foo", college: "fo", email: "foo", password: "foo", bike: nil)
+var thisUser = userClass(firstName: "foo", lastName: "foo", userName: "foo", college: "foo", email: "foo", password: "foo", bike: nil, completedWorkouts: ["foo"])
 
 class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     
@@ -24,7 +24,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
     
     
     var thisUser: userClass!
-    let listOfColleges = [" ", "Don't Pick this one", "wrc", "Not this one"]
+    let listOfColleges = [" ", "Don't Pick this one", "wrc", "Not this one", "ew jones"]
     var userCollege: String!
     
     override func viewDidLoad() {
@@ -137,7 +137,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
         let createUserName = userCollege + createFirstName.text! + createLastName.text!
         
         // Create new userClass object
-        thisUser = userClass.init(firstName: createFirstName.text!, lastName: createLastName.text!, userName: createUserName, college: self.userCollege, email: createEmail.text!, password: createPassword.text!, bike: nil)
+        thisUser = userClass(firstName: createFirstName.text!, lastName: createLastName.text!, userName: createUserName, college: self.userCollege, email: createEmail.text!, password: createPassword.text!, bike: nil, completedWorkouts: ["none"])
         
         saveUser()
         
@@ -243,6 +243,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
         // Full name is the human readable name of the person
         let fullname = user.firstName + " " + user.lastName
         
+        
         // First DB entry, /users/[username]
         //
         //
@@ -251,7 +252,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
         let userRef = ref.child("users/\(username)")
         
         // Dict. representation of values in /users/[username] entry
-        let userRefPayload = ["college": user.college, "email": user.email, "name": fullname, "bike":"None"]
+        let userRefPayload = ["college": user.college, "email": user.email, "name": fullname, "bike":"None", "completedwo": user.completedWorkouts]
         //  Uploads to FB DB | Setting the value of users/[username]
         userRef.setValue(userRefPayload) { (error: NSError?, database: FIRDatabaseReference) in
             if (error != nil) {
@@ -343,16 +344,15 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
                 let week = child.value["week"] as! [String]
                 let usersHaveCompleted = child.value["usersHaveCompleted"] as! [String]
                 
-                print(type)
+                let childSnap = child as! FIRDataSnapshot
+                let workoutUsername = childSnap.key
                 
-                let workoutObject = workoutClass(type: type, duration: duration, reps: reps, unit: unit, usersHaveCompleted: usersHaveCompleted, week: week)
+                
+                let workoutObject = workoutClass(type: type, duration: duration, reps: reps, unit: unit, usersHaveCompleted: usersHaveCompleted, week: week, workoutUsername: workoutUsername)
                 tempWorkoutList.append(workoutObject)
-                
-                print(tempWorkoutList)
                 
                 // Save as you go, otherwise it'll just save an empty list b/c asycnchrony.
                 self.saveWorkoutList(tempWorkoutList)
-                print(self.loadWorkoutList())
             }
             
             }, withCancelBlock: { error in

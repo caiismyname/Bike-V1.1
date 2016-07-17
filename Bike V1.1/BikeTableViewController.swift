@@ -41,7 +41,7 @@ class BikeTableViewController: UITableViewController {
                 
                 // To get key of bike entry, turn the "child" element into an FIRDataSnapshot object, which can then have .key called on it
                 let childsnap = child as! FIRDataSnapshot
-                let bikeUsername = childsnap.key as! String
+                let bikeUsername = childsnap.key
                 
                 
                 let bikeObject = bikeClass(bikeName: bikeName, wheels: wheels, size: size, riders: riders, status: nil, bikeUsername: bikeUsername)
