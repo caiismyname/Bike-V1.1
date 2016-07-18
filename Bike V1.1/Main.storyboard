@@ -371,7 +371,7 @@
                                     <outlet property="payloadLabel" destination="nXf-jU-Eax" id="RyI-z8-a17"/>
                                     <outlet property="typeLabel" destination="DQP-ca-U8u" id="dQ2-mN-M9a"/>
                                     <outlet property="weekLabel" destination="iGn-iH-0r3" id="Ra8-Nz-zM1"/>
-                                    <segue destination="RiM-ks-IvN" kind="presentation" identifier="fromWorkoutListToWorkoutDetailView" id="svG-re-Xf4"/>
+                                    <segue destination="nAa-TC-ZYy" kind="show" identifier="fromWorkoutListToWorkoutDetailView" id="kZy-gE-6o7"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -425,7 +425,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EP2-gG-8E3" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Exf-tt-S5l" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2960" y="2753"/>
+            <point key="canvasLocation" x="2148" y="2737"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="H7g-yi-tV2">
@@ -462,24 +462,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8gI-ZM-Gmq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="605" y="2737"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="fvW-fV-O1c">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="RiM-ks-IvN" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="I4G-AC-x5j">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="nAa-TC-ZYy" kind="relationship" relationship="rootViewController" id="D9a-No-so4"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vSe-FJ-s96" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2148" y="2753"/>
         </scene>
     </scenes>
     <resources>

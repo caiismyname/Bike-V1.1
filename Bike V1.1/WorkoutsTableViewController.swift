@@ -202,15 +202,22 @@ class WorkoutsTableViewController: UITableViewController{
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "fromWorkoutListToWorkoutDetailView" {
+            // Get the new view controller using segue.destinationViewController.
+            let selectedWorkoutCell = sender as! UITableViewCell
+            let indexPath = tableView.indexPathForCell(selectedWorkoutCell)
+            let selectedWorkout = workoutList[indexPath!.row]
+            // Pass the selected object to the new view controller.
+            let workoutDetailView = segue.destinationViewController as! WorkoutDetailViewController
+            workoutDetailView.thisWorkout = selectedWorkout
+        }
     }
-    */
+    
     
     // MARK: Actions
     @IBAction func unwindToWorkoutList(segue: UIStoryboardSegue) {}

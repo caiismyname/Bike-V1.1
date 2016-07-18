@@ -9,11 +9,13 @@
 import UIKit
 
 class WorkoutDetailViewController: UIViewController {
+    
+    var thisWorkout: workoutClass?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        self.title = thisWorkout?.type
     }
 
     override func didReceiveMemoryWarning() {
