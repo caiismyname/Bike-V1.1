@@ -212,6 +212,9 @@ class WorkoutsTableViewController: UITableViewController{
     }
     */
     
+    // MARK: Actions
+    @IBAction func unwindToWorkoutList(segue: UIStoryboardSegue) {}
+    
     
     
     // MARK: NSCoding
