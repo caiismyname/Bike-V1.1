@@ -12,6 +12,7 @@ import Firebase
 class WorkoutsTableViewController: UITableViewController{
     
     var workoutList = [workoutClass]()
+    let ref = FIRDatabase.database().reference()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,8 +24,7 @@ class WorkoutsTableViewController: UITableViewController{
         // to cover all cases (append, delete, change)
         
         // FB init.
-        let ref = FIRDatabase.database().reference()
-        let workoutRef = ref.child("colleges/\(thisUser.college)/workouts")
+        let workoutRef = ref.child("colleges/\(thisUser.college)/workouts/")
         
         workoutRef.observeEventType(.Value, withBlock: { snapshot in
             // This temp decleration must be inside the .observeEventType so that it resets with every refresh. Otherwise, you'll just append the old list
@@ -36,10 +36,18 @@ class WorkoutsTableViewController: UITableViewController{
                 let duration = child.value["duration"] as! [Int]
                 let reps = child.value["reps"] as! [Int]
                 let week = child.value["week"] as! [String]
-                let usersHaveCompleted = child.value["usersHaveCompleted"] as! [String]
                 
                 let childSnap = child as! FIRDataSnapshot
-                let workoutUsername = childSnap.key
+                let workoutUsername = childSnap.key as! String
+                
+                var usersHaveCompleted = [String]()
+                let usersCompletedSnap = child.value["usersHaveCompleted"] as! NSDictionary
+                for person in usersCompletedSnap {
+                    if person.key as! String != "init" {
+                        usersHaveCompleted.append(person.key as! String)
+                    }
+                }
+                
             
                 let workoutObject = workoutClass(type: type, duration: duration, reps: reps, unit: unit, usersHaveCompleted: usersHaveCompleted, week: week, workoutUsername: workoutUsername)
                 tempWorkoutList.append(workoutObject)
@@ -92,7 +100,12 @@ class WorkoutsTableViewController: UITableViewController{
         
         let payloadIndexMax = workout.duration.count
         for index in 0..<payloadIndexMax {
-            payload += "\(workout.reps[index])x\(workout.duration[index]) | "
+            if index != payloadIndexMax - 1 {
+                payload += "\(workout.reps[index])x\(workout.duration[index]) | "
+            }
+            else {
+                payload += "\(workout.reps[index])x\(workout.duration[index]) "
+            }
         }
         payload += workout.unit
         
@@ -133,41 +146,20 @@ class WorkoutsTableViewController: UITableViewController{
     
     override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         
-        let ref = FIRDatabase.database().reference()
-        
         // Grab the workout to be updated
         let workout = self.workoutList[indexPath.row]
         let workoutUsername = workout.workoutUsername
         
-        let undoAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Undo") { (action:UITableViewRowAction!, index:NSIndexPath) in
-
-            // Update the workout's usersHaveCompleted List in FB
-            let workoutRef = ref.child("colleges/\(thisUser.college)/workouts/\(workoutUsername)/usersHaveCompleted")
-            
-            if let workoutIndex = workout.usersHaveCompleted.indexOf(thisUser.userName){
-                workoutRef.child("/\(workoutIndex)").removeValue()
-            }
-            
-            // Update the user's completedwo List in FB
-            let userRef = ref.child("users/\(thisUser.userName)/completedwo")
-            
-            if let userIndex = thisUser.completedWorkouts.indexOf(workoutUsername){
-                userRef.child("/\(userIndex)").removeValue()
-            }
-        }
-        
         let completeAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Complete") { (action:UITableViewRowAction!, index:NSIndexPath) in
             
             // Update the workout's usersHaveCompleted List in FB
-            let workoutRef = ref.child("colleges/\(thisUser.college)/workouts/\(workoutUsername)/usersHaveCompleted")
-            let workoutIndex = workout.usersHaveCompleted.count
-            workoutRef.updateChildValues(["\(workoutIndex)": thisUser.userName])
+            let workoutRef = self.ref.child("colleges/\(thisUser.college)/workouts/\(workoutUsername)/usersHaveCompleted")
+            workoutRef.updateChildValues([thisUser.userName: true])
             
             
             // Update the user's completedwo List in FB
-            let userRef = ref.child("users/\(thisUser.userName)/completedwo")
-            let userIndex = thisUser.completedWorkouts.count
-            userRef.updateChildValues(["\(userIndex)": workoutUsername])
+            let userRef = self.ref.child("users/\(thisUser.userName)/completedwo")
+            userRef.updateChildValues([workoutUsername: true])
             
         }
         
@@ -205,8 +197,12 @@ class WorkoutsTableViewController: UITableViewController{
     
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    // For the unwind segue
+    @IBAction func unwindToWorkoutList(segue: UIStoryboardSegue) {}
+    
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // The "if" prevents this from running when exiting the workoutlist view.
         if segue.identifier == "fromWorkoutListToWorkoutDetailView" {
             // Get the new view controller using segue.destinationViewController.
             let selectedWorkoutCell = sender as! UITableViewCell
@@ -217,11 +213,6 @@ class WorkoutsTableViewController: UITableViewController{
             workoutDetailView.thisWorkout = selectedWorkout
         }
     }
-    
-    
-    // MARK: Actions
-    @IBAction func unwindToWorkoutList(segue: UIStoryboardSegue) {}
-    
     
     
     // MARK: NSCoding

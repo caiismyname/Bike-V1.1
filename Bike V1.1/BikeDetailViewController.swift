@@ -10,6 +10,9 @@ import UIKit
 import Firebase
 
 class BikeDetailViewController: UIViewController {
+    
+    let ref = FIRDatabase.database().reference()
+    
     // MARK: Properties
     var thisBike: bikeClass?
     
@@ -30,8 +33,6 @@ class BikeDetailViewController: UIViewController {
         statusLabel.text = thisBike?.status
         
         // FB is needed to get the *actual* names of the riders b/c the user dict is not stored locally
-        let ref = FIRDatabase.database().reference()
-        
         var riderList = String()
         
         for rider in thisBike!.riders! {
@@ -73,7 +74,6 @@ class BikeDetailViewController: UIViewController {
     
     @IBAction func setBikeButton(sender: UIBarButtonItem) {
         // Updating the bike's list of riders
-        let ref = FIRDatabase.database().reference()
         let bikeRef = ref.child("colleges/\(thisUser.college)/bikeList/\(thisBike!.bikeUsername)/riders")
         
         let index = thisBike?.riders?.count

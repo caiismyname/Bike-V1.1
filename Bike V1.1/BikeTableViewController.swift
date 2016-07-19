@@ -11,6 +11,8 @@ import Firebase
 
 class BikeTableViewController: UITableViewController {
     
+    let ref = FIRDatabase.database().reference()
+    
     //MARK: Properties
     var bikeList = [bikeClass]()
     
@@ -25,7 +27,6 @@ class BikeTableViewController: UITableViewController {
         // to cover all cases (append, delete, change)
         
         // FB init.
-        let ref = FIRDatabase.database().reference()
         let bikeListRef = ref.child("colleges/\(thisUser.college)/bikeList")
         
         bikeListRef.observeEventType(.Value, withBlock: { snapshot in

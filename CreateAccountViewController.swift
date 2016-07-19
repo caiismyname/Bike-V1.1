@@ -13,8 +13,9 @@ var thisUser = userClass(firstName: "foo", lastName: "foo", userName: "foo", col
 
 class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     
-    // MARK: Properties
+    let ref = FIRDatabase.database().reference()
     
+    // MARK: Properties
     @IBOutlet weak var createFirstName: UITextField!
     @IBOutlet weak var createLastName: UITextField!
     @IBOutlet weak var createCollege: UIPickerView!
