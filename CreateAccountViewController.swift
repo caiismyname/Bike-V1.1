@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-var thisUser = userClass(firstName: "foo", lastName: "foo", userName: "foo", college: "foo", email: "foo", password: "foo", bike: nil, completedWorkouts: ["foo"])
+var thisUser: userClass!
 
 class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     
@@ -24,7 +24,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
     @IBOutlet weak var createButton: UIButton!
     
     
-    var thisUser: userClass!
+    
     let listOfColleges = [" ", "Don't Pick this one", "wrc", "Not this one", "ew jones"]
     var userCollege: String!
     
@@ -69,8 +69,8 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
     }
     
     func isPasswordValid() -> Bool {
-        // true if not empty, false if empty
-        return !(createPassword.text?.isEmpty)!
+        // true if not empty and longer than 6 chars, false if empty or less than 6 chars
+        return !(createPassword.text?.isEmpty)! && (createPassword.text?.characters.count > 6)
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
@@ -138,9 +138,10 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
         let createUserName = userCollege + createFirstName.text! + createLastName.text!
         
         // Create new userClass object
-        thisUser = userClass(firstName: createFirstName.text!, lastName: createLastName.text!, userName: createUserName, college: self.userCollege, email: createEmail.text!, password: createPassword.text!, bike: nil, completedWorkouts: ["none"])
-        
+        thisUser = userClass(firstName: createFirstName.text!, lastName: createLastName.text!, userName: createUserName, college: self.userCollege, email: createEmail.text!, password: createPassword.text!, bike: nil, completedWorkouts: ["init"])
         saveUser()
+        loadUser()
+        
         
         // Create account on Firebase
         FIRAuth.auth()?.createUserWithEmail(createEmail.text!, password: createPassword.text!) { (user, error) in
@@ -154,7 +155,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
                 NSUserDefaults.standardUserDefaults().setBool(true, forKey: "launchedBefore")
                 
                 // Sign user in, then pull bikeList array from FB DB
-                FIRAuth.auth()?.signInWithEmail(self.thisUser.email, password: self.thisUser.password) { (user, error) in
+                FIRAuth.auth()?.signInWithEmail(thisUser.email, password: thisUser.password) { (user, error) in
                     // Callback for signing in
                     if let error = error {
                         print(error.localizedDescription)
@@ -168,7 +169,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
                             self.pullWorkoutsData() { (workouts) in
                                 // Callback for pullWorkoutsData, so everything's loaded when we go to the homepage
                                 print("workouts pulled")
-                                self.createdDBEntries(self.thisUser) { (foo) in
+                                self.createdDBEntries(thisUser) { (foo) in
                                     print("DB Entries created")
                                     self.performSegueWithIdentifier("unwindFromCreateAccountToHomepage", sender: self)
                                 }
@@ -186,7 +187,8 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
     // MARK: Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let homepage = segue.destinationViewController as! HomepageViewController
-        homepage.words.text = thisUser.firstName + thisUser.college
+        homepage.words.text = thisUser.firstName +  " " + thisUser.lastName
+        loadUser()
 
     }
     
@@ -196,6 +198,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
         let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(thisUser, toFile: userClass.ArchiveURL.path!)
         if isSuccessfulSave {
             print("User saved")
+            print("save user create account")
         }
         else {
             print("Failed to save user")
@@ -230,6 +233,12 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
         return NSKeyedUnarchiver.unarchiveObjectWithFile(workoutClass.ArchiveURL.path!) as? [workoutClass]
     }
     
+    func loadUser(){
+        print("Create accounts load user called")
+        let loadedUser = (NSKeyedUnarchiver.unarchiveObjectWithFile(userClass.ArchiveURL.path!) as? userClass)!
+        thisUser = loadedUser
+    }
+    
     //MARK: Preperations for other views
     
     func createdDBEntries(user: userClass, completion: (foo: String) -> Void) {
@@ -253,7 +262,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
         let userRef = ref.child("users/\(username)")
         
         // Dict. representation of values in /users/[username] entry
-        let userRefPayload = ["college": user.college, "email": user.email, "name": fullname, "bike":"None", "completedwo": user.completedWorkouts]
+        let userRefPayload = ["college": user.college, "email": user.email, "name": fullname, "bike":"None", "completedwo": ["init": true]]
         //  Uploads to FB DB | Setting the value of users/[username]
         userRef.setValue(userRefPayload) { (error: NSError?, database: FIRDatabaseReference) in
             if (error != nil) {

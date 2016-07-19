@@ -16,7 +16,7 @@ class HomepageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("viewdidload")
+    
         if hasAccount() {
             loadUser()
             self.words.text = thisUser.firstName + " " + thisUser.lastName
@@ -28,7 +28,8 @@ class HomepageViewController: UIViewController {
     
     // MARK: Actions
     @IBAction func signIn(sender: UIButton) {
-        FIRAuth.auth()?.signInWithEmail(thisUser.email, password: thisUser.password, completion: nil)
+        //FIRAuth.auth()?.signInWithEmail(thisUser.email, password: thisUser.password, completion: nil)
+        print(thisUser.firstName)
     }
     
     // MARK: Navigation
@@ -48,6 +49,8 @@ class HomepageViewController: UIViewController {
     func loadUser(){
         let loadedUser = (NSKeyedUnarchiver.unarchiveObjectWithFile(userClass.ArchiveURL.path!) as? userClass)!
         thisUser = loadedUser
+        print("homepage load user")
+        print(thisUser.firstName)
     }
     
     func loadBikeList() -> [bikeClass]? {
