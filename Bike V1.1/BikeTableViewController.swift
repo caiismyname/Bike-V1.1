@@ -38,7 +38,14 @@ class BikeTableViewController: UITableViewController {
                 let bikeName = child.value["name"] as! String
                 let size = child.value["size"] as! String
                 let wheels = child.value["wheels"] as! String
-                let riders = child.value["riders"] as? [String]
+                var riders = [String]()
+                
+                let riderList = child.value["riders"] as! NSDictionary
+                for rider in riderList {
+                    if rider.key as! String != "init" {
+                        riders.append(rider.key as! String)
+                    }
+                }
                 
                 // To get key of bike entry, turn the "child" element into an FIRDataSnapshot object, which can then have .key called on it
                 let childsnap = child as! FIRDataSnapshot

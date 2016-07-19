@@ -34,7 +34,7 @@ class WorkoutDetailViewController: UIViewController {
             let reps = snapshot.value!["reps"] as! [Int]
             let week = snapshot.value!["week"] as! [String]
             
-            let workoutUsername = snapshot.key as! String
+            let workoutUsername = snapshot.key
             
             var usersHaveCompleted = [String]()
             let usersCompletedSnap = snapshot.value!["usersHaveCompleted"] as! NSDictionary

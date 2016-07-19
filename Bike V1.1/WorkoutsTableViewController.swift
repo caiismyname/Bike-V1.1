@@ -38,7 +38,7 @@ class WorkoutsTableViewController: UITableViewController{
                 let week = child.value["week"] as! [String]
                 
                 let childSnap = child as! FIRDataSnapshot
-                let workoutUsername = childSnap.key as! String
+                let workoutUsername = childSnap.key
                 
                 var usersHaveCompleted = [String]()
                 let usersCompletedSnap = child.value["usersHaveCompleted"] as! NSDictionary
