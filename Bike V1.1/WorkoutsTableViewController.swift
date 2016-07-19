@@ -47,7 +47,6 @@ class WorkoutsTableViewController: UITableViewController{
                         usersHaveCompleted.append(person.key as! String)
                     }
                 }
-                
             
                 let workoutObject = workoutClass(type: type, duration: duration, reps: reps, unit: unit, usersHaveCompleted: usersHaveCompleted, week: week, workoutUsername: workoutUsername)
                 tempWorkoutList.append(workoutObject)

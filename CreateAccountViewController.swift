@@ -302,12 +302,18 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
                 // Create bikeClass object from FB data
                 let bikeName = child.value["name"] as! String
                 let size = child.value["size"] as! String
-                let riders = child.value["riders"] as! [String]
                 let wheels = child.value["wheels"] as! String
                 
                 let childsnap = child as! FIRDataSnapshot
                 let bikeUsername = childsnap.key
     
+                var riders = [String]()
+                let riderList = child.value["riders"] as! NSDictionary
+                for rider in riderList {
+                    if rider.key as! String != "init" {
+                        riders.append(rider.key as! String)
+                    }
+                }
                 
                 let bikeObject = bikeClass(bikeName: bikeName, wheels: wheels, size: size, riders: riders, status: nil, bikeUsername: bikeUsername)
                 tempBikeList.append(bikeObject)
@@ -343,11 +349,17 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
                 let duration = child.value["duration"] as! [Int]
                 let reps = child.value["reps"] as! [Int]
                 let week = child.value["week"] as! [String]
-                let usersHaveCompleted = child.value["usersHaveCompleted"] as! [String]
                 
                 let childSnap = child as! FIRDataSnapshot
                 let workoutUsername = childSnap.key
                 
+                var usersHaveCompleted = [String]()
+                let userList = child.value["usersHaveCompleted"] as! NSDictionary
+                for user in userList {
+                    if user.key as! String != "init" {
+                        usersHaveCompleted.append(user.key as! String)
+                    }
+                }
                 
                 let workoutObject = workoutClass(type: type, duration: duration, reps: reps, unit: unit, usersHaveCompleted: usersHaveCompleted, week: week, workoutUsername: workoutUsername)
                 tempWorkoutList.append(workoutObject)
