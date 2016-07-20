@@ -20,7 +20,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         FIRApp.configure()
+        
+        _ = OneSignal(launchOptions: launchOptions, appId: "0d103f19-b6e5-4da9-9864-8ae146104c88") { (message, additionalData, isActive) in
+            NSLog("OneSignal Notification opened:\nMessage: %@", message)
+            
+            if additionalData != nil {
+                NSLog("additionalData: %@", additionalData)
+                // Check for and read any custom values you added to the notification
+                // This done with the "Additonal Data" section the dashbaord.
+                // OR setting the 'data' field on our REST API.
+                if let customKey = additionalData["customKey"] as! String? {
+                    NSLog("customKey: %@", customKey)
+                }
+            }
+        }
+        
         return true
+        
     }
 
     func applicationWillResignActive(application: UIApplication) {

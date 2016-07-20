@@ -9,6 +9,7 @@ target 'Bike V1.1' do
   pod ‘Firebase’
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
+  pod 'OneSignal'
 
 
   target 'Bike V1.1Tests' do

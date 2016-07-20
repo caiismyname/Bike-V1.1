@@ -62,6 +62,7 @@
 		270FCB641D283209003DFCF9 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		270FCB661D297342003DFCF9 /* BikeDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BikeDetailViewController.swift; sourceTree = "<group>"; };
 		272AB3DA1D3D5B6100AAB067 /* WorkoutDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutDetailViewController.swift; sourceTree = "<group>"; };
+		272F1C181D3F2BC4009DF18B /* Bike-V1-1-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Bike-V1-1-Bridging-Header.h"; path = "../Bike-V1-1-Bridging-Header.h"; sourceTree = "<group>"; };
 		2A2559F3A7B9396C3C19C33E /* Pods-Bike V1.1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bike V1.1.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bike V1.1/Pods-Bike V1.1.release.xcconfig"; sourceTree = "<group>"; };
 		6DD976B14511F57E3C89903F /* Pods-Bike V1.1Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bike V1.1Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bike V1.1Tests/Pods-Bike V1.1Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		CD4E4C7AB69A12893695AEDE /* Pods-Bike V1.1.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bike V1.1.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bike V1.1/Pods-Bike V1.1.debug.xcconfig"; sourceTree = "<group>"; };
@@ -139,6 +140,7 @@
 				270FCB291D23405D003DFCF9 /* LaunchScreen.storyboard */,
 				270FCB2C1D23405D003DFCF9 /* Info.plist */,
 				270FCB5A1D24D6A0003DFCF9 /* GoogleService-Info.plist */,
+				272F1C181D3F2BC4009DF18B /* Bike-V1-1-Bridging-Header.h */,
 			);
 			path = "Bike V1.1";
 			sourceTree = "<group>";
@@ -217,7 +219,15 @@
 				TargetAttributes = {
 					270FCB1C1D23405D003DFCF9 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 9UR2WR6VNL;
+						DevelopmentTeam = 365K6R64X6;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					270FCB301D23405D003DFCF9 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -502,9 +512,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Bike V1.1/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "l.Bike-V1-1";
+				PRODUCT_BUNDLE_IDENTIFIER = "Bike-V1-1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Bike-V1-1-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -517,9 +528,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Bike V1.1/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "l.Bike-V1-1";
+				PRODUCT_BUNDLE_IDENTIFIER = "Bike-V1-1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Bike-V1-1-Bridging-Header.h";
 			};
 			name = Release;
 		};

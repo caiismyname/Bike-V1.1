@@ -16,11 +16,17 @@ class BikeDetailViewController: UIViewController {
     // MARK: Properties
     var thisBike: bikeClass?
     
+    // Variable visuals
     @IBOutlet weak var sizeLabel: UILabel!
-    @IBOutlet weak var wheelsLabel: UILabel!
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var ridersLabel: UILabel!
     @IBOutlet weak var bikeImageView: UIImageView!
+    
+    // Static visuals
+    @IBOutlet weak var staticSizeLabel: UILabel!
+    @IBOutlet weak var staticStatusLabel: UILabel!
+    @IBOutlet weak var staticRidersLabel: UILabel!
+    
     
     
     override func viewDidLoad() {
@@ -56,7 +62,6 @@ class BikeDetailViewController: UIViewController {
         // Setting titles
         self.title = thisBike?.bikeName
         sizeLabel.text = thisBike?.size
-        wheelsLabel.text = thisBike?.wheels
         statusLabel.text = thisBike?.status
         
     }

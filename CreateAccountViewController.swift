@@ -75,7 +75,11 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
     
     func textFieldDidEndEditing(textField: UITextField) {
         // Once user finishes enter data, if data is valid, then we'll let them create the account
+        createFirstName.text = createFirstName.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        createLastName.text = createLastName.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        createEmail.text = createEmail.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
         createButton.enabled = isNameValid() && isEmailValid() && isPasswordValid()
+        
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -83,15 +87,18 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
         
         createButton.enabled = isNameValid() && isEmailValid() && isPasswordValid()
         if textField == createFirstName {
+            
             createFirstName.resignFirstResponder()
             createLastName.becomeFirstResponder()
         }
         else if textField == createLastName {
+            
             createLastName.resignFirstResponder()
             createEmail.becomeFirstResponder()
         }
         
         else if textField == createEmail {
+            
             createEmail.resignFirstResponder()
             createPassword.becomeFirstResponder()
         }
@@ -242,6 +249,20 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
     //MARK: Preperations for other views
     
     func createdDBEntries(user: userClass, completion: (foo: String) -> Void) {
+        // The OneSignal UserID is part of the users/[username] entry. However, it 
+        // does not need to be known locally, or even to the current user 
+        // (it's to be accessed by other users when sending notifications). 
+        // 
+        // Following code is to grab the OneSignal UserId to pass to the 
+        // FB DB Creating block. 
+        
+        var oneSignalUserId: String!
+        
+        OneSignal.defaultClient().IdsAvailable({ (userId, pushToken) in
+            oneSignalUserId = userId
+        })
+        
+        
         // Creating and setting the user in the DB in the /users/[username] and /colleges/[college]/users/[username]
         
         // Firebase Init
@@ -262,7 +283,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
         let userRef = ref.child("users/\(username)")
         
         // Dict. representation of values in /users/[username] entry
-        let userRefPayload = ["college": user.college, "email": user.email, "name": fullname, "bike":"None", "completedwo": ["init": true]]
+        let userRefPayload = ["college": user.college, "email": user.email, "name": fullname, "bike":"None", "completedwo": ["init": true], "oneSignalUserId": oneSignalUserId]
         //  Uploads to FB DB | Setting the value of users/[username]
         userRef.setValue(userRefPayload) { (error: NSError?, database: FIRDatabaseReference) in
             if (error != nil) {
