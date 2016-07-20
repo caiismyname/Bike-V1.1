@@ -35,6 +35,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         
+        OneSignal.defaultClient().enableInAppAlertNotification(true)
+        
         return true
         
     }

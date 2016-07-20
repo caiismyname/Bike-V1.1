@@ -38,6 +38,11 @@ class HomepageViewController: UIViewController {
         getTeammates { (listOfTeammates) in
             self.getUserIds(listOfTeammates, completion: { (listOfUserIds) in
                 OneSignal.defaultClient().postNotification(["contents": ["en": "\(thisUser.firstName) \(thisUser.lastName) is going on a ride!"], "include_player_ids": listOfUserIds])
+                
+                // Let the user know their notification has been sent out
+                var goRideSentAlert = UIAlertController(title: "Team Notified", message: "Your team now knows you're going on a ride!", preferredStyle: UIAlertControllerStyle.Alert)
+                goRideSentAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
+                self.presentViewController(goRideSentAlert, animated: true, completion: nil)
             })
         }
     }
@@ -51,7 +56,9 @@ class HomepageViewController: UIViewController {
         teammatesRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
             for member in snapshot.children {
                 let memberSnap = member as! FIRDataSnapshot
-                teammateList.append(memberSnap.key as! String)
+                if memberSnap.key as! String != thisUser.userName {
+                    teammateList.append(memberSnap.key as! String)
+                }
             }
             completion(listOfTeammates: teammateList)
         })
