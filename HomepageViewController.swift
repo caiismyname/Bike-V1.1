@@ -14,7 +14,6 @@ class HomepageViewController: UIViewController {
     var ref = FIRDatabaseReference.init()
     
     
-    
     //MARK: Properties
     @IBOutlet weak var words: UILabel!
     @IBOutlet weak var collegeLabel: UILabel!
@@ -40,7 +39,7 @@ class HomepageViewController: UIViewController {
                 OneSignal.defaultClient().postNotification(["contents": ["en": "\(thisUser.firstName) \(thisUser.lastName) is going on a ride!"], "include_player_ids": listOfUserIds])
                 
                 // Let the user know their notification has been sent out
-                var goRideSentAlert = UIAlertController(title: "Team Notified", message: "Your team now knows you're going on a ride!", preferredStyle: UIAlertControllerStyle.Alert)
+                let goRideSentAlert = UIAlertController(title: "Team Notified", message: "Your team now knows you're going on a ride!", preferredStyle: UIAlertControllerStyle.Alert)
                 goRideSentAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
                 self.presentViewController(goRideSentAlert, animated: true, completion: nil)
             })

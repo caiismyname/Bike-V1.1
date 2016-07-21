@@ -16,7 +16,9 @@ class WorkoutDetailViewController: UIViewController {
     var thisWorkout: workoutClass?
     // MARK: Properties
     
-    @IBOutlet weak var weekLabel: UILabel!
+    
+    @IBOutlet weak var weekNumberLabel: UILabel!
+    @IBOutlet weak var weekDateLabel: UILabel!
     @IBOutlet weak var typeLabel: UILabel!
     @IBOutlet weak var payloadLabel: UILabel!
     @IBOutlet weak var usersHaveCompletedLabel: UILabel!
@@ -63,7 +65,8 @@ class WorkoutDetailViewController: UIViewController {
         // Setting text labels
         self.title = thisWorkout?.type
         
-        let weekInfo = "\(thisWorkout!.week[0])  | \(thisWorkout!.week[1])"
+        let weekNumber = "\(thisWorkout!.week[0])"
+        let weekDate = "\(thisWorkout!.week[1])"
         
         // Payload is the "actual workout". It's stored as a list, so the for loop is needed to get everything in it
         var payload = ""
@@ -79,7 +82,8 @@ class WorkoutDetailViewController: UIViewController {
         payload += thisWorkout!.unit
         
         
-        weekLabel.text = weekInfo
+        weekDateLabel.text = weekDate
+        weekNumberLabel.text = weekNumber
         typeLabel.text = thisWorkout?.type
         payloadLabel.text = payload
         updateUserList() // This doesn't do anything since it's already updated in the event listner -- it's just here for completion's sake

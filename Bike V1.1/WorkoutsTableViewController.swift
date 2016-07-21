@@ -94,30 +94,20 @@ class WorkoutsTableViewController: UITableViewController{
             
         let workout = workoutList[indexPath.row]
 
-        let weekInfo = "\(workout.week[0])  | \(workout.week[1])"
-        var payload = ""
-        
-        let payloadIndexMax = workout.duration.count
-        for index in 0..<payloadIndexMax {
-            if index != payloadIndexMax - 1 {
-                payload += "\(workout.reps[index])x\(workout.duration[index]) | "
-            }
-            else {
-                payload += "\(workout.reps[index])x\(workout.duration[index]) "
-            }
-        }
-        payload += workout.unit
+        let weekInfo = "\(workout.week[0]): \(workout.week[1])"
+        let usersHaveCompleted = String(workout.usersHaveCompleted.count)
         
         cell.typeLabel.text = workout.type
         cell.weekLabel.text = weekInfo
-        cell.payloadLabel.text = payload
+        cell.usersHaveCompletedLabel.text = usersHaveCompleted
+        
         
         if workout.usersHaveCompleted.contains(thisUser.userName) {
             cell.backgroundColor = UIColor.clearColor()
         }
         else {
             // If they have not completed the workout
-            cell.backgroundColor = UIColor.redColor()
+            cell.backgroundColor = UIColor(red: CGFloat(253.0/255.0), green: CGFloat(153.0/255.0), blue: CGFloat(153.0/255.0), alpha: CGFloat(1.0))
         }
 
         // So nothing (visually) changes when cell is selected

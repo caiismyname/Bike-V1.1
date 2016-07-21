@@ -12,7 +12,7 @@ class WorkoutsTableViewCell: UITableViewCell {
     // MARK: Properties
     @IBOutlet weak var typeLabel: UILabel!
     @IBOutlet weak var weekLabel: UILabel!
-    @IBOutlet weak var payloadLabel: UILabel!
+    @IBOutlet weak var usersHaveCompletedLabel: UILabel!
     
     
     override func awakeFromNib() {

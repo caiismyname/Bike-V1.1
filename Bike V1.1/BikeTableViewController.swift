@@ -99,7 +99,7 @@ class BikeTableViewController: UITableViewController {
         let bike = bikeList[indexPath.row]
 
         cell.bikeNameDisplay.text = bike.bikeName
-        cell.wheelInfoDisplay.text = bike.bikeUsername
+        cell.wheelInfoDisplay.text = bike.status
         cell.sizeInfoDisplay.text = bike.size
 
         return cell

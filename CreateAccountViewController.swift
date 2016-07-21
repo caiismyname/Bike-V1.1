@@ -23,8 +23,6 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
     @IBOutlet weak var createPassword: UITextField!
     @IBOutlet weak var createButton: UIButton!
     
-    
-    
     let listOfColleges = [" ", "Don't Pick this one", "wrc", "Not this one", "ew jones"]
     var userCollege: String!
     
@@ -37,9 +35,19 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
         createEmail.delegate = self
         createPassword.delegate = self
         createButton.enabled = false
-       
-    }
+        
+        let dismiss: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(CreateAccountViewController.DismissKeyboard))
+        view.addGestureRecognizer(dismiss)
 
+    }
+    
+
+    
+    override func viewWillDisappear(animated: Bool) {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: self.view.window)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: self.view.window)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -82,12 +90,12 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
         
     }
     
+    
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         // Moves user along through the textFields
         
         createButton.enabled = isNameValid() && isEmailValid() && isPasswordValid()
         if textField == createFirstName {
-            
             createFirstName.resignFirstResponder()
             createLastName.becomeFirstResponder()
         }
@@ -110,6 +118,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
         // b/c it returns a Bool. Not sure why this is here tbh
         return true
     }
+    
     
     // MARK: Picker Delegate and datasource
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
@@ -189,12 +198,16 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
         }
 
     }
-    
+
+    func DismissKeyboard(){
+        view.endEditing(true)
+    }
     
     // MARK: Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let homepage = segue.destinationViewController as! HomepageViewController
         homepage.words.text = thisUser.firstName +  " " + thisUser.lastName
+        homepage.collegeLabel.text = thisUser.college
         loadUser()
 
     }
