@@ -41,13 +41,6 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
 
     }
     
-
-    
-    override func viewWillDisappear(animated: Bool) {
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: self.view.window)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: self.view.window)
-    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -87,7 +80,6 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
         createLastName.text = createLastName.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
         createEmail.text = createEmail.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
         createButton.enabled = isNameValid() && isEmailValid() && isPasswordValid()
-        
     }
     
     
@@ -154,7 +146,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
         let createUserName = userCollege + createFirstName.text! + createLastName.text!
         
         // Create new userClass object
-        thisUser = userClass(firstName: createFirstName.text!, lastName: createLastName.text!, userName: createUserName, college: self.userCollege, email: createEmail.text!, password: createPassword.text!, bike: nil, completedWorkouts: ["init"])
+        thisUser = userClass(firstName: createFirstName.text!, lastName: createLastName.text!, userName: createUserName, college: self.userCollege, email: createEmail.text!, password: createPassword.text!, bike: "None", completedWorkouts: ["init"])
         saveUser()
         loadUser()
         
@@ -346,7 +338,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
                 let bikeName = child.value["name"] as! String
                 let size = child.value["size"] as! String
                 let wheels = child.value["wheels"] as! String
-                
+                let status = child.value["status"] as! String
                 let childsnap = child as! FIRDataSnapshot
                 let bikeUsername = childsnap.key
     
@@ -358,7 +350,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
                     }
                 }
                 
-                let bikeObject = bikeClass(bikeName: bikeName, wheels: wheels, size: size, riders: riders, status: nil, bikeUsername: bikeUsername)
+                let bikeObject = bikeClass(bikeName: bikeName, wheels: wheels, size: size, riders: riders, status: status, bikeUsername: bikeUsername)
                 tempBikeList.append(bikeObject)
                 
                 print(tempBikeList)

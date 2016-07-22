@@ -18,7 +18,7 @@ class BikeDetailViewController: UIViewController {
     
     // Variable visuals
     @IBOutlet weak var sizeLabel: UILabel!
-    @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet weak var statusButton: UIButton!
     @IBOutlet weak var ridersLabel: UILabel!
     @IBOutlet weak var bikeImageView: UIImageView!
     
@@ -42,6 +42,7 @@ class BikeDetailViewController: UIViewController {
             let bikeName = snapshot.value!["name"] as! String
             let size = snapshot.value!["size"] as! String
             let wheels = snapshot.value!["wheels"] as! String
+            let status = snapshot.value!["status"] as! String
             let bikeUsername = snapshot.key
             
             var riders = [String]()
@@ -53,7 +54,7 @@ class BikeDetailViewController: UIViewController {
                 }
             }
             
-            let bikeObject = bikeClass(bikeName: bikeName, wheels: wheels, size: size, riders: riders, status: nil, bikeUsername: bikeUsername)
+            let bikeObject = bikeClass(bikeName: bikeName, wheels: wheels, size: size, riders: riders, status: status, bikeUsername: bikeUsername)
             self.thisBike = bikeObject
             self.updateRiderList()
             
@@ -62,7 +63,18 @@ class BikeDetailViewController: UIViewController {
         // Setting titles
         self.title = thisBike?.bikeName
         sizeLabel.text = thisBike?.size
-        statusLabel.text = thisBike?.status
+        statusButton.setTitle(thisBike?.status, forState: .Normal)
+        
+        // Setting appropriate color for status label/button
+        if thisBike?.status == "Ready" {
+            statusButton.setTitleColor(UIColor.init(red: CGFloat(0), green: CGFloat(128.0/255.0), blue: CGFloat(0), alpha: CGFloat(1)), forState: .Normal)
+        }
+        else if thisBike?.status == "In Use" {
+            statusButton.setTitleColor(UIColor.orangeColor(), forState: .Normal)
+        }
+        else if thisBike?.status == "Unusable" {
+            statusButton.setTitleColor(UIColor.init(red: CGFloat(200.0/255.0), green: CGFloat(0), blue: CGFloat(0), alpha: CGFloat(1)), forState: .Normal)
+        }
         
     }
 
@@ -116,7 +128,32 @@ class BikeDetailViewController: UIViewController {
         let userRef = ref.child("users/\(thisUser.userName)/bike")
         userRef.setValue(thisBike?.bikeUsername)
         
+        thisUser.bike = thisBike?.bikeUsername
+        self.saveUser()
+        
     }
+    
+    @IBAction func statusButtonToggle(sender: UIButton) {
+        var newStatus: String?
+        if thisBike?.status == "Ready"{
+            newStatus = "In Use"
+            statusButton.setTitleColor(UIColor.orangeColor(), forState: .Normal)
+        }
+        else if thisBike?.status == "In Use" {
+            newStatus = "Unusable"
+            statusButton.setTitleColor(UIColor.init(red: CGFloat(200.0/255.0), green: CGFloat(0), blue: CGFloat(0), alpha: CGFloat(1)), forState: .Normal)
+        }
+        else if thisBike?.status == "Unusable" {
+            newStatus = "Ready"
+            statusButton.setTitleColor(UIColor.init(red: CGFloat(0), green: CGFloat(128.0/255.0), blue: CGFloat(0), alpha: CGFloat(1)), forState: .Normal)
+        }
+        
+        statusButton.setTitle(newStatus, forState: .Normal)
+        let statusRef = ref.child("colleges/\(thisUser.college)/bikeList/\(thisBike?.bikeUsername as String!)/status")
+        statusRef.setValue(newStatus)
+        
+    }
+    
     
     // MARK: Misc funcs
     func updateRiderList() {
@@ -133,4 +170,15 @@ class BikeDetailViewController: UIViewController {
         }
     }
     
+    //MARK: NSCoding
+    func saveUser() {
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(thisUser, toFile: userClass.ArchiveURL.path!)
+        if isSuccessfulSave {
+            print("User saved")
+            print("save user create account")
+        }
+        else {
+            print("Failed to save user")
+        }
+    }
 }

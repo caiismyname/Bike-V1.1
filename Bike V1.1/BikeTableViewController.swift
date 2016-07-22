@@ -39,6 +39,7 @@ class BikeTableViewController: UITableViewController {
                 let bikeName = child.value["name"] as! String
                 let size = child.value["size"] as! String
                 let wheels = child.value["wheels"] as! String
+                let status = child.value["status"] as! String
                 var riders = [String]()
                 
                 let riderList = child.value["riders"] as! NSDictionary
@@ -53,7 +54,7 @@ class BikeTableViewController: UITableViewController {
                 let bikeUsername = childsnap.key
                 
                 
-                let bikeObject = bikeClass(bikeName: bikeName, wheels: wheels, size: size, riders: riders, status: nil, bikeUsername: bikeUsername)
+                let bikeObject = bikeClass(bikeName: bikeName, wheels: wheels, size: size, riders: riders, status: status, bikeUsername: bikeUsername)
                 //print(bikeObject.bikeUsername)
                 
                 
@@ -99,8 +100,8 @@ class BikeTableViewController: UITableViewController {
         let bike = bikeList[indexPath.row]
 
         cell.bikeNameDisplay.text = bike.bikeName
-        cell.wheelInfoDisplay.text = bike.status
-        cell.sizeInfoDisplay.text = bike.size
+        cell.statusLabel.text = bike.status
+
 
         return cell
     }

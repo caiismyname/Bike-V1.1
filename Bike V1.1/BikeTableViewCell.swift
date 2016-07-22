@@ -11,8 +11,8 @@ import UIKit
 class BikeTableViewCell: UITableViewCell {
     // MARK: Properties
     @IBOutlet weak var bikeNameDisplay: UILabel!
-    @IBOutlet weak var wheelInfoDisplay: UILabel!
-    @IBOutlet weak var sizeInfoDisplay: UILabel!
+    
+    @IBOutlet weak var statusLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()

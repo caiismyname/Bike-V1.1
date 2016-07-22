@@ -16,7 +16,7 @@ class userClass: NSObject, NSCoding {
     var college: String!
     var email: String!
     var password: String!
-    var bike: bikeClass?
+    var bike: String!
     var userName: String!
     var completedWorkouts: [String]!
     
@@ -38,7 +38,7 @@ class userClass: NSObject, NSCoding {
     }
     
     // MARK: Init.
-    init(firstName: String!, lastName: String!, userName: String!, college: String!, email: String!, password: String!, bike: bikeClass?, completedWorkouts: [String]!){
+    init(firstName: String!, lastName: String!, userName: String!, college: String!, email: String!, password: String!, bike: String!, completedWorkouts: [String]!){
         
         let DBCollege: String
         // Some hard-coding issues, with UI and DB names for colleges
@@ -80,7 +80,7 @@ class userClass: NSObject, NSCoding {
         let college = aDecoder.decodeObjectForKey(PropertyKey.collegeKey) as! String
         let email = aDecoder.decodeObjectForKey(PropertyKey.emailKey) as! String
         let password = aDecoder.decodeObjectForKey(PropertyKey.passwordKey) as! String
-        let bike = aDecoder.decodeObjectForKey(PropertyKey.bikeKey) as? bikeClass
+        let bike = aDecoder.decodeObjectForKey(PropertyKey.bikeKey) as! String
         let userName = aDecoder.decodeObjectForKey(PropertyKey.userNameKey) as! String
         let completedWorkouts = aDecoder.decodeObjectForKey(PropertyKey.completedWorkoutsKey) as! [String]
         

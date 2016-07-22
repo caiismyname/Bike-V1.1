@@ -11,11 +11,12 @@ import Firebase
 
 class WorkoutDetailViewController: UIViewController {
     
-    let ref = FIRDatabase.database().reference()
+    var ref = FIRDatabaseReference.init()
     
     var thisWorkout: workoutClass?
     // MARK: Properties
     
+    @IBOutlet weak var infoStack: UIStackView!
     
     @IBOutlet weak var weekNumberLabel: UILabel!
     @IBOutlet weak var weekDateLabel: UILabel!
@@ -26,6 +27,8 @@ class WorkoutDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        ref = FIRDatabase.database().reference()
+
         // Listener for this workout only -- to update data if completion status is changed
         let workoutRef = ref.child("colleges/\(thisUser.college)/workouts/\(thisWorkout!.workoutUsername)")
         workoutRef.observeEventType(.Value, withBlock: { snapshot in
@@ -149,9 +152,18 @@ class WorkoutDetailViewController: UIViewController {
         for index in 0..<usersIndexMax {
             //Pulling user's real name via their username, from FB
             let username = thisWorkout!.usersHaveCompleted[index]
-            usersHaveCompleted += "\(username), "
             
-            usersHaveCompletedLabel.text = usersHaveCompleted
+            // Notice the differing path/value setup here. Not sure why, but this is the only setup that doesn't make xcode crash.
+            let userRef = ref.child("users/\(username)/name")
+            
+            userRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
+                let realName = snapshot.value as! String
+                usersHaveCompleted += "\(realName) \n"
+                if index == usersIndexMax - 1{
+                    self.usersHaveCompletedLabel.text = usersHaveCompleted
+                }
+            })
+            
         }
         
     }
