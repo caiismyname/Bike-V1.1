@@ -146,7 +146,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
         let createUserName = userCollege + createFirstName.text! + createLastName.text!
         
         // Create new userClass object
-        thisUser = userClass(firstName: createFirstName.text!, lastName: createLastName.text!, userName: createUserName, college: self.userCollege, email: createEmail.text!, password: createPassword.text!, bike: "None", completedWorkouts: ["init"])
+        thisUser = userClass(firstName: createFirstName.text!, lastName: createLastName.text!, userName: createUserName, college: self.userCollege, email: createEmail.text!, password: createPassword.text!, bike: "None", completedWorkouts: ["init"], oneSignalUserId: nil)
         saveUser()
         loadUser()
         
@@ -254,9 +254,6 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
     //MARK: Preperations for other views
     
     func createdDBEntries(user: userClass, completion: (foo: String) -> Void) {
-        // The OneSignal UserID is part of the users/[username] entry. However, it 
-        // does not need to be known locally, or even to the current user 
-        // (it's to be accessed by other users when sending notifications). 
         // 
         // Following code is to grab the OneSignal UserId to pass to the 
         // FB DB Creating block. 
@@ -265,6 +262,10 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
         
         OneSignal.defaultClient().IdsAvailable({ (userId, pushToken) in
             oneSignalUserId = userId
+            
+            // Also sets the .oneSignalUserId property of userClass
+            thisUser.oneSignalUserId = userId
+            self.saveUser()
         })
         
         

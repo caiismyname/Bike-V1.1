@@ -25,6 +25,7 @@
 		270FCB651D283209003DFCF9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 270FCB641D283209003DFCF9 /* Main.storyboard */; };
 		270FCB671D297342003DFCF9 /* BikeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270FCB661D297342003DFCF9 /* BikeDetailViewController.swift */; };
 		272AB3DB1D3D5B6100AAB067 /* WorkoutDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272AB3DA1D3D5B6100AAB067 /* WorkoutDetailViewController.swift */; };
+		27CA42E41D42BF56005FEEE1 /* realGoRideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CA42E31D42BF56005FEEE1 /* realGoRideViewController.swift */; };
 		FE042283AB1B5FB0CE77A14A /* Pods_Bike_V1_1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8DBDEA353CED0BE004CED65 /* Pods_Bike_V1_1.framework */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +64,7 @@
 		270FCB661D297342003DFCF9 /* BikeDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BikeDetailViewController.swift; sourceTree = "<group>"; };
 		272AB3DA1D3D5B6100AAB067 /* WorkoutDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutDetailViewController.swift; sourceTree = "<group>"; };
 		272F1C181D3F2BC4009DF18B /* Bike-V1-1-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Bike-V1-1-Bridging-Header.h"; path = "../Bike-V1-1-Bridging-Header.h"; sourceTree = "<group>"; };
+		27CA42E31D42BF56005FEEE1 /* realGoRideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = realGoRideViewController.swift; sourceTree = "<group>"; };
 		2A2559F3A7B9396C3C19C33E /* Pods-Bike V1.1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bike V1.1.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bike V1.1/Pods-Bike V1.1.release.xcconfig"; sourceTree = "<group>"; };
 		6DD976B14511F57E3C89903F /* Pods-Bike V1.1Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bike V1.1Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bike V1.1Tests/Pods-Bike V1.1Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		CD4E4C7AB69A12893695AEDE /* Pods-Bike V1.1.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bike V1.1.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bike V1.1/Pods-Bike V1.1.debug.xcconfig"; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 				270FCB641D283209003DFCF9 /* Main.storyboard */,
 				270FCB401D234081003DFCF9 /* CreateAccountViewController.swift */,
 				270FCB421D234081003DFCF9 /* HomepageViewController.swift */,
+				27CA42E31D42BF56005FEEE1 /* realGoRideViewController.swift */,
 				270FCB501D23ACB0003DFCF9 /* BikeTableViewController.swift */,
 				270FCB521D23AD7B003DFCF9 /* BikeTableViewCell.swift */,
 				270FCB661D297342003DFCF9 /* BikeDetailViewController.swift */,
@@ -373,6 +376,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27CA42E41D42BF56005FEEE1 /* realGoRideViewController.swift in Sources */,
 				270FCB461D234081003DFCF9 /* HomepageViewController.swift in Sources */,
 				270FCB441D234081003DFCF9 /* CreateAccountViewController.swift in Sources */,
 				270FCB671D297342003DFCF9 /* BikeDetailViewController.swift in Sources */,

@@ -24,18 +24,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         _ = OneSignal(launchOptions: launchOptions, appId: "0d103f19-b6e5-4da9-9864-8ae146104c88") { (message, additionalData, isActive) in
             NSLog("OneSignal Notification opened:\nMessage: %@", message)
             
-            if additionalData != nil {
+            // "Going on ride" notifications will send the sender's OSUserId in the addtional data.
+            // "Join ride" notifications will not. 
+            // Thus, the .count of additionalData can be used as a flag for which handler to call
+            if additionalData.count > 1 {
+                // Recieved a "Going on ride" notification
                 NSLog("additionalData: %@", additionalData)
-                // Check for and read any custom values you added to the notification
-                // This done with the "Additonal Data" section the dashbaord.
-                // OR setting the 'data' field on our REST API.
+                let senderOneSignalUserId = additionalData["senderOneSignalUserId"]
+                
+                let joinRideAlert = UIAlertController(title: "A teammate is riding!", message: message + "\n Would you like to join them?", preferredStyle: UIAlertControllerStyle.Alert)
+                joinRideAlert.addAction(UIAlertAction(title: "No", style: .Cancel, handler: nil))
+                joinRideAlert.addAction(UIAlertAction(title: "Join!", style: .Default, handler: { alertAction in
+                    OneSignal.defaultClient().postNotification(["contents": ["en": "\(thisUser.firstName) \(thisUser.lastName) has joined your ride!"], "include_player_ids": [senderOneSignalUserId!]])
+                    
+                }))
+                
+                self.window?.rootViewController?.presentViewController(joinRideAlert, animated: true, completion: nil)
+                
+                
                 if let customKey = additionalData["customKey"] as! String? {
                     NSLog("customKey: %@", customKey)
                 }
             }
+            else {
+                // Recieved a "xxx Joined your ride" notification"
+                print("bollucks")
+                let rideJoinedAlert = UIAlertController(title: "A teammate joined your ride!", message: message, preferredStyle: UIAlertControllerStyle.Alert)
+                rideJoinedAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
+                
+                self.window?.rootViewController?.presentViewController(rideJoinedAlert, animated: true, completion: nil)
+            }
         }
         
-        OneSignal.defaultClient().enableInAppAlertNotification(true)
+        OneSignal.defaultClient().enableInAppAlertNotification(false)
         
         return true
         
