@@ -142,7 +142,7 @@ class realGoRideViewController: UIViewController {
     func postRideNotification(messages: [String], listOfUserIds: [String], listOfTimes: [String]) {
         // Send out notification
         if listOfTimes.count == 0 {
-            OneSignal.defaultClient().postNotification(["contents": ["en": messages[0]], "include_player_ids": listOfUserIds, "data": ["senderOneSignalUserId": thisUser.oneSignalUserId!]])
+            OneSignal.defaultClient().postNotification(["contents": ["en": messages[0]], "include_player_ids": listOfUserIds, "data": ["senderOneSignalUserId": thisUser.oneSignalUserId!, "notificationType": "goingOnRide"]])
         }
         else {
             
@@ -150,7 +150,7 @@ class realGoRideViewController: UIViewController {
             
             for _ in messages {
                 print(index)
-                OneSignal.defaultClient().postNotification(["contents": ["en": messages[index]], "include_player_ids": listOfUserIds, "send_after": listOfTimes[index], "data": ["senderOneSignalUserId": thisUser.oneSignalUserId!]])
+                OneSignal.defaultClient().postNotification(["contents": ["en": messages[index]], "include_player_ids": listOfUserIds, "send_after": listOfTimes[index], "data": ["senderOneSignalUserId": thisUser.oneSignalUserId!, "notificationType": "goingOnRide"]])
                 index += 1
             }
             

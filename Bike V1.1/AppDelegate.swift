@@ -24,42 +24,54 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         _ = OneSignal(launchOptions: launchOptions, appId: "0d103f19-b6e5-4da9-9864-8ae146104c88") { (message, additionalData, isActive) in
             NSLog("OneSignal Notification opened:\nMessage: %@", message)
             
-            // "Going on ride" notifications will send the sender's OSUserId in the addtional data.
-            // "Join ride" notifications will not. 
-            // Thus, the .count of additionalData can be used as a flag for which handler to call
-            if additionalData.count > 1 {
+            let navigationController = application.windows[0].rootViewController as! UINavigationController
+            
+            let activeViewCont = navigationController.visibleViewController
+            
+            
+            // Typecasting b/c the additional_data dict is [NSObject: AnyObject], which doesn't jive with [String: String]
+            let notificationType = "notificationType" as NSObject
+            if additionalData[notificationType] as! String == "goingOnRide" {
                 // Recieved a "Going on ride" notification
                 NSLog("additionalData: %@", additionalData)
-                let senderOneSignalUserId = additionalData["senderOneSignalUserId"]
                 
-                let joinRideAlert = UIAlertController(title: "A teammate is riding!", message: message + "\n Would you like to join them?", preferredStyle: UIAlertControllerStyle.Alert)
-                joinRideAlert.addAction(UIAlertAction(title: "No", style: .Cancel, handler: nil))
-                joinRideAlert.addAction(UIAlertAction(title: "Join!", style: .Default, handler: { alertAction in
-                    OneSignal.defaultClient().postNotification(["contents": ["en": "\(thisUser.firstName) \(thisUser.lastName) has joined your ride!"], "include_player_ids": [senderOneSignalUserId!]])
-                    
-                }))
-                
-                self.window?.rootViewController?.presentViewController(joinRideAlert, animated: true, completion: nil)
-                
-                
-                if let customKey = additionalData["customKey"] as! String? {
-                    NSLog("customKey: %@", customKey)
-                }
+                self.showAlert("goingOnRide", additionalData: additionalData, message: message, viewController: activeViewCont!)
             }
-            else {
+            else if additionalData[notificationType] as! String == "rideJoined" {
                 // Recieved a "xxx Joined your ride" notification"
-                print("bollucks")
-                let rideJoinedAlert = UIAlertController(title: "A teammate joined your ride!", message: message, preferredStyle: UIAlertControllerStyle.Alert)
-                rideJoinedAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
                 
-                self.window?.rootViewController?.presentViewController(rideJoinedAlert, animated: true, completion: nil)
+                self.showAlert("rideJoined", additionalData: additionalData, message: message, viewController: activeViewCont!)
             }
+            
         }
         
         OneSignal.defaultClient().enableInAppAlertNotification(false)
         
         return true
+    }
+    
+    func showAlert(alertToShow: String, additionalData: [NSObject: AnyObject], message: String, viewController: UIViewController) {
+        // Helper function to clean up didFinishLaunchingWithOptions
+        // Shows the proper alert based on input params (alertToShow)
         
+        if alertToShow == "goingOnRide" {
+            let senderOneSignalUserId = additionalData["senderOneSignalUserId"]
+            
+            let goingOnRideAlert = UIAlertController(title: "A teammate is riding!", message: message + "\n Would you like to join them?", preferredStyle: UIAlertControllerStyle.Alert)
+            goingOnRideAlert.addAction(UIAlertAction(title: "No", style: .Cancel, handler: nil))
+            goingOnRideAlert.addAction(UIAlertAction(title: "Join!", style: .Default, handler: { alertAction in
+                OneSignal.defaultClient().postNotification(["contents": ["en": "\(thisUser.firstName) \(thisUser.lastName) has joined your ride!"], "include_player_ids": [senderOneSignalUserId!], "data": ["senderOneSignalUserId": thisUser.oneSignalUserId!, "notificationType": "rideJoined"]])
+            }))
+            
+            viewController.presentViewController(goingOnRideAlert, animated: true, completion: nil)
+            
+        }
+        else if alertToShow == "rideJoined" {
+            let rideJoinedAlert = UIAlertController(title: "A teammate joined your ride!", message: message, preferredStyle: UIAlertControllerStyle.Alert)
+            rideJoinedAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
+            
+            viewController.presentViewController(rideJoinedAlert, animated: true, completion: nil)
+        }
     }
 
     func applicationWillResignActive(application: UIApplication) {
