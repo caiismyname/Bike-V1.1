@@ -225,7 +225,7 @@ class realGoRideViewController: UIViewController {
         else if notificationTime == "10" {
             messages.append("\(thisUser.firstName) \(thisUser.lastName) is going on a ride in 10 minutes!")
             
-            let setBikeStatusTime = calculateTimes(10)
+            let setBikeStatusTime = calculateTimes(10,secondsFromNow: 0)
             setBikeStatus(setBikeStatusTime)
             
         }
@@ -233,8 +233,8 @@ class realGoRideViewController: UIViewController {
             messages.append("\(thisUser.firstName) \(thisUser.lastName) is going on a ride in 30 minutes!")
             messages.append("\(thisUser.firstName) \(thisUser.lastName) is going on a ride right now!")
             
-            listOfTimes.append(calculateTimes(1))
-            listOfTimes.append(calculateTimes(30))
+            listOfTimes.append(calculateTimes(0,secondsFromNow: 5))
+            listOfTimes.append(calculateTimes(30,secondsFromNow: 0))
             
             setBikeStatus(listOfTimes[1])
         }
@@ -242,8 +242,8 @@ class realGoRideViewController: UIViewController {
             messages.append("\(thisUser.firstName) \(thisUser.lastName) is going on a ride in an hour!")
             messages.append("\(thisUser.firstName) \(thisUser.lastName) is going on a ride right now!")
             
-            listOfTimes.append(calculateTimes(1))
-            listOfTimes.append(calculateTimes(60))
+            listOfTimes.append(calculateTimes(0,secondsFromNow: 5))
+            listOfTimes.append(calculateTimes(60,secondsFromNow: 0))
             
             setBikeStatus(listOfTimes[1])
         }
@@ -259,7 +259,7 @@ class realGoRideViewController: UIViewController {
             messages.append("\(thisUser.firstName) \(thisUser.lastName) is going on a ride at \(timeString)!")
             messages.append("\(thisUser.firstName) \(thisUser.lastName) is going on a ride right now!")
             
-            listOfTimes.append(calculateTimes(1))
+            listOfTimes.append(calculateTimes(0, secondsFromNow: 5))
             listOfTimes.append(isoTimeString)
             
             setBikeStatus(isoTimeString)
@@ -268,10 +268,11 @@ class realGoRideViewController: UIViewController {
         completion(messages: messages, listOfUserIds: listOfUserIds, listOfTimes: listOfTimes)
     }
     
-    func calculateTimes(timeFromNow: Int) -> String {
+    func calculateTimes(minutesFromNow: Int, secondsFromNow: Int) -> String {
         let currentDate = NSDate()
         let newDateComponents = NSDateComponents()
-        newDateComponents.minute = timeFromNow
+        newDateComponents.minute = minutesFromNow
+        newDateComponents.second = secondsFromNow
         let calculatedDate = NSCalendar.currentCalendar().dateByAddingComponents(newDateComponents, toDate: currentDate, options: NSCalendarOptions.init(rawValue: 0))
         
         let formatter = NSDateFormatter()

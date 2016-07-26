@@ -18,6 +18,7 @@ class HomepageViewController: UIViewController {
     @IBOutlet weak var words: UILabel!
     @IBOutlet weak var collegeLabel: UILabel!
     
+    @IBOutlet weak var annoucementsButton: UIButton!
     @IBOutlet weak var bikesButton: UIButton!
     @IBOutlet weak var workoutButton: UIButton!
     @IBOutlet weak var goRideButton: UIButton!
@@ -29,6 +30,7 @@ class HomepageViewController: UIViewController {
         // Adjusts font size of long text on Homepage for smaller screens
         workoutButton.titleLabel?.adjustsFontSizeToFitWidth = true
         words.adjustsFontSizeToFitWidth = true
+        annoucementsButton.titleLabel?.adjustsFontSizeToFitWidth = true
         
     
         if hasAccount() {

@@ -25,7 +25,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             NSLog("OneSignal Notification opened:\nMessage: %@", message)
             
             let navigationController = application.windows[0].rootViewController as! UINavigationController
-            
             let activeViewCont = navigationController.visibleViewController
             
             
@@ -95,7 +94,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+    
+    // MARK: Interactive Notifications
+    /*
+    func createNotificationActions() {
+        
+        // Create Action(s)
+        let joinRideAction = UIMutableUserNotificationAction()
+        joinRideAction.identifier = "joinRideAction"
+        joinRideAction.title = "Join Ride!"
+        joinRideAction.activationMode = UIUserNotificationActivationMode.Background
+        joinRideAction.authenticationRequired = false
+        joinRideAction.destructive = false
 
+        // Create Catagory(s)
+        let joinRideCatagory = UIMutableUserNotificationCategory()
+        joinRideCatagory.identifier = "joinRideCatagory"
+        
+        joinRideCatagory.setActions([joinRideAction], forContext: UIUserNotificationActionContext.Minimal)
+        joinRideCatagory.setActions([joinRideAction], forContext: UIUserNotificationActionContext.Default)
+        
+        // Register Notification
+        
+        let settings = UIUserNotificationSettings(forTypes: [.Alert, .Sound], categories: NSSet(object: joinRideCatagory) as! Set<UIUserNotificationCategory>)
+        UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+    }
+    
+    func application(application: UIApplication, handleActionWithIdentifier identifier: String?, forRemoteNotification userInfo: [NSObject : AnyObject], completionHandler: () -> Void) {
+        if identifier == "joinRideAction" {
+            let senderOneSignalUserIdKey = "senderOneSignalUserId" as NSObject
+            let senderOneSignalUserId = userInfo[senderOneSignalUserIdKey] as! String
+            OneSignal.defaultClient().postNotification(["contents": ["en": "\(thisUser.firstName) \(thisUser.lastName) has joined your ride!"], "include_player_ids": [senderOneSignalUserId], "data": ["senderOneSignalUserId": thisUser.oneSignalUserId!, "notificationType": "rideJoined"]])
+        }
+    }
+*/
 
 }
 
