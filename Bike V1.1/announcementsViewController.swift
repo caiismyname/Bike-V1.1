@@ -33,8 +33,7 @@ class announcementsViewController: UIViewController {
         let rideRef = ref.child("colleges/\(thisUser.college)/announcements/rides")
         
         rideRef.observeEventType(.Value, withBlock:  { snapshot in
-            // Initalize holding variables
-            var rideDict = [String: String]()
+            // Initalize holding variable
             var rideText = ""
             
             // Initalize indicies for iteration/updating label
@@ -50,11 +49,49 @@ class announcementsViewController: UIViewController {
                 let rideTitle = rideSnap.key
 
                 if rideTitle != "init" {
-                    rideDict[rideTitle] = snapshot.value![rideTitle] as! String
-                    rideText += "\(rideTitle): \(rideDict[rideTitle]!) \n"
+                    let rideTime = snapshot.value![rideTitle] as! String
+                    
+                    // Creating an NSDate from input, of the ride's start time
+                    let inputDateFormatter = NSDateFormatter()
+                    inputDateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss zzz"
+                    let rideNSDate = inputDateFormatter.dateFromString(rideTime)
+                    
+                    // Parsing day and time from that NSDate, as a string
+                    let outputDateFormatter = NSDateFormatter()
+                    outputDateFormatter.dateFormat = "EEE h:mm a"
+                    let prelimFormattedDate = outputDateFormatter.stringFromDate(rideNSDate!)
+                    
+                    // Getting today, for comparison
+                    let today = NSDate()
+                    let todayDateString = outputDateFormatter.stringFromDate(today)
+                    
+                    // Checking if ride has passed. 
+                    // If so, delete it from the DB
+                    // Else, format and display it
+                    
+                    let earlierDate = rideNSDate!.earlierDate(today)
+                    if earlierDate == rideNSDate {
+                        let thisRideRef = rideRef.child("/\(rideTitle)")
+                        thisRideRef.removeValue()
+                    }
+                    else {
+                    
+                        var finalDateString = ""
+                        
+                        // Creating the final string with "today" or "tomorrow", depending on results of comparison
+                        if todayDateString.substringToIndex(todayDateString.startIndex.advancedBy(2)) == prelimFormattedDate.substringToIndex(prelimFormattedDate.startIndex.advancedBy(2)) {
+                            finalDateString += "Today -- \(prelimFormattedDate.substringFromIndex(prelimFormattedDate.startIndex.advancedBy(4)))"
+                        }
+                        else {
+                            finalDateString += "Tomorrow -- \(prelimFormattedDate.substringFromIndex(prelimFormattedDate.startIndex.advancedBy(4)))"
+                        }
+                        
+                        rideText += "\(rideTitle): \(finalDateString) \n"
+                    }
+                    
                 }
 
-                if index == maxIndex {
+                if index == maxIndex && rideText.isEmpty == false {
                     self.upcomingRidesTextLabel.text = rideText
                 }
                 index += 1

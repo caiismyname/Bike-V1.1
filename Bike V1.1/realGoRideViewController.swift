@@ -288,40 +288,10 @@ class realGoRideViewController: UIViewController {
     
     
     func setAnnouncementRides(rideTime: String) {
-        print("set announcements")
-        // Getting the value for the FB DB entry
-        
-        // Creating an NSDate from input, of the ride's start time
-        let inputDateFormatter = NSDateFormatter()
-        inputDateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss zzz"
-        let rideNSDate = inputDateFormatter.dateFromString(rideTime)
-        
-        // Parsing day and time from that NSDate, as a string
-        let outputDateFormatter = NSDateFormatter()
-        outputDateFormatter.dateFormat = "EEE h:mm a"
-        let prelimFormattedDate = outputDateFormatter.stringFromDate(rideNSDate!)
-        
-        // Getting today, for comparison
-        let today = NSDate()
-        let todayDateString = outputDateFormatter.stringFromDate(today)
-        
-        var finalDateString = ""
-        
-        
-        
-        // Creating the final string with "today" or "tomorrow", depending on results of comparison
-        if todayDateString.substringToIndex(todayDateString.startIndex.advancedBy(2)) == prelimFormattedDate.substringToIndex(prelimFormattedDate.startIndex.advancedBy(2)) {
-            finalDateString += "Today -- \(prelimFormattedDate.substringFromIndex(prelimFormattedDate.startIndex.advancedBy(4)))"
-        }
-        else {
-            finalDateString += "Tomorrow -- \(prelimFormattedDate.substringFromIndex(prelimFormattedDate.startIndex.advancedBy(4)))"
-        }
-        
         
         // Updating FB DB
-        print(finalDateString)
         let ridesRef = ref.child("colleges/\(thisUser.college)/announcements/rides")
-        ridesRef.updateChildValues(["\(thisUser.firstName) \(thisUser.lastName)'s ride" : finalDateString])
+        ridesRef.updateChildValues(["\(thisUser.firstName) \(thisUser.lastName)'s ride" : rideTime])
     }
     
     // Function that executes a block after time interval, even when app is in background
