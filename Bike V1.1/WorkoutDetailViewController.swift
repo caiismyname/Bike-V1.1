@@ -142,6 +142,7 @@ class WorkoutDetailViewController: UIViewController {
     */
     
     
+    
     // MISC: Funcs
     
     func updateUserList() {

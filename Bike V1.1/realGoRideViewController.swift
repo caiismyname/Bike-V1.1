@@ -28,8 +28,8 @@ class realGoRideViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         ref = FIRDatabase.database().reference()
-        timePickerOutlet.minimumDate =  NSDate().dateByAddingTimeInterval(NSTimeInterval(3600))
-        
+        timePickerOutlet.minimumDate =  NSCalendar.currentCalendar().dateByAddingUnit(.Hour, value: 1, toDate: NSDate(), options: [])
+        timePickerOutlet.maximumDate = NSCalendar.currentCalendar().dateByAddingUnit(.Hour, value: 22, toDate: NSDate(), options: [])
     }
 
     override func didReceiveMemoryWarning() {
@@ -225,8 +225,9 @@ class realGoRideViewController: UIViewController {
         else if notificationTime == "10" {
             messages.append("\(thisUser.firstName) \(thisUser.lastName) is going on a ride in 10 minutes!")
             
-            let setBikeStatusTime = calculateTimes(10,secondsFromNow: 0)
-            setBikeStatus(setBikeStatusTime)
+            let rideTime = calculateTimes(10,secondsFromNow: 0)
+            setBikeStatus(rideTime)
+            setAnnouncementRides(rideTime)
             
         }
         else if notificationTime == "30" {
@@ -237,6 +238,7 @@ class realGoRideViewController: UIViewController {
             listOfTimes.append(calculateTimes(30,secondsFromNow: 0))
             
             setBikeStatus(listOfTimes[1])
+            setAnnouncementRides(listOfTimes[1])
         }
         else if notificationTime == "60" {
             messages.append("\(thisUser.firstName) \(thisUser.lastName) is going on a ride in an hour!")
@@ -246,6 +248,7 @@ class realGoRideViewController: UIViewController {
             listOfTimes.append(calculateTimes(60,secondsFromNow: 0))
             
             setBikeStatus(listOfTimes[1])
+            setAnnouncementRides(listOfTimes[1])
         }
         else if notificationTime == "timePicker" {
             let notificationFormatter = NSDateFormatter()
@@ -263,6 +266,7 @@ class realGoRideViewController: UIViewController {
             listOfTimes.append(isoTimeString)
             
             setBikeStatus(isoTimeString)
+            setAnnouncementRides(isoTimeString)
         }
         
         completion(messages: messages, listOfUserIds: listOfUserIds, listOfTimes: listOfTimes)
@@ -280,6 +284,44 @@ class realGoRideViewController: UIViewController {
         
         let formattedCalculatedDate = formatter.stringFromDate(calculatedDate!)
         return formattedCalculatedDate
+    }
+    
+    
+    func setAnnouncementRides(rideTime: String) {
+        print("set announcements")
+        // Getting the value for the FB DB entry
+        
+        // Creating an NSDate from input, of the ride's start time
+        let inputDateFormatter = NSDateFormatter()
+        inputDateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss zzz"
+        let rideNSDate = inputDateFormatter.dateFromString(rideTime)
+        
+        // Parsing day and time from that NSDate, as a string
+        let outputDateFormatter = NSDateFormatter()
+        outputDateFormatter.dateFormat = "EEE h:mm a"
+        let prelimFormattedDate = outputDateFormatter.stringFromDate(rideNSDate!)
+        
+        // Getting today, for comparison
+        let today = NSDate()
+        let todayDateString = outputDateFormatter.stringFromDate(today)
+        
+        var finalDateString = ""
+        
+        
+        
+        // Creating the final string with "today" or "tomorrow", depending on results of comparison
+        if todayDateString.substringToIndex(todayDateString.startIndex.advancedBy(2)) == prelimFormattedDate.substringToIndex(prelimFormattedDate.startIndex.advancedBy(2)) {
+            finalDateString += "Today -- \(prelimFormattedDate.substringFromIndex(prelimFormattedDate.startIndex.advancedBy(4)))"
+        }
+        else {
+            finalDateString += "Tomorrow -- \(prelimFormattedDate.substringFromIndex(prelimFormattedDate.startIndex.advancedBy(4)))"
+        }
+        
+        
+        // Updating FB DB
+        print(finalDateString)
+        let ridesRef = ref.child("colleges/\(thisUser.college)/announcements/rides")
+        ridesRef.updateChildValues(["\(thisUser.firstName) \(thisUser.lastName)'s ride" : finalDateString])
     }
     
     // Function that executes a block after time interval, even when app is in background

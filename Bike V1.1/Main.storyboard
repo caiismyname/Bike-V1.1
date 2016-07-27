@@ -324,54 +324,54 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="cqF-NE-AyI">
-                                <rect key="frame" x="16" y="80" width="343" height="428"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="cqF-NE-AyI">
+                                <rect key="frame" x="16" y="80" width="343" height="359"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E9D-aw-E3l">
-                                        <rect key="frame" x="0.0" y="0.0" width="343" height="39"/>
-                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="32"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E9D-aw-E3l">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="42"/>
+                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="35"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="College" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zmy-vq-kxN">
-                                        <rect key="frame" x="0.0" y="42" width="343" height="29"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="College" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zmy-vq-kxN">
+                                        <rect key="frame" x="0.0" y="45" width="343" height="29"/>
                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="24"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6gx-G7-8Kh">
-                                        <rect key="frame" x="0.0" y="74" width="343" height="63"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6gx-G7-8Kh">
+                                        <rect key="frame" x="0.0" y="77" width="343" height="63"/>
                                         <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="42"/>
                                         <state key="normal" title="Announcements">
-                                            <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleColor" white="0.66720600996241475" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
                                             <segue destination="GPV-DO-nzM" kind="presentation" id="JIn-8T-Oa8"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ga3-XR-hcO">
-                                        <rect key="frame" x="0.0" y="140" width="343" height="94"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="68"/>
+                                    <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ga3-XR-hcO">
+                                        <rect key="frame" x="0.0" y="143" width="343" height="63"/>
+                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="42"/>
                                         <state key="normal" title="Bikes">
-                                            <color key="titleColor" red="0.065609280199999995" green="0.69894086629999996" blue="0.77200589009999998" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleColor" red="0.15771004292668642" green="0.87933745241888861" blue="0.90687099358974355" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
                                             <segue destination="bf3-77-65P" kind="presentation" identifier="toBikesFromHomepage" id="5ez-5N-OVw"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DUH-tT-ymX">
-                                        <rect key="frame" x="0.0" y="237" width="343" height="94"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="68"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DUH-tT-ymX">
+                                        <rect key="frame" x="0.0" y="209" width="343" height="63"/>
+                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="42"/>
                                         <state key="normal" title="Workouts">
-                                            <color key="titleColor" red="0.13119517804065739" green="0.44582378926701571" blue="0.084622100698477865" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleColor" red="0.2645729002557482" green="0.91830929487179491" blue="0.17590023217711159" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
                                             <segue destination="hRN-fO-UUU" kind="presentation" identifier="toWorkoutsFromHomepage" id="NXS-Mx-ojM"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dre-1S-2LO">
-                                        <rect key="frame" x="0.0" y="334" width="343" height="94"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="68"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dre-1S-2LO">
+                                        <rect key="frame" x="0.0" y="275" width="343" height="84"/>
+                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="60"/>
                                         <state key="normal" title="Go Ride">
                                             <color key="titleColor" red="1" green="0.20688600709999999" blue="0.94062069260000003" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
@@ -382,7 +382,7 @@
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.32711875438690186" green="0.51982587575912476" blue="0.91001111268997192" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="cqF-NE-AyI" firstAttribute="top" secondItem="YgC-BK-hw8" secondAttribute="bottom" constant="16" id="7tP-zj-wC1"/>
                             <constraint firstAttribute="trailingMargin" secondItem="cqF-NE-AyI" secondAttribute="trailing" id="AYi-Q5-nvd"/>
@@ -782,9 +782,13 @@
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="ZeC-Eo-P8b" firstAttribute="width" secondItem="zY8-Dj-rsY" secondAttribute="width" id="UQ0-5q-zV5"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="j12-ft-LbE" appends="YES" id="jJ8-Zj-WhE"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="z5u-pv-9HQ">
                         <barButtonItem key="leftBarButtonItem" title="Done" id="oSN-CC-j6S">
@@ -811,6 +815,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EP2-gG-8E3" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Exf-tt-S5l" userLabel="Exit" sceneMemberID="exit"/>
+                <screenEdgePanGestureRecognizer minimumNumberOfTouches="1" id="j12-ft-LbE">
+                    <rectEdge key="edges" left="YES"/>
+                    <connections>
+                        <action selector="screenPanGestureAction:" destination="nAa-TC-ZYy" id="idD-1n-cGh"/>
+                    </connections>
+                </screenEdgePanGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2155.5" y="2928.5"/>
         </scene>
