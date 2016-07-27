@@ -847,42 +847,48 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jCJ-DJ-YHS">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c4E-YD-2Aw" userLabel="ContentView">
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c4E-YD-2Aw" userLabel="ContentView">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="1000"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="VP1-4v-Myp">
-                                                <rect key="frame" x="8" y="8" width="304" height="1276"/>
+                                                <rect key="frame" x="8" y="8" width="304" height="251"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="YXC-Gu-RwN">
-                                                        <rect key="frame" x="0.0" y="0.0" width="304" height="41"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="304" height="51"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Upcoming Rides" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1c0-IX-b9A">
-                                                                <rect key="frame" x="0.0" y="0.0" width="304" height="21"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upcoming Rides" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1c0-IX-b9A">
+                                                                <rect key="frame" x="0.0" y="0.0" width="304" height="30"/>
+                                                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="25"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="[rides go here]" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gu2-nw-v9K">
-                                                                <rect key="frame" x="0.0" y="21" width="304" height="21"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="No upcoming rides" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gu2-nw-v9K">
+                                                                <rect key="frame" x="0.0" y="30" width="304" height="21"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
                                                     </stackView>
+                                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MlJ-Ch-Avm" userLabel="Horizontal Line">
+                                                        <rect key="frame" x="0.0" y="63" width="304" height="1"/>
+                                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="1" id="h4H-GN-w4A"/>
+                                                        </constraints>
+                                                    </view>
                                                     <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Cp9-oU-gmx">
-                                                        <rect key="frame" x="0.0" y="53" width="304" height="41"/>
+                                                        <rect key="frame" x="0.0" y="76" width="304" height="51"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Anouncement 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OFu-7e-e4N">
-                                                                <rect key="frame" x="0.0" y="0.0" width="304" height="21"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Announcement 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OFu-7e-e4N">
+                                                                <rect key="frame" x="0.0" y="0.0" width="304" height="30"/>
+                                                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="25"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="[anouncement go here]" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6MH-AM-bp1">
-                                                                <rect key="frame" x="0.0" y="21" width="304" height="21"/>
+                                                                <rect key="frame" x="0.0" y="30" width="304" height="21"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
@@ -892,18 +898,18 @@
                                                         </constraints>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="zm9-54-h0J">
-                                                        <rect key="frame" x="0.0" y="106" width="304" height="41"/>
+                                                        <rect key="frame" x="0.0" y="138" width="304" height="51"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Anouncement 2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zMj-Le-aqW">
-                                                                <rect key="frame" x="0.0" y="0.0" width="304" height="21"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Announcement 2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zMj-Le-aqW">
+                                                                <rect key="frame" x="0.0" y="0.0" width="304" height="30"/>
+                                                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="25"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="[anouncement go here]" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h1Z-Lq-gYJ">
-                                                                <rect key="frame" x="0.0" y="21" width="304" height="21"/>
+                                                                <rect key="frame" x="0.0" y="30" width="304" height="21"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
@@ -913,19 +919,18 @@
                                                         </constraints>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="tXy-Sl-JTy">
-                                                        <rect key="frame" x="0.0" y="159" width="304" height="1117"/>
+                                                        <rect key="frame" x="0.0" y="201" width="304" height="51"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Anouncement 3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iWR-mo-a5C">
-                                                                <rect key="frame" x="0.0" y="0.0" width="304" height="21"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Anouncement 3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iWR-mo-a5C">
+                                                                <rect key="frame" x="0.0" y="0.0" width="304" height="30"/>
+                                                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="25"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JTf-Q0-cWX">
-                                                                <rect key="frame" x="0.0" y="21" width="304" height="1096"/>
-                                                                <mutableString key="text">"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?""But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?"</mutableString>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="[announcement goes here]" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JTf-Q0-cWX">
+                                                                <rect key="frame" x="0.0" y="30" width="304" height="21"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
@@ -936,17 +941,21 @@
                                                     </stackView>
                                                 </subviews>
                                                 <constraints>
+                                                    <constraint firstItem="MlJ-Ch-Avm" firstAttribute="leading" secondItem="VP1-4v-Myp" secondAttribute="leading" id="DZh-qQ-E2f"/>
                                                     <constraint firstAttribute="trailing" secondItem="Cp9-oU-gmx" secondAttribute="trailing" id="MYV-wK-ht2"/>
+                                                    <constraint firstItem="MlJ-Ch-Avm" firstAttribute="leading" secondItem="VP1-4v-Myp" secondAttribute="leading" id="cuf-DS-Nj3"/>
                                                     <constraint firstAttribute="trailing" secondItem="YXC-Gu-RwN" secondAttribute="trailing" id="lVP-BP-3yW"/>
                                                     <constraint firstAttribute="trailing" secondItem="zm9-54-h0J" secondAttribute="trailing" id="m3x-o8-Y6f"/>
+                                                    <constraint firstAttribute="trailing" secondItem="MlJ-Ch-Avm" secondAttribute="trailing" id="npQ-kK-92p"/>
                                                     <constraint firstAttribute="trailing" secondItem="tXy-Sl-JTy" secondAttribute="trailing" id="rGq-jy-dc4"/>
+                                                    <constraint firstAttribute="trailing" secondItem="MlJ-Ch-Avm" secondAttribute="trailing" id="zhi-fr-EpL"/>
                                                 </constraints>
                                             </stackView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="1000" id="4s5-mp-1rE"/>
                                             <constraint firstItem="VP1-4v-Myp" firstAttribute="top" secondItem="c4E-YD-2Aw" secondAttribute="topMargin" id="C1L-ff-GgI"/>
+                                            <constraint firstItem="VP1-4v-Myp" firstAttribute="height" secondItem="c4E-YD-2Aw" secondAttribute="height" id="Wwb-F3-mCz"/>
                                             <constraint firstItem="VP1-4v-Myp" firstAttribute="leading" secondItem="c4E-YD-2Aw" secondAttribute="leadingMargin" id="Xxx-vP-4Cu"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="VP1-4v-Myp" secondAttribute="trailing" id="sLF-EF-jW8"/>
                                         </constraints>
@@ -977,6 +986,15 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="announcementOneTextLabel" destination="6MH-AM-bp1" id="R0E-B3-rWD"/>
+                        <outlet property="announcementOneTitleLabel" destination="OFu-7e-e4N" id="Dlv-wb-MHK"/>
+                        <outlet property="announcementThreeTextLabel" destination="JTf-Q0-cWX" id="Bd0-9e-wV5"/>
+                        <outlet property="announcementThreeTitleLabel" destination="iWR-mo-a5C" id="b2q-UG-ofo"/>
+                        <outlet property="announcementTwoTextLabel" destination="h1Z-Lq-gYJ" id="aQz-pM-cMT"/>
+                        <outlet property="announcementTwoTitleLabel" destination="zMj-Le-aqW" id="AAF-wM-7r1"/>
+                        <outlet property="upcomingRidesTextLabel" destination="gu2-nw-v9K" id="dvQ-0c-qsO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w7y-zQ-lKm" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="G0l-WG-qSB" userLabel="Exit" sceneMemberID="exit"/>

@@ -89,7 +89,7 @@ class WorkoutDetailViewController: UIViewController {
         weekNumberLabel.text = weekNumber
         typeLabel.text = thisWorkout?.type
         payloadLabel.text = payload
-        updateUserList() // This doesn't do anything since it's already updated in the event listner -- it's just here for completion's sake
+        //updateUserList() This doesn't do anything since it's already updated in the event listner -- it's just here for completion's sake
         
     }
 
@@ -159,7 +159,8 @@ class WorkoutDetailViewController: UIViewController {
             userRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
                 let realName = snapshot.value as! String
                 usersHaveCompleted += "\(realName) \n"
-                if index == usersIndexMax - 1{
+                print(usersHaveCompleted)
+                if index == usersIndexMax - 1 {
                     self.usersHaveCompletedLabel.text = usersHaveCompleted
                 }
             })
