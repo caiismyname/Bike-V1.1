@@ -34,11 +34,9 @@ class BikeDetailViewController: UIViewController {
         print("User has selected: \(thisBike!.bikeUsername)")
         
         let bikeRef = ref.child("colleges/\(thisUser.college)/bikeList/\(thisBike!.bikeUsername)")
-        print(thisUser.college)
-        // Listener is used to live update the info (namely rider list) as the user manipulates the information from the detailview
+        // Listener is used to live update the info as the user manipulates the information from the detailview
         bikeRef.observeEventType(.Value, withBlock: { snapshot in
             // Creating bikeClass object from FB DB data
-            print(snapshot.value!["name"] as! String)
             let bikeName = snapshot.value!["name"] as! String
             let size = snapshot.value!["size"] as! String
             let wheels = snapshot.value!["wheels"] as! String
@@ -89,6 +87,7 @@ class BikeDetailViewController: UIViewController {
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         ref.removeAllObservers()
+        
     }
     
     // MARK: Actions
@@ -172,7 +171,6 @@ class BikeDetailViewController: UIViewController {
         let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(thisUser, toFile: userClass.ArchiveURL!.path!)
         if isSuccessfulSave {
             print("User saved")
-            print("save user create account")
         }
         else {
             print("Failed to save user")

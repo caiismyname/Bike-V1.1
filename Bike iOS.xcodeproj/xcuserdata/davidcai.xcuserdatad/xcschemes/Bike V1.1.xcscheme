@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "270FCB1C1D23405D003DFCF9"
-               BuildableName = "Bike V1.1.app"
-               BlueprintName = "Bike V1.1"
-               ReferencedContainer = "container:Bike V1.1.xcodeproj">
+               BuildableName = "Bike-iOS.app"
+               BlueprintName = "Bike iOS"
+               ReferencedContainer = "container:Bike iOS.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "270FCB301D23405D003DFCF9"
-               BuildableName = "Bike V1.1Tests.xctest"
-               BlueprintName = "Bike V1.1Tests"
-               ReferencedContainer = "container:Bike V1.1.xcodeproj">
+               BuildableName = "Bike iOSTests.xctest"
+               BlueprintName = "Bike iOSTests"
+               ReferencedContainer = "container:Bike iOS.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -43,9 +43,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "270FCB1C1D23405D003DFCF9"
-            BuildableName = "Bike V1.1.app"
-            BlueprintName = "Bike V1.1"
-            ReferencedContainer = "container:Bike V1.1.xcodeproj">
+            BuildableName = "Bike-iOS.app"
+            BlueprintName = "Bike iOS"
+            ReferencedContainer = "container:Bike iOS.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -66,9 +66,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "270FCB1C1D23405D003DFCF9"
-            BuildableName = "Bike V1.1.app"
-            BlueprintName = "Bike V1.1"
-            ReferencedContainer = "container:Bike V1.1.xcodeproj">
+            BuildableName = "Bike-iOS.app"
+            BlueprintName = "Bike iOS"
+            ReferencedContainer = "container:Bike iOS.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -85,9 +85,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "270FCB1C1D23405D003DFCF9"
-            BuildableName = "Bike V1.1.app"
-            BlueprintName = "Bike V1.1"
-            ReferencedContainer = "container:Bike V1.1.xcodeproj">
+            BuildableName = "Bike-iOS.app"
+            BlueprintName = "Bike iOS"
+            ReferencedContainer = "container:Bike iOS.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

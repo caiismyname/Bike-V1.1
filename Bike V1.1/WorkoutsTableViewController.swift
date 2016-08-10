@@ -17,7 +17,7 @@ class WorkoutsTableViewController: UITableViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //workoutList = loadWorkoutList()!
+        workoutList = loadWorkoutList()!
         //print(workoutList)
 
         // Watcher thing that auto refreshes when FB DB changes

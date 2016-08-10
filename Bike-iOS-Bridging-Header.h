@@ -1,6 +1,6 @@
 //
 //  Bike-Bridging-Header.h
-//  Bike V1.1
+//  Bike iOS
 //
 //  Created by David Cai on 7/19/16.
 //  Copyright © 2016 David Cai. All rights reserved.

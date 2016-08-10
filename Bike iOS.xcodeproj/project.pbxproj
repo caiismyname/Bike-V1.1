@@ -44,12 +44,12 @@
 		1853EABFF949000A74D38DE4 /* Pods_Bike_V1_1Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bike_V1_1Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FFC932701DDECF5A43867E9 /* Pods-Bike V1.1Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bike V1.1Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bike V1.1Tests/Pods-Bike V1.1Tests.release.xcconfig"; sourceTree = "<group>"; };
 		270D5FBB1D52D4090032B01A /* Bike V1.1.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Bike V1.1.entitlements"; sourceTree = "<group>"; };
-		270FCB1D1D23405D003DFCF9 /* Bike V1.1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bike V1.1.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		270FCB1D1D23405D003DFCF9 /* Bike-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bike-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		270FCB201D23405D003DFCF9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		270FCB271D23405D003DFCF9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		270FCB2A1D23405D003DFCF9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		270FCB2C1D23405D003DFCF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		270FCB311D23405D003DFCF9 /* Bike V1.1Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Bike V1.1Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		270FCB311D23405D003DFCF9 /* Bike iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Bike iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		270FCB351D23405D003DFCF9 /* Bike_V1_1Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bike_V1_1Tests.swift; sourceTree = "<group>"; };
 		270FCB371D23405D003DFCF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		270FCB401D234081003DFCF9 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateAccountViewController.swift; path = ../CreateAccountViewController.swift; sourceTree = "<group>"; };
@@ -65,7 +65,7 @@
 		270FCB641D283209003DFCF9 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		270FCB661D297342003DFCF9 /* BikeDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BikeDetailViewController.swift; sourceTree = "<group>"; };
 		272AB3DA1D3D5B6100AAB067 /* WorkoutDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutDetailViewController.swift; sourceTree = "<group>"; };
-		272F1C181D3F2BC4009DF18B /* Bike-V1-1-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Bike-V1-1-Bridging-Header.h"; path = "../Bike-V1-1-Bridging-Header.h"; sourceTree = "<group>"; };
+		272F1C181D3F2BC4009DF18B /* Bike-iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Bike-iOS-Bridging-Header.h"; path = "../Bike-iOS-Bridging-Header.h"; sourceTree = "<group>"; };
 		276EF6731D47EC7000FEFC09 /* announcementsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = announcementsViewController.swift; sourceTree = "<group>"; };
 		27CA42E31D42BF56005FEEE1 /* realGoRideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = realGoRideViewController.swift; sourceTree = "<group>"; };
 		2A2559F3A7B9396C3C19C33E /* Pods-Bike V1.1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bike V1.1.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bike V1.1/Pods-Bike V1.1.release.xcconfig"; sourceTree = "<group>"; };
@@ -108,8 +108,8 @@
 		270FCB141D23405D003DFCF9 = {
 			isa = PBXGroup;
 			children = (
-				270FCB1F1D23405D003DFCF9 /* Bike V1.1 */,
-				270FCB341D23405D003DFCF9 /* Bike V1.1Tests */,
+				270FCB1F1D23405D003DFCF9 /* Bike iOS */,
+				270FCB341D23405D003DFCF9 /* Bike iOSTests */,
 				270FCB1E1D23405D003DFCF9 /* Products */,
 				137B771FE6524D76AF5F86FA /* Pods */,
 				DFEBCB41142EA420D13A1C45 /* Frameworks */,
@@ -119,13 +119,13 @@
 		270FCB1E1D23405D003DFCF9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				270FCB1D1D23405D003DFCF9 /* Bike V1.1.app */,
-				270FCB311D23405D003DFCF9 /* Bike V1.1Tests.xctest */,
+				270FCB1D1D23405D003DFCF9 /* Bike-iOS.app */,
+				270FCB311D23405D003DFCF9 /* Bike iOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		270FCB1F1D23405D003DFCF9 /* Bike V1.1 */ = {
+		270FCB1F1D23405D003DFCF9 /* Bike iOS */ = {
 			isa = PBXGroup;
 			children = (
 				270D5FBB1D52D4090032B01A /* Bike V1.1.entitlements */,
@@ -148,17 +148,19 @@
 				270FCB291D23405D003DFCF9 /* LaunchScreen.storyboard */,
 				270FCB2C1D23405D003DFCF9 /* Info.plist */,
 				270FCB5A1D24D6A0003DFCF9 /* GoogleService-Info.plist */,
-				272F1C181D3F2BC4009DF18B /* Bike-V1-1-Bridging-Header.h */,
+				272F1C181D3F2BC4009DF18B /* Bike-iOS-Bridging-Header.h */,
 			);
+			name = "Bike iOS";
 			path = "Bike V1.1";
 			sourceTree = "<group>";
 		};
-		270FCB341D23405D003DFCF9 /* Bike V1.1Tests */ = {
+		270FCB341D23405D003DFCF9 /* Bike iOSTests */ = {
 			isa = PBXGroup;
 			children = (
 				270FCB351D23405D003DFCF9 /* Bike_V1_1Tests.swift */,
 				270FCB371D23405D003DFCF9 /* Info.plist */,
 			);
+			name = "Bike iOSTests";
 			path = "Bike V1.1Tests";
 			sourceTree = "<group>";
 		};
@@ -174,9 +176,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		270FCB1C1D23405D003DFCF9 /* Bike V1.1 */ = {
+		270FCB1C1D23405D003DFCF9 /* Bike iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 270FCB3A1D23405D003DFCF9 /* Build configuration list for PBXNativeTarget "Bike V1.1" */;
+			buildConfigurationList = 270FCB3A1D23405D003DFCF9 /* Build configuration list for PBXNativeTarget "Bike iOS" */;
 			buildPhases = (
 				9B1CEA8C337FCB777A510605 /* [CP] Check Pods Manifest.lock */,
 				270FCB191D23405D003DFCF9 /* Sources */,
@@ -189,14 +191,14 @@
 			);
 			dependencies = (
 			);
-			name = "Bike V1.1";
+			name = "Bike iOS";
 			productName = "Bike V1.1";
-			productReference = 270FCB1D1D23405D003DFCF9 /* Bike V1.1.app */;
+			productReference = 270FCB1D1D23405D003DFCF9 /* Bike-iOS.app */;
 			productType = "com.apple.product-type.application";
 		};
-		270FCB301D23405D003DFCF9 /* Bike V1.1Tests */ = {
+		270FCB301D23405D003DFCF9 /* Bike iOSTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 270FCB3D1D23405D003DFCF9 /* Build configuration list for PBXNativeTarget "Bike V1.1Tests" */;
+			buildConfigurationList = 270FCB3D1D23405D003DFCF9 /* Build configuration list for PBXNativeTarget "Bike iOSTests" */;
 			buildPhases = (
 				7F76853B10CBB902AAE442AA /* [CP] Check Pods Manifest.lock */,
 				270FCB2D1D23405D003DFCF9 /* Sources */,
@@ -210,9 +212,9 @@
 			dependencies = (
 				270FCB331D23405D003DFCF9 /* PBXTargetDependency */,
 			);
-			name = "Bike V1.1Tests";
+			name = "Bike iOSTests";
 			productName = "Bike V1.1Tests";
-			productReference = 270FCB311D23405D003DFCF9 /* Bike V1.1Tests.xctest */;
+			productReference = 270FCB311D23405D003DFCF9 /* Bike iOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -245,7 +247,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 270FCB181D23405D003DFCF9 /* Build configuration list for PBXProject "Bike V1.1" */;
+			buildConfigurationList = 270FCB181D23405D003DFCF9 /* Build configuration list for PBXProject "Bike iOS" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -258,8 +260,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				270FCB1C1D23405D003DFCF9 /* Bike V1.1 */,
-				270FCB301D23405D003DFCF9 /* Bike V1.1Tests */,
+				270FCB1C1D23405D003DFCF9 /* Bike iOS */,
+				270FCB301D23405D003DFCF9 /* Bike iOSTests */,
 			);
 		};
 /* End PBXProject section */
@@ -413,7 +415,7 @@
 /* Begin PBXTargetDependency section */
 		270FCB331D23405D003DFCF9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 270FCB1C1D23405D003DFCF9 /* Bike V1.1 */;
+			target = 270FCB1C1D23405D003DFCF9 /* Bike iOS */;
 			targetProxy = 270FCB321D23405D003DFCF9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -525,10 +527,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Bike V1.1/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Bike-V1-1";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "Bike-iOS";
+				PRODUCT_NAME = "Bike-iOS";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "Bike-V1-1-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Bike-iOS-Bridging-Header.h";
 				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -544,10 +546,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Bike V1.1/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Bike-V1-1";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "Bike-iOS";
+				PRODUCT_NAME = "Bike-iOS";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "Bike-V1-1-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Bike-iOS-Bridging-Header.h";
 				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -563,7 +565,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "l.Bike-V1-1Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 2.3;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Bike V1.1.app/Bike V1.1";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Bike iOS.app/Bike iOS";
 			};
 			name = Debug;
 		};
@@ -577,14 +579,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "l.Bike-V1-1Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 2.3;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Bike V1.1.app/Bike V1.1";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Bike iOS.app/Bike iOS";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		270FCB181D23405D003DFCF9 /* Build configuration list for PBXProject "Bike V1.1" */ = {
+		270FCB181D23405D003DFCF9 /* Build configuration list for PBXProject "Bike iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				270FCB381D23405D003DFCF9 /* Debug */,
@@ -593,7 +595,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		270FCB3A1D23405D003DFCF9 /* Build configuration list for PBXNativeTarget "Bike V1.1" */ = {
+		270FCB3A1D23405D003DFCF9 /* Build configuration list for PBXNativeTarget "Bike iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				270FCB3B1D23405D003DFCF9 /* Debug */,
@@ -602,7 +604,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		270FCB3D1D23405D003DFCF9 /* Build configuration list for PBXNativeTarget "Bike V1.1Tests" */ = {
+		270FCB3D1D23405D003DFCF9 /* Build configuration list for PBXNativeTarget "Bike iOSTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				270FCB3E1D23405D003DFCF9 /* Debug */,

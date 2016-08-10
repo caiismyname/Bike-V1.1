@@ -19,6 +19,7 @@ class BikeTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("viewdidload")
         
         // Loading the saved list of bikes, to avoid FB calls
         bikeList = loadBikeList()!
@@ -30,7 +31,7 @@ class BikeTableViewController: UITableViewController {
         // FB init.
         let bikeListRef = ref.child("colleges/\(thisUser.college)/bikeList")
         
-        bikeListRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
+        bikeListRef.observeEventType(.Value, withBlock: { snapshot in
             // This temp decleration must be inside the .observeEventType so that it resets with every refresh. Otherwise, you'll just append the old list
             var tempBikeList = [bikeClass]()
             for child in snapshot.children {
@@ -161,8 +162,9 @@ class BikeTableViewController: UITableViewController {
             let bikeDetailView = segue.destinationViewController as! BikeDetailViewController
             bikeDetailView.thisBike = selectedBike
         }
-        
-        ref.removeAllObservers()
+        else {
+            ref.removeAllObservers()
+        }
     }
     
     
