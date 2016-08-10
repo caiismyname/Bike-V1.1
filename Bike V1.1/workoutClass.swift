@@ -15,7 +15,7 @@ class workoutClass: NSObject, NSCoding {
     var duration: [Int]
     var reps: [Int]
     var unit: String
-    var usersHaveCompleted: [String]
+    var usersHaveCompleted: [String:String]
     // This list should have an initialized key/value "init:true", so it will exist immediately
     var week: [String]
     var workoutUsername: String!
@@ -37,7 +37,7 @@ class workoutClass: NSObject, NSCoding {
     }
     
     // MARK: Init.
-    init(type: String!, duration: [Int]!, reps: [Int]!, unit: String!, usersHaveCompleted: [String]!, week: [String]!, workoutUsername: String!){
+    init(type: String!, duration: [Int]!, reps: [Int]!, unit: String!, usersHaveCompleted: [String:String], week: [String]!, workoutUsername: String!){
         self.type = type
         self.duration = duration
         self.reps = reps
@@ -47,6 +47,35 @@ class workoutClass: NSObject, NSCoding {
         self.workoutUsername = workoutUsername
         
         super.init()
+    }
+    
+    // MARK: Getters
+    func getPayload() -> String {
+        // Payload is the "actual workout". It's stored as a list, so the for loop is needed to get everything in it
+        // Using an index b/c we need to grab from two lists, not just one
+        
+        var payload = ""
+        let payloadIndexMax = self.duration.count
+        for index in 0..<payloadIndexMax - 1 {
+            if index != payloadIndexMax {
+                payload += "\(self.reps[index])x\(self.duration[index]) \n"
+            }
+            else {
+                payload += "\(self.reps[index])x\(self.duration[index]) "
+            }
+        }
+        
+        payload += self.unit
+        return payload
+    }
+    
+    func getUsersHaveCompleted() -> String {
+        var payload = ""
+        let usersFullNames = self.usersHaveCompleted.values
+        for user in usersFullNames{
+            payload += user + "\n"
+        }
+        return payload
     }
     
     // MARK: NSCoding
@@ -65,7 +94,7 @@ class workoutClass: NSObject, NSCoding {
         let duration = aDecoder.decodeObjectForKey(PropertyKey.durationKey) as! [Int]
         let reps = aDecoder.decodeObjectForKey(PropertyKey.repsKey) as! [Int]
         let unit = aDecoder.decodeObjectForKey(PropertyKey.unitKey) as! String
-        let usersHaveCompleted = aDecoder.decodeObjectForKey(PropertyKey.usersHaveCompletedKey) as! [String]
+        let usersHaveCompleted = aDecoder.decodeObjectForKey(PropertyKey.usersHaveCompletedKey) as! [String:String]
         let week = aDecoder.decodeObjectForKey(PropertyKey.weekKey) as! [String]
         let workoutUsername = aDecoder.decodeObjectForKey(PropertyKey.workoutUsernameKey) as! String
         

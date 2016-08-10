@@ -21,30 +21,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FIRApp.configure()
         
-        _ = OneSignal(launchOptions: launchOptions, appId: "0d103f19-b6e5-4da9-9864-8ae146104c88") { (message, additionalData, isActive) in
-            NSLog("OneSignal Notification opened:\nMessage: %@", message)
-            
-            let navigationController = application.windows[0].rootViewController as! UINavigationController
-            let activeViewCont = navigationController.visibleViewController
-            
-            
-            // Typecasting b/c the additional_data dict is [NSObject: AnyObject], which doesn't jive with [String: String]
-            let notificationType = "notificationType" as NSObject
-            if additionalData[notificationType] as! String == "goingOnRide" {
-                // Recieved a "Going on ride" notification
-                NSLog("additionalData: %@", additionalData)
+        OneSignal.initWithLaunchOptions(launchOptions, appId: "0d103f19-b6e5-4da9-9864-8ae146104c88", handleNotificationReceived: { (notification) in
+            print("Received Notification - \(notification.payload.notificationID)")
+            }, handleNotificationAction: { (result) in
                 
-                self.showAlert("goingOnRide", additionalData: additionalData, message: message, viewController: activeViewCont!)
-            }
-            else if additionalData[notificationType] as! String == "rideJoined" {
-                // Recieved a "xxx Joined your ride" notification"
+                let navigationController = application.windows[0].rootViewController as! UINavigationController
+                let activeViewCont = navigationController.visibleViewController
                 
-                self.showAlert("rideJoined", additionalData: additionalData, message: message, viewController: activeViewCont!)
-            }
-            
-        }
+                // This block gets called when the user reacts to a notification received
+                let payload = result.notification.payload
+                var fullMessage = payload.title
+                
+                // Typecasting b/c the additional_data dict is [NSObject: AnyObject], which doesn't jive with [String: String]
+                let notificationType = "notificationType" as NSObject
+                let additionalData = result.notification.payload.additionalData
+                if additionalData[notificationType] as! String == "goingOnRide" {
+                    // Recieved a "Going on ride" notification
+                    NSLog("additionalData: %@", additionalData)
+                    
+                    self.showAlert("goingOnRide", additionalData: additionalData, message: result.notification.payload.title, viewController: activeViewCont!)
+                }
+                else if additionalData[notificationType] as! String == "rideJoined" {
+                    // Recieved a "xxx Joined your ride" notification"
+                    
+                    self.showAlert("rideJoined", additionalData: additionalData, message: result.notification.payload.title, viewController: activeViewCont!)
+                }
+
+                //Try to fetch the action selected
+                if let additionalData = payload.additionalData, actionSelected = additionalData["actionSelected"] as? String {
+                    fullMessage =  fullMessage + "\nPressed ButtonId:\(actionSelected)"
+                }
+                print(fullMessage)
+            }, settings: [kOSSettingsKeyAutoPrompt : true, kOSSettingsKeyInAppAlerts : false])
         
-        OneSignal.defaultClient().enableInAppAlertNotification(false)
+
         
         return true
     }
@@ -59,7 +69,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let goingOnRideAlert = UIAlertController(title: "A teammate is riding!", message: message + "\n Would you like to join them?", preferredStyle: UIAlertControllerStyle.Alert)
             goingOnRideAlert.addAction(UIAlertAction(title: "No", style: .Cancel, handler: nil))
             goingOnRideAlert.addAction(UIAlertAction(title: "Join!", style: .Default, handler: { alertAction in
-                OneSignal.defaultClient().postNotification(["contents": ["en": "\(thisUser.firstName) \(thisUser.lastName) has joined your ride!"], "include_player_ids": [senderOneSignalUserId!], "data": ["senderOneSignalUserId": thisUser.oneSignalUserId!, "notificationType": "rideJoined"]])
+                OneSignal.postNotification(["contents": ["en": "\(thisUser.firstName) \(thisUser.lastName) has joined your ride!"], "include_player_ids": [senderOneSignalUserId!], "data": ["senderOneSignalUserId": thisUser.oneSignalUserId!, "notificationType": "rideJoined"]])
             }))
             
             viewController.presentViewController(goingOnRideAlert, animated: true, completion: nil)

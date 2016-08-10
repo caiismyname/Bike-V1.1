@@ -43,6 +43,7 @@
 /* Begin PBXFileReference section */
 		1853EABFF949000A74D38DE4 /* Pods_Bike_V1_1Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bike_V1_1Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FFC932701DDECF5A43867E9 /* Pods-Bike V1.1Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bike V1.1Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bike V1.1Tests/Pods-Bike V1.1Tests.release.xcconfig"; sourceTree = "<group>"; };
+		270D5FBB1D52D4090032B01A /* Bike V1.1.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Bike V1.1.entitlements"; sourceTree = "<group>"; };
 		270FCB1D1D23405D003DFCF9 /* Bike V1.1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bike V1.1.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		270FCB201D23405D003DFCF9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		270FCB271D23405D003DFCF9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -127,6 +128,7 @@
 		270FCB1F1D23405D003DFCF9 /* Bike V1.1 */ = {
 			isa = PBXGroup;
 			children = (
+				270D5FBB1D52D4090032B01A /* Bike V1.1.entitlements */,
 				270FCB641D283209003DFCF9 /* Main.storyboard */,
 				270FCB401D234081003DFCF9 /* CreateAccountViewController.swift */,
 				270FCB421D234081003DFCF9 /* HomepageViewController.swift */,
@@ -226,6 +228,7 @@
 					270FCB1C1D23405D003DFCF9 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 365K6R64X6;
+						LastSwiftMigration = 0800;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -237,6 +240,7 @@
 					};
 					270FCB301D23405D003DFCF9 = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0800;
 						TestTargetID = 270FCB1C1D23405D003DFCF9;
 					};
 				};
@@ -516,6 +520,7 @@
 			baseConfigurationReference = CD4E4C7AB69A12893695AEDE /* Pods-Bike V1.1.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Bike V1.1/Bike V1.1.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Bike V1.1/Info.plist";
@@ -524,6 +529,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Bike-V1-1-Bridging-Header.h";
+				SWIFT_VERSION = 2.3;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -532,6 +539,7 @@
 			baseConfigurationReference = 2A2559F3A7B9396C3C19C33E /* Pods-Bike V1.1.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Bike V1.1/Bike V1.1.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Bike V1.1/Info.plist";
@@ -540,6 +548,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Bike-V1-1-Bridging-Header.h";
+				SWIFT_VERSION = 2.3;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -552,6 +562,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "l.Bike-V1-1Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Bike V1.1.app/Bike V1.1";
 			};
 			name = Debug;
@@ -565,6 +576,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "l.Bike-V1-1Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Bike V1.1.app/Bike V1.1";
 			};
 			name = Release;

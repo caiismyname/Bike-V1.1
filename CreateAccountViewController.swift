@@ -146,7 +146,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
         let createUserName = userCollege + createFirstName.text! + createLastName.text!
         
         // Create new userClass object
-        thisUser = userClass(firstName: createFirstName.text!, lastName: createLastName.text!, userName: createUserName, college: self.userCollege, email: createEmail.text!, password: createPassword.text!, bike: "None", completedWorkouts: ["init"], oneSignalUserId: nil)
+        thisUser = userClass(firstName: createFirstName.text!, lastName: createLastName.text!, userName: createUserName, college: self.userCollege, email: createEmail.text!, password: createPassword.text!, bike: "None", oneSignalUserId: nil)
         saveUser()
         loadUser()
         
@@ -197,6 +197,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
     
     // MARK: Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        ref.removeAllObservers()
         let homepage = segue.destinationViewController as! HomepageViewController
         homepage.words.text = thisUser.firstName +  " " + thisUser.lastName
         homepage.collegeLabel.text = thisUser.college
@@ -207,7 +208,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
     
     // MARK: NSCoding
     func saveUser() {
-        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(thisUser, toFile: userClass.ArchiveURL.path!)
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(thisUser, toFile: userClass.ArchiveURL!.path!)
         if isSuccessfulSave {
             print("User saved")
             print("save user create account")
@@ -218,7 +219,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
     }
     
     func saveBikeList(bikeListName: [bikeClass]){
-       let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(bikeListName, toFile: bikeClass.ArchiveURL.path!)
+       let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(bikeListName, toFile: bikeClass.ArchiveURL!.path!)
         if isSuccessfulSave {
             print("BikeList Saved")
         }
@@ -228,7 +229,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
     }
     
     func saveWorkoutList(workoutListName: [workoutClass]){
-        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(workoutListName, toFile: workoutClass.ArchiveURL.path!)
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(workoutListName, toFile: workoutClass.ArchiveURL!.path!)
         if isSuccessfulSave {
             print("WorkoutList Saved")
         }
@@ -238,16 +239,16 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
     }
     
     func loadBikeList() -> [bikeClass]? {
-        return NSKeyedUnarchiver.unarchiveObjectWithFile(bikeClass.ArchiveURL.path!) as? [bikeClass]
+        return NSKeyedUnarchiver.unarchiveObjectWithFile(bikeClass.ArchiveURL!.path!) as? [bikeClass]
     }
     
     func loadWorkoutList() -> [workoutClass]? {
-        return NSKeyedUnarchiver.unarchiveObjectWithFile(workoutClass.ArchiveURL.path!) as? [workoutClass]
+        return NSKeyedUnarchiver.unarchiveObjectWithFile(workoutClass.ArchiveURL!.path!) as? [workoutClass]
     }
     
     func loadUser(){
         print("Create accounts load user called")
-        let loadedUser = (NSKeyedUnarchiver.unarchiveObjectWithFile(userClass.ArchiveURL.path!) as? userClass)!
+        let loadedUser = (NSKeyedUnarchiver.unarchiveObjectWithFile(userClass.ArchiveURL!.path!) as? userClass)!
         thisUser = loadedUser
     }
     
@@ -260,7 +261,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
         
         var oneSignalUserId: String!
         
-        OneSignal.defaultClient().IdsAvailable({ (userId, pushToken) in
+        OneSignal.IdsAvailable({ (userId, pushToken) in
             oneSignalUserId = userId
             
             // Also sets the .oneSignalUserId property of userClass
@@ -277,19 +278,13 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
         
         // username is the Dict. key for the user entries
         let username = user.userName
-        // Full name is the human readable name of the person
-        let fullname = user.firstName + " " + user.lastName
-        
         
         // First DB entry, /users/[username]
-        //
-        //
-        
         // Top-level User list
         let userRef = ref.child("users/\(username)")
         
         // Dict. representation of values in /users/[username] entry
-        let userRefPayload = ["college": user.college, "email": user.email, "name": fullname, "bike":"None", "completedwo": ["init": true], "oneSignalUserId": oneSignalUserId]
+        let userRefPayload = ["college": user.college, "email": user.email, "name": user.fullName, "bike":"None", "completedwo": ["init": true], "oneSignalUserId": oneSignalUserId]
         //  Uploads to FB DB | Setting the value of users/[username]
         userRef.setValue(userRefPayload) { (error: NSError?, database: FIRDatabaseReference) in
             if (error != nil) {
@@ -299,15 +294,11 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
                 print("users/username values set")
             }
         }
-
         
         // Second DB entry, /colleges/[college]/users/username/
-        //
-        //
-        
         let collegeUserRef = ref.child("colleges/\(thisUser.college)/users/\(username)")
         
-        collegeUserRef.setValue("true") { (error: NSError?, database: FIRDatabaseReference) in
+        collegeUserRef.setValue(oneSignalUserId) { (error: NSError?, database: FIRDatabaseReference) in
             if (error != nil) {
                 print(error?.description)
             }
@@ -324,8 +315,6 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
         // This takes everything from bikeList in FB, makes them into bikeClass objects, and appends said objects to bikeList array
         
         // Firebase Init
-        
-        print("beginning pull of bikes")
         var ref = FIRDatabaseReference.init()
         ref = FIRDatabase.database().reference()
         let bikeListRef = ref.child("colleges/\(thisUser.college)/bikeList/")
@@ -389,11 +378,11 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
                 let childSnap = child as! FIRDataSnapshot
                 let workoutUsername = childSnap.key
                 
-                var usersHaveCompleted = [String]()
-                let userList = child.value["usersHaveCompleted"] as! NSDictionary
-                for user in userList {
+                var usersHaveCompleted = [String:String]()
+                let usersHaveCompletedDict = snapshot.value!["usersHaveCompleted"] as! NSDictionary
+                for user in usersHaveCompletedDict {
                     if user.key as! String != "init" {
-                        usersHaveCompleted.append(user.key as! String)
+                        usersHaveCompleted[user.key as! String] = user.value as? String
                     }
                 }
                 

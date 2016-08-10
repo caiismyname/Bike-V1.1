@@ -18,7 +18,7 @@ class userClass: NSObject, NSCoding {
     var password: String!
     var bike: String!
     var userName: String!
-    var completedWorkouts: [String]!
+    var fullName: String!
     var oneSignalUserId: String?
     
     // MARK: Archiving Paths
@@ -35,12 +35,11 @@ class userClass: NSObject, NSCoding {
         static let passwordKey = "password"
         static let bikeKey = "bike"
         static let userNameKey = "userName"
-        static let completedWorkoutsKey = "completedWorkouts"
         static let oneSignalUserId = "oneSignalUserId"
     }
     
     // MARK: Init.
-    init(firstName: String!, lastName: String!, userName: String!, college: String!, email: String!, password: String!, bike: String!, completedWorkouts: [String]!, oneSignalUserId: String?){
+    init(firstName: String!, lastName: String!, userName: String!, college: String!, email: String!, password: String!, bike: String!, oneSignalUserId: String?){
         
         let DBCollege: String
         // Some hard-coding issues, with UI and DB names for colleges
@@ -57,7 +56,7 @@ class userClass: NSObject, NSCoding {
         self.password = password
         self.bike = bike
         self.userName = userName
-        self.completedWorkouts = completedWorkouts
+        self.fullName = firstName + " " + lastName
         self.oneSignalUserId = oneSignalUserId
         
         super.init()
@@ -74,7 +73,6 @@ class userClass: NSObject, NSCoding {
         aCoder.encodeObject(password, forKey: PropertyKey.passwordKey)
         aCoder.encodeObject(bike, forKey: PropertyKey.bikeKey)
         aCoder.encodeObject(userName, forKey: PropertyKey.userNameKey)
-        aCoder.encodeObject(completedWorkouts, forKey: PropertyKey.completedWorkoutsKey)
         aCoder.encodeObject(oneSignalUserId, forKey: PropertyKey.oneSignalUserId)
     }
     
@@ -86,9 +84,8 @@ class userClass: NSObject, NSCoding {
         let password = aDecoder.decodeObjectForKey(PropertyKey.passwordKey) as! String
         let bike = aDecoder.decodeObjectForKey(PropertyKey.bikeKey) as! String
         let userName = aDecoder.decodeObjectForKey(PropertyKey.userNameKey) as! String
-        let completedWorkouts = aDecoder.decodeObjectForKey(PropertyKey.completedWorkoutsKey) as! [String]
         let oneSignalUserId = aDecoder.decodeObjectForKey(PropertyKey.oneSignalUserId) as? String
         
-        self.init(firstName: firstName, lastName: lastName, userName: userName, college: college, email: email, password: password, bike: bike, completedWorkouts: completedWorkouts, oneSignalUserId: oneSignalUserId)
+        self.init(firstName: firstName, lastName: lastName, userName: userName, college: college, email: email, password: password, bike: bike, oneSignalUserId: oneSignalUserId)
     }
 }

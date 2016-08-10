@@ -130,11 +130,9 @@ class realGoRideViewController: UIViewController {
     }
     
     func sendNotificationShell() {
-        getTeammates { listOfTeammates in
-            self.getUserIds(listOfTeammates, completion: { listOfUserIds in
-                self.getNotificationTimes(listOfUserIds, completion: { (message, listOfUserIds, listOfTimes) in
-                    self.postRideNotification(message, listOfUserIds: listOfUserIds, listOfTimes: listOfTimes)
-                })
+        getUserIds { listOfUserIds in
+            self.getNotificationTimes(listOfUserIds, completion: { (message, listOfUserIds, listOfTimes) in
+                self.postRideNotification(message, listOfUserIds: listOfUserIds, listOfTimes: listOfTimes)
             })
         }
     }
@@ -142,7 +140,7 @@ class realGoRideViewController: UIViewController {
     func postRideNotification(messages: [String], listOfUserIds: [String], listOfTimes: [String]) {
         // Send out notification
         if listOfTimes.count == 0 {
-            OneSignal.defaultClient().postNotification(["contents": ["en": messages[0]], "include_player_ids": listOfUserIds, "data": ["senderOneSignalUserId": thisUser.oneSignalUserId!, "notificationType": "goingOnRide"]])
+            OneSignal.postNotification(["contents": ["en": messages[0]], "include_player_ids": listOfUserIds, "data": ["senderOneSignalUserId": thisUser.oneSignalUserId!, "notificationType": "goingOnRide"]])
         }
         else {
             
@@ -150,7 +148,7 @@ class realGoRideViewController: UIViewController {
             
             for _ in messages {
                 print(index)
-                OneSignal.defaultClient().postNotification(["contents": ["en": messages[index]], "include_player_ids": listOfUserIds, "send_after": listOfTimes[index], "data": ["senderOneSignalUserId": thisUser.oneSignalUserId!, "notificationType": "goingOnRide"]])
+                OneSignal.postNotification(["contents": ["en": messages[index]], "include_player_ids": listOfUserIds, "send_after": listOfTimes[index], "data": ["senderOneSignalUserId": thisUser.oneSignalUserId!, "notificationType": "goingOnRide"]])
                 index += 1
             }
             
@@ -162,48 +160,24 @@ class realGoRideViewController: UIViewController {
         
     }
     
-    func getTeammates(completion: (listOfTeammates: [String]) -> Void) {
-        // Find all members of a team (college)
+    func getUserIds(completion: (listOfUserIds: [String]) -> Void) {
+        // Find oneSignalUserId's of all members of a team (college)
         
-        var teammateList = [String]()
+        var userIdList = [String]()
         let teammatesRef = ref.child("colleges/\(thisUser.college)/users")
         
         teammatesRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
             for member in snapshot.children {
                 let memberSnap = member as! FIRDataSnapshot
-                if memberSnap.key as! String != thisUser.userName {
-                    teammateList.append(memberSnap.key as! String)
+                if memberSnap.key != thisUser.userName {
+                    userIdList.append(memberSnap.value as! String)
                 }
             }
-            completion(listOfTeammates: teammateList)
+            completion(listOfUserIds: userIdList)
         })
         
     }
     
-    func getUserIds(listOfTeammates: [String], completion: (listOfUserIds: [String]) -> Void) {
-        // Gets oneSignalUserId's from a list of usernames
-        var userIdList = [String]()
-        
-        // B/c callbacks are annoying. With this index thing,
-        // The completion handler only gets called when we have the same number of entries
-        // in the userIdList as we do teammates, ensuring it's correctness in time of callback.
-        
-        var index = 0
-        let maxIndex = listOfTeammates.count
-        
-        for teammate in listOfTeammates {
-            let userRef = self.ref.child("users/\(teammate)")
-            
-            userRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
-                let userId = snapshot.value!["oneSignalUserId"] as! String
-                userIdList.append(userId)
-                index += 1
-                if index == maxIndex {
-                    completion(listOfUserIds: userIdList)
-                }
-            })
-        }
-    }
     
     func getNotificationTimes(listOfUserIds: [String], completion: (messages: [String], listOfUserIds: [String], listOfTimes: [String]) -> Void) {
         
@@ -339,14 +313,10 @@ class realGoRideViewController: UIViewController {
 
     
 
-    /*
+    
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        ref.removeAllObservers()
     }
-    */
 
 }

@@ -25,45 +25,24 @@ class WorkoutDetailViewController: UIViewController {
     @IBOutlet weak var usersHaveCompletedLabel: UILabel!
     @IBOutlet weak var completionButtonLabel: UIBarButtonItem!
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        ref = FIRDatabase.database().reference()
-
-        // Listener for this workout only -- to update data if completion status is changed
-        let workoutRef = ref.child("colleges/\(thisUser.college)/workouts/\(thisWorkout!.workoutUsername)")
-        workoutRef.observeEventType(.Value, withBlock: { snapshot in
-            // Create workoutClass object from FB data
-            let type = snapshot.value!["type"] as! String
-            let unit = snapshot.value!["unit"] as! String
-            let duration = snapshot.value!["duration"] as! [Int]
-            let reps = snapshot.value!["reps"] as! [Int]
-            let week = snapshot.value!["week"] as! [String]
-            
-            let workoutUsername = snapshot.key
-            
-            var usersHaveCompleted = [String]()
-            let usersCompletedSnap = snapshot.value!["usersHaveCompleted"] as! NSDictionary
-            for person in usersCompletedSnap {
-                if person.key as! String != "init" {
-                    usersHaveCompleted.append(person.key as! String)
-                }
-            }
-            
-            let workoutObject = workoutClass(type: type, duration: duration, reps: reps, unit: unit, usersHaveCompleted: usersHaveCompleted, week: week, workoutUsername: workoutUsername)
-            self.thisWorkout = workoutObject
-            
-            // This call is placed here so that the userList will be updated *after* the database is updated.
-            self.updateUserList()
-        })
+        print("detail viewdidlaod")
         
+        ref = FIRDatabase.database().reference()
         
         // Setting the top-right button label
-        if ((thisWorkout?.usersHaveCompleted.contains(thisUser.userName)) == true) {
+        
+        print(thisWorkout?.usersHaveCompleted.keys.contains(thisUser.userName))
+        if ((thisWorkout?.usersHaveCompleted.keys.contains(thisUser.userName)) == true) {
             completionButtonLabel.title = "Incomplete"
         }
         else {
             completionButtonLabel.title = "Complete"
         }
+ 
         
         // Setting text labels
         self.title = thisWorkout?.type
@@ -71,25 +50,11 @@ class WorkoutDetailViewController: UIViewController {
         let weekNumber = "\(thisWorkout!.week[0])"
         let weekDate = "\(thisWorkout!.week[1])"
         
-        // Payload is the "actual workout". It's stored as a list, so the for loop is needed to get everything in it
-        var payload = ""
-        let payloadIndexMax = thisWorkout!.duration.count
-        for index in 0..<payloadIndexMax - 1 {
-            if index != payloadIndexMax {
-                payload += "\(thisWorkout!.reps[index])x\(thisWorkout!.duration[index]) | "
-            }
-            else {
-                payload += "\(thisWorkout!.reps[index])x\(thisWorkout!.duration[index]) "
-            }
-        }
-        payload += thisWorkout!.unit
-        
-        
         weekDateLabel.text = weekDate
         weekNumberLabel.text = weekNumber
         typeLabel.text = thisWorkout?.type
-        payloadLabel.text = payload
-        //updateUserList() This doesn't do anything since it's already updated in the event listner -- it's just here for completion's sake
+        payloadLabel.text = thisWorkout?.getPayload()
+        updateUserList()
         
     }
 
@@ -103,7 +68,7 @@ class WorkoutDetailViewController: UIViewController {
         // Conditional logic to remove/add user to workout lists based on current state
         // Side Note: the userList is updated via the event listener declared in viewDidLoad
         
-        if ((thisWorkout?.usersHaveCompleted.contains(thisUser.userName)) == true) {
+        if ((thisWorkout?.usersHaveCompleted.keys.contains(thisUser.userName)) == true) {
             // If this workout has already been completed
             let workoutRef = self.ref.child("colleges/\(thisUser.college)/workouts/\(thisWorkout!.workoutUsername)/usersHaveCompleted/\(thisUser.userName)")
             // Update the workout's usersHaveCompleted List in FB
@@ -120,53 +85,60 @@ class WorkoutDetailViewController: UIViewController {
             // This workout has not been completed
             // Update the workout's usersHaveCompleted List in FB
             let workoutRef = self.ref.child("colleges/\(thisUser.college)/workouts/\(thisWorkout!.workoutUsername)/usersHaveCompleted")
-            workoutRef.updateChildValues([thisUser.userName: true])
+            workoutRef.updateChildValues([thisUser.userName: thisUser.fullName])
             
             // Update the user's completedwo List in FB
             let userRef = self.ref.child("users/\(thisUser.userName)/completedwo")
             userRef.updateChildValues([thisWorkout!.workoutUsername: true])
             
             completionButtonLabel.title = "Incomplete"
-            
         }
+        
+        startWorkoutListener()
     }
-
-    /*
+    
+    
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        ref.removeAllObservers()
     }
-    */
-    
-    
     
     // MISC: Funcs
     
-    func updateUserList() {
-        // Refreshes the local usersHaveCompleted list based on FB info, then updates the label
-        var usersHaveCompleted = ""
-        let usersIndexMax = thisWorkout!.usersHaveCompleted.count
-        
-        for index in 0..<usersIndexMax {
-            //Pulling user's real name via their username, from FB
-            let username = thisWorkout!.usersHaveCompleted[index]
+    func startWorkoutListener() {
+        // Listener for this workout only -- to update data if completion status is changed
+        let workoutRef = ref.child("colleges/\(thisUser.college)/workouts/\(thisWorkout!.workoutUsername)")
+        workoutRef.observeEventType(.Value, withBlock: { snapshot in
+            // Create workoutClass object from FB data
+            let type = snapshot.value!["type"] as! String
+            let unit = snapshot.value!["unit"] as! String
+            let duration = snapshot.value!["duration"] as! [Int]
+            let reps = snapshot.value!["reps"] as! [Int]
+            let week = snapshot.value!["week"] as! [String]
             
-            // Notice the differing path/value setup here. Not sure why, but this is the only setup that doesn't make xcode crash.
-            let userRef = ref.child("users/\(username)/name")
+            let workoutUsername = snapshot.key
             
-            userRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
-                let realName = snapshot.value as! String
-                usersHaveCompleted += "\(realName) \n"
-                print(usersHaveCompleted)
-                if index == usersIndexMax - 1 {
-                    self.usersHaveCompletedLabel.text = usersHaveCompleted
+            var usersHaveCompleted = [String:String]()
+            let usersHaveCompletedDict = snapshot.value!["usersHaveCompleted"] as! NSDictionary
+            for user in usersHaveCompletedDict {
+                if user.key as! String != "init" {
+                    usersHaveCompleted[user.key as! String] = (user.value as! String)
                 }
-            })
+            }
             
-        }
+            let workoutObject = workoutClass(type: type, duration: duration, reps: reps, unit: unit, usersHaveCompleted: usersHaveCompleted, week: week, workoutUsername: workoutUsername)
+            self.thisWorkout = workoutObject
+            
+            // This call is placed here so that the userList will be updated *after* the database is updated.
+            self.updateUserList()
+        })
+    }
+    
+    func updateUserList() {
+        print("updateUserLIst")
+        // Refreshes the local usersHaveCompleted  then updates the label
+        usersHaveCompletedLabel.text = thisWorkout?.getUsersHaveCompleted()
+        
         
     }
 

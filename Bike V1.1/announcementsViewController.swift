@@ -33,6 +33,7 @@ class announcementsViewController: UIViewController {
         let rideRef = ref.child("colleges/\(thisUser.college)/announcements/rides")
         
         rideRef.observeEventType(.Value, withBlock:  { snapshot in
+            
             // Initalize holding variable
             var rideText = ""
             
@@ -117,19 +118,19 @@ class announcementsViewController: UIViewController {
                     switch index {
                     case 1:
                         self.announcementOneTitleLabel.text = announcementTitle
-                        self.announcementOneTextLabel.text = snapshot.value![announcementTitle] as! String
+                        self.announcementOneTextLabel.text = snapshot.value![announcementTitle] as? String
                         
                         self.announcementOneTitleLabel.textColor = UIColor.blackColor()
                         self.announcementOneTextLabel.textColor = UIColor.blackColor()
                     case 2:
                         self.announcementTwoTitleLabel.text = announcementTitle
-                        self.announcementTwoTextLabel.text = snapshot.value![announcementTitle] as! String
+                        self.announcementTwoTextLabel.text = snapshot.value![announcementTitle] as? String
                         
                         self.announcementTwoTitleLabel.textColor = UIColor.blackColor()
                         self.announcementTwoTextLabel.textColor = UIColor.blackColor()
                     case 3:
                         self.announcementThreeTitleLabel.text = announcementTitle
-                        self.announcementThreeTextLabel.text = snapshot.value![announcementTitle] as! String
+                        self.announcementThreeTextLabel.text = snapshot.value![announcementTitle] as? String
                         
                         self.announcementThreeTitleLabel.textColor = UIColor.blackColor()
                         self.announcementThreeTextLabel.textColor = UIColor.blackColor()
@@ -150,14 +151,11 @@ class announcementsViewController: UIViewController {
     }
     
 
-    /*
+    
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        ref.removeAllObservers()
     }
-    */
+    
 
 }

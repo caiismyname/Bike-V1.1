@@ -30,7 +30,7 @@ class BikeTableViewController: UITableViewController {
         // FB init.
         let bikeListRef = ref.child("colleges/\(thisUser.college)/bikeList")
         
-        bikeListRef.observeEventType(.Value, withBlock: { snapshot in
+        bikeListRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
             // This temp decleration must be inside the .observeEventType so that it resets with every refresh. Otherwise, you'll just append the old list
             var tempBikeList = [bikeClass]()
             for child in snapshot.children {
@@ -160,8 +160,9 @@ class BikeTableViewController: UITableViewController {
             // Send that bike info over to the BikeDetailView
             let bikeDetailView = segue.destinationViewController as! BikeDetailViewController
             bikeDetailView.thisBike = selectedBike
-            
         }
+        
+        ref.removeAllObservers()
     }
     
     
@@ -176,7 +177,7 @@ class BikeTableViewController: UITableViewController {
     // MARK: NSCoding
     
     func saveBikeList(bikeListName: [bikeClass]){
-        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(bikeListName, toFile: bikeClass.ArchiveURL.path!)
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(bikeListName, toFile: bikeClass.ArchiveURL!.path!)
         if isSuccessfulSave {
             print("BikeList Saved")
         }
@@ -186,7 +187,7 @@ class BikeTableViewController: UITableViewController {
     }
     
     func loadBikeList() -> [bikeClass]? {
-        return NSKeyedUnarchiver.unarchiveObjectWithFile(bikeClass.ArchiveURL.path!) as? [bikeClass]
+        return NSKeyedUnarchiver.unarchiveObjectWithFile(bikeClass.ArchiveURL!.path!) as? [bikeClass]
     }
     
 }

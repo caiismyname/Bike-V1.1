@@ -17,7 +17,8 @@ class WorkoutsTableViewController: UITableViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        workoutList = loadWorkoutList()!
+        //workoutList = loadWorkoutList()!
+        //print(workoutList)
 
         // Watcher thing that auto refreshes when FB DB changes
         // As of right now, it replaces the whole workout list
@@ -26,25 +27,26 @@ class WorkoutsTableViewController: UITableViewController{
         // FB init.
         let workoutRef = ref.child("colleges/\(thisUser.college)/workouts/")
         
+        // RealTime listener b/c possible updates (completion) from this page
         workoutRef.observeEventType(.Value, withBlock: { snapshot in
             // This temp decleration must be inside the .observeEventType so that it resets with every refresh. Otherwise, you'll just append the old list
             var tempWorkoutList = [workoutClass]()
             for child in snapshot.children {
                 // Create workoutClass object from FB data
-                let type = child.value["type"] as! String
-                let unit = child.value["unit"] as! String
-                let duration = child.value["duration"] as! [Int]
-                let reps = child.value["reps"] as! [Int]
-                let week = child.value["week"] as! [String]
-                
+                let type = child.value!["type"] as! String
+                let unit = child.value!["unit"] as! String
+                let duration = child.value!["duration"] as! [Int]
+                let reps = child.value!["reps"] as! [Int]
+                let week = child.value!["week"] as! [String]
+            
                 let childSnap = child as! FIRDataSnapshot
                 let workoutUsername = childSnap.key
                 
-                var usersHaveCompleted = [String]()
-                let usersCompletedSnap = child.value["usersHaveCompleted"] as! NSDictionary
-                for person in usersCompletedSnap {
-                    if person.key as! String != "init" {
-                        usersHaveCompleted.append(person.key as! String)
+                var usersHaveCompleted = [String:String]()
+                let usersHaveCompletedDict = child.value!["usersHaveCompleted"] as! NSDictionary
+                for user in usersHaveCompletedDict {
+                    if user.key as! String != "init" {
+                        usersHaveCompleted[user.key as! String] = user.value as? String
                     }
                 }
             
@@ -102,7 +104,7 @@ class WorkoutsTableViewController: UITableViewController{
         cell.usersHaveCompletedLabel.text = usersHaveCompleted
         
         
-        if workout.usersHaveCompleted.contains(thisUser.userName) {
+        if workout.usersHaveCompleted.keys.contains(thisUser.userName) {
             cell.backgroundColor = UIColor.clearColor()
         }
         else {
@@ -115,7 +117,6 @@ class WorkoutsTableViewController: UITableViewController{
         
         return cell
     }
-    
 
     
     // Override to support conditional editing of the table view.
@@ -123,7 +124,7 @@ class WorkoutsTableViewController: UITableViewController{
         // Return false if you do not want the specified item to be editable.
         let workout = self.workoutList[indexPath.row]
         
-        if workout.usersHaveCompleted.contains(thisUser.userName){
+        if workout.usersHaveCompleted.keys.contains(thisUser.userName){
             return false
         }
         else {
@@ -143,7 +144,7 @@ class WorkoutsTableViewController: UITableViewController{
             
             // Update the workout's usersHaveCompleted List in FB
             let workoutRef = self.ref.child("colleges/\(thisUser.college)/workouts/\(workoutUsername)/usersHaveCompleted")
-            workoutRef.updateChildValues([thisUser.userName: true])
+            workoutRef.updateChildValues([thisUser.userName: thisUser.fullName])
             
             
             // Update the user's completedwo List in FB
@@ -182,13 +183,11 @@ class WorkoutsTableViewController: UITableViewController{
         return true
     }
     */
-
     
     // MARK: - Navigation
 
     // For the unwind segue
-    @IBAction func unwindToWorkoutList(segue: UIStoryboardSegue) {}
-    
+    @IBAction func unwindBackToWorkoutlist(segue: UIStoryboardSegue) {}
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // The "if" prevents this from running when exiting the workoutlist view.
@@ -200,14 +199,17 @@ class WorkoutsTableViewController: UITableViewController{
             // Pass the selected object to the new view controller.
             let workoutDetailView = segue.destinationViewController as! WorkoutDetailViewController
             workoutDetailView.thisWorkout = selectedWorkout
+            print(selectedWorkout.workoutUsername)
         }
+        
+        ref.removeAllObservers()
     }
     
     
     // MARK: NSCoding
     
     func saveWorkoutList(workoutListName: [workoutClass]){
-        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(workoutListName, toFile: workoutClass.ArchiveURL.path!)
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(workoutListName, toFile: workoutClass.ArchiveURL!.path!)
         if isSuccessfulSave {
             print("WorkoutList Saved")
         }
@@ -217,7 +219,7 @@ class WorkoutsTableViewController: UITableViewController{
     }
     
     func loadWorkoutList() -> [workoutClass]? {
-        return NSKeyedUnarchiver.unarchiveObjectWithFile(workoutClass.ArchiveURL.path!) as? [workoutClass]
+        return NSKeyedUnarchiver.unarchiveObjectWithFile(workoutClass.ArchiveURL!.path!) as? [workoutClass]
     }
 
     

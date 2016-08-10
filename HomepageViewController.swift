@@ -32,6 +32,9 @@ class HomepageViewController: UIViewController {
         words.adjustsFontSizeToFitWidth = true
         annoucementsButton.titleLabel?.adjustsFontSizeToFitWidth = true
         
+        let workouts = loadWorkoutList()
+        print(workouts)
+        
     
         if hasAccount() {
             loadUser()
@@ -50,7 +53,7 @@ class HomepageViewController: UIViewController {
     // MARK: NSCoding
     func hasAccount() -> Bool {
         // is seperate from loadUser b/c of return values.
-        if (NSKeyedUnarchiver.unarchiveObjectWithFile(userClass.ArchiveURL.path!) as? userClass) != nil {
+        if (NSKeyedUnarchiver.unarchiveObjectWithFile(userClass.ArchiveURL!.path!) as? userClass) != nil {
             return true
         }
         else {
@@ -59,14 +62,18 @@ class HomepageViewController: UIViewController {
     }
     
     func loadUser(){
-        let loadedUser = (NSKeyedUnarchiver.unarchiveObjectWithFile(userClass.ArchiveURL.path!) as? userClass)!
+        let loadedUser = (NSKeyedUnarchiver.unarchiveObjectWithFile(userClass.ArchiveURL!.path!) as? userClass)!
         thisUser = loadedUser
         print("homepage load user")
         print(thisUser.firstName)
     }
     
     func loadBikeList() -> [bikeClass]? {
-        return NSKeyedUnarchiver.unarchiveObjectWithFile(bikeClass.ArchiveURL.path!) as? [bikeClass]
+        return NSKeyedUnarchiver.unarchiveObjectWithFile(bikeClass.ArchiveURL!.path!) as? [bikeClass]
+    }
+    
+    func loadWorkoutList() -> [workoutClass]? {
+        return NSKeyedUnarchiver.unarchiveObjectWithFile(workoutClass.ArchiveURL!.path!) as? [workoutClass]
     }
     
     

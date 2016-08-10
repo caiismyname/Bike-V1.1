@@ -84,15 +84,12 @@ class BikeDetailViewController: UIViewController {
     }
     
 
-    /*
+    
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        ref.removeAllObservers()
     }
-    */
     
     // MARK: Actions
     
@@ -172,7 +169,7 @@ class BikeDetailViewController: UIViewController {
     
     //MARK: NSCoding
     func saveUser() {
-        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(thisUser, toFile: userClass.ArchiveURL.path!)
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(thisUser, toFile: userClass.ArchiveURL!.path!)
         if isSuccessfulSave {
             print("User saved")
             print("save user create account")
