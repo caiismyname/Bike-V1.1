@@ -24,9 +24,13 @@
 		270FCB631D26EDFF003DFCF9 /* WorkoutsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270FCB621D26EDFF003DFCF9 /* WorkoutsTableViewCell.swift */; };
 		270FCB651D283209003DFCF9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 270FCB641D283209003DFCF9 /* Main.storyboard */; };
 		270FCB671D297342003DFCF9 /* BikeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270FCB661D297342003DFCF9 /* BikeDetailViewController.swift */; };
+		27131CB51D6FD896004C4CC8 /* announcementsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27131CB41D6FD896004C4CC8 /* announcementsTableViewCell.swift */; };
 		272AB3DB1D3D5B6100AAB067 /* WorkoutDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272AB3DA1D3D5B6100AAB067 /* WorkoutDetailViewController.swift */; };
-		276EF6741D47EC7000FEFC09 /* announcementsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276EF6731D47EC7000FEFC09 /* announcementsViewController.swift */; };
+		279A01391D63C2B2007A8B9E /* announcementClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279A01381D63C2B2007A8B9E /* announcementClass.swift */; };
+		27B721A41D6FD0DD0084544C /* announcementsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B721A31D6FD0DD0084544C /* announcementsTableViewController.swift */; };
 		27CA42E41D42BF56005FEEE1 /* realGoRideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CA42E31D42BF56005FEEE1 /* realGoRideViewController.swift */; };
+		AA00341CC2143F3C9E49DCA1 /* Pods_Bike_iOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77D318C7CD6439DA30B16F0A /* Pods_Bike_iOSTests.framework */; };
+		FB5AC96E203021E606B2B477 /* Pods_Bike_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 063D6B1AA3F526EC06E8E602 /* Pods_Bike_iOS.framework */; };
 		FE042283AB1B5FB0CE77A14A /* Pods_Bike_V1_1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8DBDEA353CED0BE004CED65 /* Pods_Bike_V1_1.framework */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +45,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		063D6B1AA3F526EC06E8E602 /* Pods_Bike_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bike_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		085B0026D8831DEE9D805EDC /* Pods-Bike iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bike iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bike iOS/Pods-Bike iOS.release.xcconfig"; sourceTree = "<group>"; };
 		1853EABFF949000A74D38DE4 /* Pods_Bike_V1_1Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bike_V1_1Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FFC932701DDECF5A43867E9 /* Pods-Bike V1.1Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bike V1.1Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bike V1.1Tests/Pods-Bike V1.1Tests.release.xcconfig"; sourceTree = "<group>"; };
 		270D5FBB1D52D4090032B01A /* Bike V1.1.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Bike V1.1.entitlements"; sourceTree = "<group>"; };
@@ -64,12 +70,18 @@
 		270FCB621D26EDFF003DFCF9 /* WorkoutsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutsTableViewCell.swift; sourceTree = "<group>"; };
 		270FCB641D283209003DFCF9 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		270FCB661D297342003DFCF9 /* BikeDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BikeDetailViewController.swift; sourceTree = "<group>"; };
+		27131CB41D6FD896004C4CC8 /* announcementsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = announcementsTableViewCell.swift; sourceTree = "<group>"; };
 		272AB3DA1D3D5B6100AAB067 /* WorkoutDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutDetailViewController.swift; sourceTree = "<group>"; };
 		272F1C181D3F2BC4009DF18B /* Bike-iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Bike-iOS-Bridging-Header.h"; path = "../Bike-iOS-Bridging-Header.h"; sourceTree = "<group>"; };
-		276EF6731D47EC7000FEFC09 /* announcementsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = announcementsViewController.swift; sourceTree = "<group>"; };
+		279A01381D63C2B2007A8B9E /* announcementClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = announcementClass.swift; sourceTree = "<group>"; };
+		27B721A31D6FD0DD0084544C /* announcementsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = announcementsTableViewController.swift; sourceTree = "<group>"; };
 		27CA42E31D42BF56005FEEE1 /* realGoRideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = realGoRideViewController.swift; sourceTree = "<group>"; };
 		2A2559F3A7B9396C3C19C33E /* Pods-Bike V1.1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bike V1.1.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bike V1.1/Pods-Bike V1.1.release.xcconfig"; sourceTree = "<group>"; };
+		4670166FE1683B47B39BDB10 /* Pods-Bike iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bike iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bike iOS/Pods-Bike iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		6DD976B14511F57E3C89903F /* Pods-Bike V1.1Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bike V1.1Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bike V1.1Tests/Pods-Bike V1.1Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		77D318C7CD6439DA30B16F0A /* Pods_Bike_iOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bike_iOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7D58EA21D90680B2B574C856 /* Pods-Bike iOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bike iOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bike iOSTests/Pods-Bike iOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		C13C3C7E19269547A683EC88 /* Pods-Bike iOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bike iOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bike iOSTests/Pods-Bike iOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		CD4E4C7AB69A12893695AEDE /* Pods-Bike V1.1.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bike V1.1.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bike V1.1/Pods-Bike V1.1.debug.xcconfig"; sourceTree = "<group>"; };
 		D8DBDEA353CED0BE004CED65 /* Pods_Bike_V1_1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bike_V1_1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -80,6 +92,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FE042283AB1B5FB0CE77A14A /* Pods_Bike_V1_1.framework in Frameworks */,
+				FB5AC96E203021E606B2B477 /* Pods_Bike_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,6 +101,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B5A7582251F46A7CCDE4C2B /* Pods_Bike_V1_1Tests.framework in Frameworks */,
+				AA00341CC2143F3C9E49DCA1 /* Pods_Bike_iOSTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,6 +115,10 @@
 				2A2559F3A7B9396C3C19C33E /* Pods-Bike V1.1.release.xcconfig */,
 				6DD976B14511F57E3C89903F /* Pods-Bike V1.1Tests.debug.xcconfig */,
 				1FFC932701DDECF5A43867E9 /* Pods-Bike V1.1Tests.release.xcconfig */,
+				4670166FE1683B47B39BDB10 /* Pods-Bike iOS.debug.xcconfig */,
+				085B0026D8831DEE9D805EDC /* Pods-Bike iOS.release.xcconfig */,
+				7D58EA21D90680B2B574C856 /* Pods-Bike iOSTests.debug.xcconfig */,
+				C13C3C7E19269547A683EC88 /* Pods-Bike iOSTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -130,9 +148,10 @@
 			children = (
 				270D5FBB1D52D4090032B01A /* Bike V1.1.entitlements */,
 				270FCB641D283209003DFCF9 /* Main.storyboard */,
+				27B721A31D6FD0DD0084544C /* announcementsTableViewController.swift */,
+				27131CB41D6FD896004C4CC8 /* announcementsTableViewCell.swift */,
 				270FCB401D234081003DFCF9 /* CreateAccountViewController.swift */,
 				270FCB421D234081003DFCF9 /* HomepageViewController.swift */,
-				276EF6731D47EC7000FEFC09 /* announcementsViewController.swift */,
 				27CA42E31D42BF56005FEEE1 /* realGoRideViewController.swift */,
 				270FCB501D23ACB0003DFCF9 /* BikeTableViewController.swift */,
 				270FCB521D23AD7B003DFCF9 /* BikeTableViewCell.swift */,
@@ -143,6 +162,7 @@
 				270FCB271D23405D003DFCF9 /* Assets.xcassets */,
 				270FCB201D23405D003DFCF9 /* AppDelegate.swift */,
 				270FCB491D234095003DFCF9 /* userClass.swift */,
+				279A01381D63C2B2007A8B9E /* announcementClass.swift */,
 				270FCB561D244502003DFCF9 /* bikeClass.swift */,
 				270FCB5E1D26EB51003DFCF9 /* workoutClass.swift */,
 				270FCB291D23405D003DFCF9 /* LaunchScreen.storyboard */,
@@ -169,6 +189,8 @@
 			children = (
 				D8DBDEA353CED0BE004CED65 /* Pods_Bike_V1_1.framework */,
 				1853EABFF949000A74D38DE4 /* Pods_Bike_V1_1Tests.framework */,
+				063D6B1AA3F526EC06E8E602 /* Pods_Bike_iOS.framework */,
+				77D318C7CD6439DA30B16F0A /* Pods_Bike_iOSTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -300,7 +322,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Bike V1.1/Pods-Bike V1.1-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Bike iOS/Pods-Bike iOS-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		7F76853B10CBB902AAE442AA /* [CP] Check Pods Manifest.lock */ = {
@@ -330,7 +352,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Bike V1.1/Pods-Bike V1.1-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Bike iOS/Pods-Bike iOS-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9B1CEA8C337FCB777A510605 /* [CP] Check Pods Manifest.lock */ = {
@@ -360,7 +382,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Bike V1.1Tests/Pods-Bike V1.1Tests-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Bike iOSTests/Pods-Bike iOSTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9DF97DAF7C243F99F1A9D0E2 /* [CP] Copy Pods Resources */ = {
@@ -375,7 +397,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Bike V1.1Tests/Pods-Bike V1.1Tests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Bike iOSTests/Pods-Bike iOSTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -390,9 +412,11 @@
 				270FCB441D234081003DFCF9 /* CreateAccountViewController.swift in Sources */,
 				270FCB671D297342003DFCF9 /* BikeDetailViewController.swift in Sources */,
 				270FCB531D23AD7B003DFCF9 /* BikeTableViewCell.swift in Sources */,
+				27B721A41D6FD0DD0084544C /* announcementsTableViewController.swift in Sources */,
 				270FCB511D23ACB0003DFCF9 /* BikeTableViewController.swift in Sources */,
 				270FCB611D26EDEB003DFCF9 /* WorkoutsTableViewController.swift in Sources */,
-				276EF6741D47EC7000FEFC09 /* announcementsViewController.swift in Sources */,
+				27131CB51D6FD896004C4CC8 /* announcementsTableViewCell.swift in Sources */,
+				279A01391D63C2B2007A8B9E /* announcementClass.swift in Sources */,
 				270FCB571D244502003DFCF9 /* bikeClass.swift in Sources */,
 				270FCB211D23405D003DFCF9 /* AppDelegate.swift in Sources */,
 				270FCB5F1D26EB51003DFCF9 /* workoutClass.swift in Sources */,
@@ -519,13 +543,14 @@
 		};
 		270FCB3B1D23405D003DFCF9 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CD4E4C7AB69A12893695AEDE /* Pods-Bike V1.1.debug.xcconfig */;
+			baseConfigurationReference = 4670166FE1683B47B39BDB10 /* Pods-Bike iOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Bike V1.1/Bike V1.1.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Bike V1.1/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Bike-iOS";
 				PRODUCT_NAME = "Bike-iOS";
@@ -538,13 +563,14 @@
 		};
 		270FCB3C1D23405D003DFCF9 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2A2559F3A7B9396C3C19C33E /* Pods-Bike V1.1.release.xcconfig */;
+			baseConfigurationReference = 085B0026D8831DEE9D805EDC /* Pods-Bike iOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Bike V1.1/Bike V1.1.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Bike V1.1/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Bike-iOS";
 				PRODUCT_NAME = "Bike-iOS";
@@ -557,7 +583,7 @@
 		};
 		270FCB3E1D23405D003DFCF9 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6DD976B14511F57E3C89903F /* Pods-Bike V1.1Tests.debug.xcconfig */;
+			baseConfigurationReference = 7D58EA21D90680B2B574C856 /* Pods-Bike iOSTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = "Bike V1.1Tests/Info.plist";
@@ -571,7 +597,7 @@
 		};
 		270FCB3F1D23405D003DFCF9 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1FFC932701DDECF5A43867E9 /* Pods-Bike V1.1Tests.release.xcconfig */;
+			baseConfigurationReference = C13C3C7E19269547A683EC88 /* Pods-Bike iOSTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = "Bike V1.1Tests/Info.plist";

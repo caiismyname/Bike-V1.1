@@ -31,10 +31,6 @@ class HomepageViewController: UIViewController {
         workoutButton.titleLabel?.adjustsFontSizeToFitWidth = true
         words.adjustsFontSizeToFitWidth = true
         annoucementsButton.titleLabel?.adjustsFontSizeToFitWidth = true
-        
-        let workouts = loadWorkoutList()
-        print(workouts)
-        
     
         if hasAccount() {
             loadUser()
@@ -75,7 +71,5 @@ class HomepageViewController: UIViewController {
     func loadWorkoutList() -> [workoutClass]? {
         return NSKeyedUnarchiver.unarchiveObjectWithFile(workoutClass.ArchiveURL!.path!) as? [workoutClass]
     }
-    
-    
     
 }

@@ -97,14 +97,14 @@ class WorkoutsTableViewController: UITableViewController{
         let workout = workoutList[indexPath.row]
 
         let weekInfo = "\(workout.week[0]): \(workout.week[1])"
-        let usersHaveCompleted = String(workout.usersHaveCompleted.count)
+        let usersHaveCompleted = String(workout.usersHaveCompleted!.count)
         
         cell.typeLabel.text = workout.type
         cell.weekLabel.text = weekInfo
         cell.usersHaveCompletedLabel.text = usersHaveCompleted
         
         
-        if workout.usersHaveCompleted.keys.contains(thisUser.userName) {
+        if workout.usersHaveCompleted!.keys.contains(thisUser.userName) {
             cell.backgroundColor = UIColor.clearColor()
         }
         else {
@@ -124,10 +124,9 @@ class WorkoutsTableViewController: UITableViewController{
         // Return false if you do not want the specified item to be editable.
         let workout = self.workoutList[indexPath.row]
         
-        if workout.usersHaveCompleted.keys.contains(thisUser.userName){
+        if workout.usersHaveCompleted!.keys.contains(thisUser.userName){
             return false
-        }
-        else {
+        } else {
             return true
         }
     }

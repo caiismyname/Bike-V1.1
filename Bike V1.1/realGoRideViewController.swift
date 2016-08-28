@@ -37,8 +37,6 @@ class realGoRideViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    
-
     // MARK: Actions
     @IBAction func nowButton(sender: UIButton) {
         notificationTime = "now"
@@ -93,10 +91,7 @@ class realGoRideViewController: UIViewController {
                 let bikeStatus = snapshot.value! as! String
                 
                 if bikeStatus == "Ready" {
-                    print("bikeisready")
-                    
                     self.sendNotificationShell()
-                    
                 }
                 else if bikeStatus == "In Use" {
                     let bikeInUseAlert = UIAlertController(title: "Your bike is in use", message: "Your bike is currently being used! You'll have to find another.", preferredStyle: UIAlertControllerStyle.Alert)
@@ -138,17 +133,17 @@ class realGoRideViewController: UIViewController {
     }
     
     func postRideNotification(messages: [String], listOfUserIds: [String], listOfTimes: [String]) {
+        print("post notification")
         // Send out notification
         if listOfTimes.count == 0 {
-            OneSignal.postNotification(["contents": ["en": messages[0]], "include_player_ids": listOfUserIds, "data": ["senderOneSignalUserId": thisUser.oneSignalUserId!, "notificationType": "goingOnRide"]])
-        }
-        else {
+            // an "immediate" ride, no rideName is "noentry"
+            OneSignal.postNotification(["contents": ["en": messages[0]], "include_player_ids": listOfUserIds, "data": ["senderOneSignalUserId": thisUser.oneSignalUserId!, "notificationType": "goingOnRide", "rideName":"noentry"]])
+        } else {
             
             var index = 0
             
             for _ in messages {
-                print(index)
-                OneSignal.postNotification(["contents": ["en": messages[index]], "include_player_ids": listOfUserIds, "send_after": listOfTimes[index], "data": ["senderOneSignalUserId": thisUser.oneSignalUserId!, "notificationType": "goingOnRide"]])
+                OneSignal.postNotification(["contents": ["en": messages[index]], "include_player_ids": listOfUserIds, "send_after": listOfTimes[index], "data": ["senderOneSignalUserId": thisUser.oneSignalUserId!, "notificationType": "goingOnRide", "rideName":"\(thisUser.fullName)'s ride"]])
                 index += 1
             }
             
@@ -262,10 +257,13 @@ class realGoRideViewController: UIViewController {
     
     
     func setAnnouncementRides(rideTime: String) {
-        
+        print("set announcements")
         // Updating FB DB
-        let ridesRef = ref.child("colleges/\(thisUser.college)/announcements/rides")
-        ridesRef.updateChildValues(["\(thisUser.firstName) \(thisUser.lastName)'s ride" : rideTime])
+        let ridesRef = ref.child("colleges/\(thisUser.college)/announcements/\(thisUser.fullName)'s ride")
+        ridesRef.child("rideTime").setValue(rideTime)
+        ridesRef.child("hostOneSignalUserId").setValue(thisUser.oneSignalUserId)
+        ridesRef.child("riders").setValue(["init":"foo"])
+        ridesRef.child("type").setValue("ride")
     }
     
     // Function that executes a block after time interval, even when app is in background

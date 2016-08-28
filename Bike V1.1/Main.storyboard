@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11185.3" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="43F-jw-PHv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11198.2" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="43F-jw-PHv">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11151.4"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -27,7 +27,7 @@
         <!--CreateAccount-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController title="CreateAccount" id="BYZ-38-t0r" customClass="CreateAccountViewController" customModule="Bike_V1_1" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="CreateAccount" id="BYZ-38-t0r" customClass="CreateAccountViewController" customModule="Bike_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -111,17 +111,17 @@
         <!--Bikes-->
         <scene sceneID="ow4-ZY-JtZ">
             <objects>
-                <tableViewController id="pB2-9T-dbQ" customClass="BikeTableViewController" customModule="Bike_V1_1" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="pB2-9T-dbQ" customClass="BikeTableViewController" customModule="Bike_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" sectionHeaderHeight="28" sectionFooterHeight="28" id="my6-Bf-c2q">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="BikeTableViewCell" rowHeight="70" id="Sei-ii-n0Z" customClass="BikeTableViewCell" customModule="Bike_V1_1" customModuleProvider="target">
-                                <frame key="frameInset" minY="92" width="375" height="70"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="BikeTableViewCell" rowHeight="70" id="Sei-ii-n0Z" customClass="BikeTableViewCell" customModule="Bike_iOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="375" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Sei-ii-n0Z" id="aI5-UM-NHJ">
-                                    <frame key="frameInset" width="375" height="69.5"/>
+                                    <frame key="frameInset" width="375" height="69"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="eUf-to-6WV">
@@ -174,12 +174,12 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lfy-IS-OOj" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="4ok-BU-1dG" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1329" y="1897"/>
+            <point key="canvasLocation" x="1329" y="1960"/>
         </scene>
         <!--Bike Detail View Controller-->
         <scene sceneID="7dt-Sn-RWe">
             <objects>
-                <viewController id="GIv-ez-UXl" customClass="BikeDetailViewController" customModule="Bike_V1_1" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="GIv-ez-UXl" customClass="BikeDetailViewController" customModule="Bike_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cge-1G-HMo"/>
                         <viewControllerLayoutGuide type="bottom" id="F97-HX-WhV"/>
@@ -289,7 +289,7 @@
         <!--Homepage-->
         <scene sceneID="O9V-ub-uEK">
             <objects>
-                <viewController title="Homepage" id="bja-Uc-7Zy" customClass="HomepageViewController" customModule="Bike_V1_1" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Homepage" id="bja-Uc-7Zy" customClass="HomepageViewController" customModule="Bike_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="YgC-BK-hw8"/>
                         <viewControllerLayoutGuide type="bottom" id="lXC-44-mI6"/>
@@ -316,7 +316,7 @@
                                             <color key="titleColor" red="0.81474941968917847" green="0.14037346839904785" blue="0.24788865447044373" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
-                                            <segue destination="GPV-DO-nzM" kind="presentation" id="JIn-8T-Oa8"/>
+                                            <segue destination="l3w-Ex-Qzi" kind="presentation" id="c2e-ZU-uqS"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ga3-XR-hcO">
@@ -370,10 +370,71 @@
             </objects>
             <point key="canvasLocation" x="966" y="341"/>
         </scene>
+        <!--Announcements Table View Controller-->
+        <scene sceneID="w7N-Lf-NWl">
+            <objects>
+                <tableViewController id="Coc-rV-5s9" customClass="announcementsTableViewController" customModule="Bike_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="264" sectionHeaderHeight="28" sectionFooterHeight="28" id="MYw-eH-4Vl">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="announcementTableViewCell" rowHeight="264" id="3yg-9S-FqX" customClass="announcementsTableViewCell" customModule="Bike_iOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="375" height="264"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3yg-9S-FqX" id="t6M-WP-Q1V">
+                                    <frame key="frameInset" width="375" height="263"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="5oI-YM-Pgl">
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2sk-pn-6Z0">
+                                                    <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="36"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="payload" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GDk-3O-ydG">
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="5oI-YM-Pgl" firstAttribute="leading" secondItem="t6M-WP-Q1V" secondAttribute="leadingMargin" constant="8" id="1MS-AE-gCT"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="5oI-YM-Pgl" secondAttribute="trailing" constant="8" id="Mri-f3-c2D"/>
+                                        <constraint firstItem="5oI-YM-Pgl" firstAttribute="top" secondItem="t6M-WP-Q1V" secondAttribute="topMargin" id="eOP-i3-i3G"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="5oI-YM-Pgl" secondAttribute="bottom" id="gM5-rr-SAy"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="payloadLabel" destination="GDk-3O-ydG" id="qwf-XR-oae"/>
+                                    <outlet property="titleLabel" destination="2sk-pn-6Z0" id="c2j-SO-HaL"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Coc-rV-5s9" id="9uJ-Ky-C6l"/>
+                            <outlet property="delegate" destination="Coc-rV-5s9" id="uAl-nP-KS4"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="QCJ-y3-12h">
+                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="OKq-Ud-yst">
+                            <connections>
+                                <action selector="doneButton:" destination="Coc-rV-5s9" id="q8c-Qc-kkk"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cva-ui-BdU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-79.200000000000003" y="1938.9805097451276"/>
+        </scene>
         <!--Go Ride-->
         <scene sceneID="pj6-D4-vk7">
             <objects>
-                <viewController id="xbQ-fh-JNH" customClass="realGoRideViewController" customModule="Bike_V1_1" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="xbQ-fh-JNH" customClass="realGoRideViewController" customModule="Bike_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fDT-PX-ZXQ"/>
                         <viewControllerLayoutGuide type="bottom" id="SMZ-Ru-Wtq"/>
@@ -506,7 +567,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qQh-Eh-eDI" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="37w-aJ-jra" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="625" y="1897"/>
+            <point key="canvasLocation" x="625" y="1939"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="UHK-0A-ooA">
@@ -529,17 +590,17 @@
         <!--Workouts-->
         <scene sceneID="2Pv-sI-sWt">
             <objects>
-                <tableViewController id="7VD-Dp-lDz" customClass="WorkoutsTableViewController" customModule="Bike_V1_1" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="7VD-Dp-lDz" customClass="WorkoutsTableViewController" customModule="Bike_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" sectionHeaderHeight="28" sectionFooterHeight="28" id="nwH-7l-U65">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="600" placeholderIntrinsicHeight="135" selectionStyle="default" indentationWidth="10" reuseIdentifier="workoutTableViewCell" rowHeight="90" id="61g-kU-keT" customClass="WorkoutsTableViewCell" customModule="Bike_V1_1" customModuleProvider="target">
-                                <frame key="frameInset" minY="92" width="375" height="90"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="600" placeholderIntrinsicHeight="135" selectionStyle="default" indentationWidth="10" reuseIdentifier="workoutTableViewCell" rowHeight="90" id="61g-kU-keT" customClass="WorkoutsTableViewCell" customModule="Bike_iOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="375" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="61g-kU-keT" id="xoJ-Jf-dMl">
-                                    <frame key="frameInset" width="375" height="89.5"/>
+                                    <frame key="frameInset" width="375" height="89"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="WVM-5P-IZL">
@@ -609,12 +670,12 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZHd-N0-LUn" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="9d7-75-CMP" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2033" y="1897"/>
+            <point key="canvasLocation" x="2033" y="1960"/>
         </scene>
         <!--WorkoutDetailView-->
         <scene sceneID="v7z-Ag-JPc">
             <objects>
-                <viewController title="WorkoutDetailView" automaticallyAdjustsScrollViewInsets="NO" id="nAa-TC-ZYy" customClass="WorkoutDetailViewController" customModule="Bike_V1_1" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="WorkoutDetailView" automaticallyAdjustsScrollViewInsets="NO" id="nAa-TC-ZYy" customClass="WorkoutDetailViewController" customModule="Bike_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1mI-vI-rqM"/>
                         <viewControllerLayoutGuide type="bottom" id="2pD-zf-NzW"/>
@@ -784,158 +845,6 @@
             </objects>
             <point key="canvasLocation" x="2033" y="1175"/>
         </scene>
-        <!--Announcements-->
-        <scene sceneID="rMq-25-Jm6">
-            <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="u5F-ME-L3r" customClass="announcementsViewController" customModule="Bike_V1_1" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="uRM-kK-inE"/>
-                        <viewControllerLayoutGuide type="bottom" id="y5z-Yw-ENj"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="7zg-Bh-Z4D">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jCJ-DJ-YHS">
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c4E-YD-2Aw" userLabel="ContentView">
-                                        <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="VP1-4v-Myp">
-                                                <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="YXC-Gu-RwN">
-                                                        <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upcoming Rides" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1c0-IX-b9A">
-                                                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="25"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No upcoming rides" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gu2-nw-v9K">
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                        </subviews>
-                                                    </stackView>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MlJ-Ch-Avm" userLabel="Horizontal Line">
-                                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="1" id="h4H-GN-w4A"/>
-                                                        </constraints>
-                                                    </view>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Cp9-oU-gmx">
-                                                        <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Announcement 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OFu-7e-e4N">
-                                                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="25"/>
-                                                                <color key="textColor" red="0.85882352939999995" green="0.23137254900000001" blue="0.31372549020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[anouncement go here]" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6MH-AM-bp1">
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                        </subviews>
-                                                        <constraints>
-                                                            <constraint firstItem="6MH-AM-bp1" firstAttribute="leading" secondItem="Cp9-oU-gmx" secondAttribute="leading" id="1b7-7v-XxU"/>
-                                                            <constraint firstAttribute="trailing" secondItem="6MH-AM-bp1" secondAttribute="trailing" id="o9u-Lh-0pi"/>
-                                                        </constraints>
-                                                    </stackView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="zm9-54-h0J">
-                                                        <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Announcement 2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zMj-Le-aqW">
-                                                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="25"/>
-                                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[anouncement go here]" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h1Z-Lq-gYJ">
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                        </subviews>
-                                                        <constraints>
-                                                            <constraint firstAttribute="trailing" secondItem="h1Z-Lq-gYJ" secondAttribute="trailing" id="B5t-qD-XB7"/>
-                                                            <constraint firstItem="h1Z-Lq-gYJ" firstAttribute="leading" secondItem="zm9-54-h0J" secondAttribute="leading" id="lmj-hB-DQ1"/>
-                                                        </constraints>
-                                                    </stackView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="tXy-Sl-JTy">
-                                                        <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Anouncement 3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iWR-mo-a5C">
-                                                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="25"/>
-                                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[announcement goes here]" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JTf-Q0-cWX">
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                        </subviews>
-                                                        <constraints>
-                                                            <constraint firstItem="JTf-Q0-cWX" firstAttribute="leading" secondItem="tXy-Sl-JTy" secondAttribute="leading" id="boW-bo-KKY"/>
-                                                            <constraint firstAttribute="trailing" secondItem="JTf-Q0-cWX" secondAttribute="trailing" id="kWt-uJ-xdU"/>
-                                                        </constraints>
-                                                    </stackView>
-                                                </subviews>
-                                                <constraints>
-                                                    <constraint firstItem="MlJ-Ch-Avm" firstAttribute="leading" secondItem="VP1-4v-Myp" secondAttribute="leading" id="DZh-qQ-E2f"/>
-                                                    <constraint firstAttribute="trailing" secondItem="Cp9-oU-gmx" secondAttribute="trailing" id="MYV-wK-ht2"/>
-                                                    <constraint firstItem="MlJ-Ch-Avm" firstAttribute="leading" secondItem="VP1-4v-Myp" secondAttribute="leading" id="cuf-DS-Nj3"/>
-                                                    <constraint firstAttribute="trailing" secondItem="YXC-Gu-RwN" secondAttribute="trailing" id="lVP-BP-3yW"/>
-                                                    <constraint firstAttribute="trailing" secondItem="zm9-54-h0J" secondAttribute="trailing" id="m3x-o8-Y6f"/>
-                                                    <constraint firstAttribute="trailing" secondItem="MlJ-Ch-Avm" secondAttribute="trailing" id="npQ-kK-92p"/>
-                                                    <constraint firstAttribute="trailing" secondItem="tXy-Sl-JTy" secondAttribute="trailing" id="rGq-jy-dc4"/>
-                                                    <constraint firstAttribute="trailing" secondItem="MlJ-Ch-Avm" secondAttribute="trailing" id="zhi-fr-EpL"/>
-                                                </constraints>
-                                            </stackView>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstItem="VP1-4v-Myp" firstAttribute="top" secondItem="c4E-YD-2Aw" secondAttribute="topMargin" id="C1L-ff-GgI"/>
-                                            <constraint firstItem="VP1-4v-Myp" firstAttribute="height" secondItem="c4E-YD-2Aw" secondAttribute="height" id="Wwb-F3-mCz"/>
-                                            <constraint firstItem="VP1-4v-Myp" firstAttribute="leading" secondItem="c4E-YD-2Aw" secondAttribute="leadingMargin" id="Xxx-vP-4Cu"/>
-                                            <constraint firstAttribute="trailingMargin" secondItem="VP1-4v-Myp" secondAttribute="trailing" id="sLF-EF-jW8"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="c4E-YD-2Aw" firstAttribute="top" secondItem="jCJ-DJ-YHS" secondAttribute="top" id="HLd-u7-Hp4"/>
-                                    <constraint firstAttribute="bottom" secondItem="c4E-YD-2Aw" secondAttribute="bottom" id="iL1-6V-x0d"/>
-                                    <constraint firstItem="c4E-YD-2Aw" firstAttribute="leading" secondItem="jCJ-DJ-YHS" secondAttribute="leading" id="zpJ-FJ-7fx"/>
-                                    <constraint firstAttribute="trailing" secondItem="c4E-YD-2Aw" secondAttribute="trailing" id="zvK-z5-WmN"/>
-                                </constraints>
-                            </scrollView>
-                        </subviews>
-                        <color key="backgroundColor" red="0.74901960784313726" green="0.74901960784313726" blue="0.74901960784313726" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="jCJ-DJ-YHS" secondAttribute="trailing" id="8np-Nz-rsT"/>
-                            <constraint firstItem="y5z-Yw-ENj" firstAttribute="top" secondItem="jCJ-DJ-YHS" secondAttribute="bottom" id="Dv9-0D-Zdf"/>
-                            <constraint firstItem="jCJ-DJ-YHS" firstAttribute="top" secondItem="uRM-kK-inE" secondAttribute="bottom" id="M9l-Wk-sGs"/>
-                            <constraint firstItem="c4E-YD-2Aw" firstAttribute="width" secondItem="7zg-Bh-Z4D" secondAttribute="width" id="YhE-Hr-wzq"/>
-                            <constraint firstItem="jCJ-DJ-YHS" firstAttribute="leading" secondItem="7zg-Bh-Z4D" secondAttribute="leading" id="j3o-jw-Bl6"/>
-                        </constraints>
-                    </view>
-                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
-                    <navigationItem key="navigationItem" title="Announcements" id="WEe-B6-X6I">
-                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="Hok-MG-FqF">
-                            <connections>
-                                <segue destination="G0l-WG-qSB" kind="unwind" unwindAction="unwindToHomepage:" id="hRP-og-3o6"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="announcementOneTextLabel" destination="6MH-AM-bp1" id="R0E-B3-rWD"/>
-                        <outlet property="announcementOneTitleLabel" destination="OFu-7e-e4N" id="Dlv-wb-MHK"/>
-                        <outlet property="announcementThreeTextLabel" destination="JTf-Q0-cWX" id="Bd0-9e-wV5"/>
-                        <outlet property="announcementThreeTitleLabel" destination="iWR-mo-a5C" id="b2q-UG-ofo"/>
-                        <outlet property="announcementTwoTextLabel" destination="h1Z-Lq-gYJ" id="aQz-pM-cMT"/>
-                        <outlet property="announcementTwoTitleLabel" destination="zMj-Le-aqW" id="AAF-wM-7r1"/>
-                        <outlet property="upcomingRidesTextLabel" destination="gu2-nw-v9K" id="dvQ-0c-qsO"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="w7y-zQ-lKm" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="G0l-WG-qSB" userLabel="Exit" sceneMemberID="exit"/>
-            </objects>
-            <point key="canvasLocation" x="-90" y="1897"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="o0O-Xl-QKI">
             <objects>
@@ -955,22 +864,22 @@
             <point key="canvasLocation" x="625" y="1176"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="7Z6-Ya-6ef">
+        <scene sceneID="Iks-IJ-qgz">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="GPV-DO-nzM" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="l3w-Ex-Qzi" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="MZO-1i-OB1">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="AJw-2t-K3t">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="u5F-ME-L3r" kind="relationship" relationship="rootViewController" id="HbX-xO-lY7"/>
+                        <segue destination="Coc-rV-5s9" kind="relationship" relationship="rootViewController" id="40W-VZ-icQ"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="6HX-Hf-5d6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="I04-Ju-JJl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-89" y="1176"/>
+            <point key="canvasLocation" x="-79" y="1174"/>
         </scene>
     </scenes>
     <resources>

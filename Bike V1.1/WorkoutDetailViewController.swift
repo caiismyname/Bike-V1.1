@@ -34,9 +34,7 @@ class WorkoutDetailViewController: UIViewController {
         ref = FIRDatabase.database().reference()
         
         // Setting the top-right button label
-        
-        print(thisWorkout?.usersHaveCompleted.keys.contains(thisUser.userName))
-        if ((thisWorkout?.usersHaveCompleted.keys.contains(thisUser.userName)) == true) {
+        if ((thisWorkout?.usersHaveCompleted!.keys.contains(thisUser.userName)) == true) {
             completionButtonLabel.title = "Incomplete"
         }
         else {
@@ -68,7 +66,7 @@ class WorkoutDetailViewController: UIViewController {
         // Conditional logic to remove/add user to workout lists based on current state
         // Side Note: the userList is updated via the event listener declared in viewDidLoad
         
-        if ((thisWorkout?.usersHaveCompleted.keys.contains(thisUser.userName)) == true) {
+        if ((thisWorkout?.usersHaveCompleted!.keys.contains(thisUser.userName)) == true) {
             // If this workout has already been completed
             let workoutRef = self.ref.child("colleges/\(thisUser.college)/workouts/\(thisWorkout!.workoutUsername)/usersHaveCompleted/\(thisUser.userName)")
             // Update the workout's usersHaveCompleted List in FB

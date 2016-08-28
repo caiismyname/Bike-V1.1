@@ -1,6 +1,0 @@
-framework module Pods_Bike_V1_1Tests {
-  umbrella header "Pods-Bike V1.1Tests-umbrella.h"
-
-  export *
-  module * { export * }
-}

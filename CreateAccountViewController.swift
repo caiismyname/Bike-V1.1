@@ -327,20 +327,19 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
                 // Create bikeClass object from FB data
                 let bikeName = child.value["name"] as! String
                 let size = child.value["size"] as! String
-                let wheels = child.value["wheels"] as! String
                 let status = child.value["status"] as! String
                 let childsnap = child as! FIRDataSnapshot
                 let bikeUsername = childsnap.key
     
-                var riders = [String]()
-                let riderList = child.value["riders"] as! NSDictionary
-                for rider in riderList {
+                var riders = [String:String]()
+                let riderDict = child.value["riders"] as! NSDictionary
+                for rider in riderDict {
                     if rider.key as! String != "init" {
-                        riders.append(rider.key as! String)
+                        riders[rider.key as! String] = rider.value as! String
                     }
                 }
                 
-                let bikeObject = bikeClass(bikeName: bikeName, wheels: wheels, size: size, riders: riders, status: status, bikeUsername: bikeUsername)
+                let bikeObject = bikeClass(bikeName: bikeName, size: size, riders: riders, status: status, bikeUsername: bikeUsername)
                 tempBikeList.append(bikeObject)
                 
                 print(tempBikeList)

@@ -25,6 +25,27 @@
  * THE SOFTWARE.
  */
 
+/***
+ 
+ ### Setting up the SDK ###
+ Follow the documentation from https://documentation.onesignal.com/docs/installing-the-onesignal-ios-sdk to setup OneSignal in your app.
+ 
+ ### API Reference ###
+ Follow the documentation from https://documentation.onesignal.com/docs/ios-sdk-api for a detailed explanation of the API.
+ 
+ ### FAQ & Troubleshoot ###
+ FAQ: https://documentation.onesignal.com/docs/frequently-asked-questions-1
+ Troubleshoot: https://documentation.onesignal.com/docs/common-problems-1
+ 
+ For help on how to upgrade your code from 1.* SDK to 2.*: https://documentation.onesignal.com/docs/upgrading-to-sdk-20
+ 
+ ### More ###
+ iOS Configuration: https://documentation.onesignal.com/docs/generating-an-ios-push-certificate
+ REST API: https://documentation.onesignal.com/docs/server-api-overview
+ Create Notification API: https://documentation.onesignal.com/docs/notifications-create-notification
+ 
+***/
+
 #import <Foundation/Foundation.h>
 
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 100000
@@ -123,14 +144,21 @@ typedef enum : NSUInteger {
  requires remote-notification within UIBackgroundModes array of the Info.plist */
 @property(readonly, getter=isSilentNotification)BOOL silentNotification;
 
+
+/* Convert object into an NSString that can be convertible into a custom Dictionary / JSON Object */
+- (NSString*)stringify;
+
 @end
 
 
-@interface OSNotificationResult : NSObject
+@interface OSNotificationOpenedResult : NSObject
 
 @property(readonly)OSNotification* notification;
 
 @property(readonly)OSNotificationAction *action;
+
+/* Convert object into an NSString that can be convertible into a custom Dictionary / JSON Object */
+- (NSString*)stringify;
 
 @end;
 
@@ -144,7 +172,7 @@ typedef void (^OSIdsAvailableBlock)(NSString* userId, NSString* pushToken);
 typedef void (^OSHandleNotificationReceivedBlock)(OSNotification* notification);
 
 /*Block for handling a user reaction to a notification*/
-typedef void (^OSHandleNotificationActionBlock)(OSNotificationResult * result);
+typedef void (^OSHandleNotificationActionBlock)(OSNotificationOpenedResult * result);
 
 /*Dictionary of keys to pass alongside the init serttings*/
     
@@ -154,18 +182,15 @@ extern NSString * const kOSSettingsKeyAutoPrompt;
 /*Enable the default in-app alerts*/
 extern NSString * const kOSSettingsKeyInAppAlerts;
 
+/*Enable In-App display of Launch URLs*/
+extern NSString * const kOSSettingsKeyInAppLaunchURL;
+
 /**
- `OneSignal` provides a high level interface to interact with OneSignal's push service.
- 
- `OneSignal` exposes a defaultClient for applications which use a globally available client to share configuration settings.
- 
- Include `#import "OneSignal/OneSignal.h"` in your application files to access OneSignal's methods.
- 
- ### Setting up the SDK ###
- 
- Follow the documentation from http://documentation.gamethrive.com/v1.0/docs/installing-the-gamethrive-ios-sdk to setup with your game.
- 
- */
+    OneSignal provides a high level interface to interact with OneSignal's push service.
+    OneSignal is a singleton for applications which use a globally available client to share configuration settings.
+    You should avoid creating instances of this class at all costs. Instead, access its instance methods.
+    Include `#import <OneSignal/OneSignal.h>` in your application files to access OneSignal's methods.
+ **/
 @interface OneSignal : NSObject
 
 extern NSString* const ONESIGNAL_VERSION;
@@ -175,7 +200,7 @@ typedef NS_ENUM(NSUInteger, ONE_S_LOG_LEVEL) {
 };
 
 ///--------------------
-/// @name Initialize
+/// @name Initialize`
 ///--------------------
 
 /**

@@ -39,20 +39,19 @@ class BikeDetailViewController: UIViewController {
             // Creating bikeClass object from FB DB data
             let bikeName = snapshot.value!["name"] as! String
             let size = snapshot.value!["size"] as! String
-            let wheels = snapshot.value!["wheels"] as! String
             let status = snapshot.value!["status"] as! String
             let bikeUsername = snapshot.key
             
-            var riders = [String]()
+            var riders = [String:String]()
             
-            let riderList = snapshot.value!["riders"] as! NSDictionary
-            for rider in riderList {
+            let riderDict = snapshot.value!["riders"] as! NSDictionary
+            for rider in riderDict {
                 if rider.key as! String != "init" {
-                    riders.append(rider.key as! String)
+                    riders[rider.key as! String] = rider.value as! String
                 }
             }
             
-            let bikeObject = bikeClass(bikeName: bikeName, wheels: wheels, size: size, riders: riders, status: status, bikeUsername: bikeUsername)
+            let bikeObject = bikeClass(bikeName: bikeName, size: size, riders: riders, status: status, bikeUsername: bikeUsername)
             self.thisBike = bikeObject
             self.updateRiderList()
             
@@ -87,7 +86,6 @@ class BikeDetailViewController: UIViewController {
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         ref.removeAllObservers()
-        
     }
     
     // MARK: Actions
@@ -100,7 +98,7 @@ class BikeDetailViewController: UIViewController {
         // Updating the bike's list of riders
         let bikeRef = ref.child("colleges/\(thisUser.college)/bikeList/\(thisBike!.bikeUsername)/riders")
         
-        bikeRef.updateChildValues([thisUser.userName : true])
+        bikeRef.updateChildValues([thisUser.userName : thisUser.fullName])
         
         // Removing user from other bikes
         let bikeListRef = ref.child("colleges/\(thisUser.college)/bikeList")
@@ -154,16 +152,8 @@ class BikeDetailViewController: UIViewController {
     // MARK: Misc funcs
     func updateRiderList() {
         // Turning usernames into actual names
-        // FB is needed to get the *actual* names of the riders b/c the user dict is not stored locally
-        var riderList = ""
-        for riderUsername in thisBike!.riders! {
-            let riderRef = ref.child("users/\(riderUsername)")
-            riderRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
-                let actualName = snapshot.value!["name"] as! String
-                riderList += "\(actualName), "
-                self.ridersLabel.text = riderList
-            })
-        }
+        ridersLabel.text = thisBike?.getRidersPayload()
+        
     }
     
     //MARK: NSCoding

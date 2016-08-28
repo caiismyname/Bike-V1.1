@@ -4,12 +4,12 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Pods-Bike V1.1.xcscheme</key>
+		<key>Pods-Bike iOS.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-Bike V1.1Tests.xcscheme</key>
+		<key>Pods-Bike iOSTests.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -17,12 +17,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>7223B05F131046193DC6BB264CD641AB</key>
+		<key>5ABD9084791084E6DD6F7753D06D9CAF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>90CD9D63737540D5823ACAF1F7302D47</key>
+		<key>B302FA902263A7A7EEB22A409FDF4D15</key>
 		<dict>
 			<key>primary</key>
 			<true/>
