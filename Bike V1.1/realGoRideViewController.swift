@@ -188,14 +188,14 @@ class realGoRideViewController: UIViewController {
         
         if notificationTime == "now" {
             messages.append("\(thisUser.firstName) \(thisUser.lastName) is going on a ride right now!")
-            setBikeStatus("now")
+            //setBikeStatus("now")
             
         }
         else if notificationTime == "10" {
             messages.append("\(thisUser.firstName) \(thisUser.lastName) is going on a ride in 10 minutes!")
             
             let rideTime = calculateTimes(10,secondsFromNow: 0)
-            setBikeStatus(rideTime)
+            //setBikeStatus(rideTime)
             setAnnouncementRides(rideTime)
             
         }
@@ -206,7 +206,7 @@ class realGoRideViewController: UIViewController {
             listOfTimes.append(calculateTimes(0,secondsFromNow: 5))
             listOfTimes.append(calculateTimes(30,secondsFromNow: 0))
             
-            setBikeStatus(listOfTimes[1])
+            //setBikeStatus(listOfTimes[1])
             setAnnouncementRides(listOfTimes[1])
         }
         else if notificationTime == "60" {
@@ -216,7 +216,7 @@ class realGoRideViewController: UIViewController {
             listOfTimes.append(calculateTimes(0,secondsFromNow: 5))
             listOfTimes.append(calculateTimes(60,secondsFromNow: 0))
             
-            setBikeStatus(listOfTimes[1])
+            //setBikeStatus(listOfTimes[1])
             setAnnouncementRides(listOfTimes[1])
         }
         else if notificationTime == "timePicker" {
@@ -234,7 +234,7 @@ class realGoRideViewController: UIViewController {
             listOfTimes.append(calculateTimes(0, secondsFromNow: 5))
             listOfTimes.append(isoTimeString)
             
-            setBikeStatus(isoTimeString)
+            //setBikeStatus(isoTimeString)
             setAnnouncementRides(isoTimeString)
         }
         

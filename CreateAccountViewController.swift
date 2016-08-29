@@ -375,10 +375,11 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
                 let week = child.value["week"] as! [String]
                 
                 let childSnap = child as! FIRDataSnapshot
-                let workoutUsername = childSnap.key
+                let workoutUsername = childSnap.key as! String
                 
                 var usersHaveCompleted = [String:String]()
-                let usersHaveCompletedDict = snapshot.value!["usersHaveCompleted"] as! NSDictionary
+                
+                let usersHaveCompletedDict = child.value!["usersHaveCompleted"] as! NSDictionary
                 for user in usersHaveCompletedDict {
                     if user.key as! String != "init" {
                         usersHaveCompleted[user.key as! String] = user.value as? String
@@ -390,6 +391,8 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
                 
                 // Save as you go, otherwise it'll just save an empty list b/c asycnchrony.
                 self.saveWorkoutList(tempWorkoutList)
+                
+                print("workout list \(tempWorkoutList)")
             }
             
             }, withCancelBlock: { error in

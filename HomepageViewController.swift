@@ -25,6 +25,7 @@ class HomepageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("homepage viewdidload")
         ref = FIRDatabase.database().reference()
         
         // Adjusts font size of long text on Homepage for smaller screens
