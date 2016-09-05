@@ -17,7 +17,7 @@ class WorkoutsTableViewController: UITableViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        workoutList = loadWorkoutList()!
+        //workoutList = loadWorkoutList()!
         //print(workoutList)
 
         // Watcher thing that auto refreshes when FB DB changes
@@ -186,9 +186,6 @@ class WorkoutsTableViewController: UITableViewController{
     */
     
     // MARK: - Navigation
-
-    // For the unwind segue
-    @IBAction func unwindBackToWorkoutlist(segue: UIStoryboardSegue) {}
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // The "if" prevents this from running when exiting the workoutlist view.

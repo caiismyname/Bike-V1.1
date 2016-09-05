@@ -307,10 +307,12 @@ class realGoRideViewController: UIViewController {
             })
         }
     }
-    
 
+    // MARK: Actions
     
-
+    @IBAction func cancelButton(sender: UIBarButtonItem) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
     
     // MARK: - Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

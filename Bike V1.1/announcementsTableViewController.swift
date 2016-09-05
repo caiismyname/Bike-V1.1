@@ -182,7 +182,7 @@ class announcementsTableViewController: UITableViewController {
 
     
     // MARK: - Navigation
-
+    
     @IBAction func doneButton(sender: UIBarButtonItem) {
         dismissViewControllerAnimated(true, completion: nil)
     }

@@ -324,7 +324,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Ya-dY-d4M" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="jx4-WE-vdT" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1329" y="2634"/>
+            <point key="canvasLocation" x="1329" y="2702"/>
         </scene>
         <!--Homepage-->
         <scene sceneID="O9V-ub-uEK">
@@ -465,11 +465,46 @@
                                 <action selector="doneButton:" destination="Coc-rV-5s9" id="q8c-Qc-kkk"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="r8x-DT-B9t">
+                            <connections>
+                                <segue destination="Pfz-vh-0o9" kind="presentation" id="RiJ-mc-fHV"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cva-ui-BdU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-79.200000000000003" y="1938.9805097451276"/>
+        </scene>
+        <!--Add Announcement View Controller-->
+        <scene sceneID="9Qa-LS-xmq">
+            <objects>
+                <viewController id="U7D-HH-yEi" customClass="addAnnouncementViewController" customModule="Bike_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cYG-5q-V9y"/>
+                        <viewControllerLayoutGuide type="bottom" id="Pez-4e-BxN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Gxp-75-yvh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="RVi-dz-dzd">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="54J-fr-6jM">
+                            <connections>
+                                <action selector="cancelButton:" destination="U7D-HH-yEi" id="pAT-IS-iR9"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="3G1-ew-mvD"/>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="hlG-qz-eHP" kind="unwind" identifier="unwindToAnnouncements" unwindAction="unwindBackToAnnouncementsWithSegue:" id="Z5C-My-nIJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QO8-5c-5sI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="hlG-qz-eHP" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="-79" y="3452"/>
         </scene>
         <!--Go Ride-->
         <scene sceneID="pj6-D4-vk7">
@@ -591,7 +626,7 @@
                     <navigationItem key="navigationItem" title="Go Ride" id="Mok-MJ-27v">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="ghH-7u-blA">
                             <connections>
-                                <segue destination="37w-aJ-jra" kind="unwind" unwindAction="unwindToHomepage:" id="NpZ-Xw-y4b"/>
+                                <action selector="cancelButton:" destination="xbQ-fh-JNH" id="2cK-5q-Gut"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -605,7 +640,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qQh-Eh-eDI" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="37w-aJ-jra" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="625" y="1939"/>
         </scene>
@@ -887,7 +921,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EP2-gG-8E3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2032.8" y="2632.5337331334335"/>
+            <point key="canvasLocation" x="2033" y="2702"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="H7g-yi-tV2">
@@ -942,6 +976,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I04-Ju-JJl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-79" y="1174"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="z97-WB-Rbz">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Pfz-vh-0o9" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Vwr-7V-WOf">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="U7D-HH-yEi" kind="relationship" relationship="rootViewController" id="T0W-zX-4Fl"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wUG-Sn-JHe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-79.200000000000003" y="2701.7991004497753"/>
         </scene>
     </scenes>
     <resources>

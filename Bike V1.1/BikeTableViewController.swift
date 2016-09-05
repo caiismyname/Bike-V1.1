@@ -162,15 +162,6 @@ class BikeTableViewController: UITableViewController {
             ref.removeAllObservers()
         }
     }
-    
-    
-    
-    
-    // MARK: Actions
-
-    @IBAction func cancelButton(sender: UIBarButtonItem) {
-        self.performSegueWithIdentifier("unwindFromBikelistToHomepage", sender: self)
-    }
 
     // MARK: NSCoding
     
