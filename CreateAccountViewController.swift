@@ -325,7 +325,8 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
         bikeListRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
             for child in snapshot.children {
                 // Create bikeClass object from FB data
-                let bikeName = child.value["name"] as! String
+                let bikeShortName = child.value["shortName"] as! String
+                let bikeFullName = child.value["fullName"] as! String
                 let size = child.value["size"] as! String
                 let status = child.value["status"] as! String
                 let childsnap = child as! FIRDataSnapshot
@@ -339,7 +340,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
                     }
                 }
                 
-                let bikeObject = bikeClass(bikeName: bikeName, size: size, riders: riders, status: status, bikeUsername: bikeUsername)
+                let bikeObject = bikeClass(bikeShortName: bikeShortName, bikeFullName: bikeFullName, size: size, riders: riders, status: status, bikeUsername: bikeUsername)
                 tempBikeList.append(bikeObject)
                 
                 print(tempBikeList)

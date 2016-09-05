@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1B5A7582251F46A7CCDE4C2B /* Pods_Bike_V1_1Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1853EABFF949000A74D38DE4 /* Pods_Bike_V1_1Tests.framework */; };
 		270FCB211D23405D003DFCF9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270FCB201D23405D003DFCF9 /* AppDelegate.swift */; };
 		270FCB281D23405D003DFCF9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 270FCB271D23405D003DFCF9 /* Assets.xcassets */; };
 		270FCB2B1D23405D003DFCF9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 270FCB291D23405D003DFCF9 /* LaunchScreen.storyboard */; };
@@ -31,7 +30,6 @@
 		27CA42E41D42BF56005FEEE1 /* realGoRideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CA42E31D42BF56005FEEE1 /* realGoRideViewController.swift */; };
 		AA00341CC2143F3C9E49DCA1 /* Pods_Bike_iOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77D318C7CD6439DA30B16F0A /* Pods_Bike_iOSTests.framework */; };
 		FB5AC96E203021E606B2B477 /* Pods_Bike_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 063D6B1AA3F526EC06E8E602 /* Pods_Bike_iOS.framework */; };
-		FE042283AB1B5FB0CE77A14A /* Pods_Bike_V1_1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8DBDEA353CED0BE004CED65 /* Pods_Bike_V1_1.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,8 +45,6 @@
 /* Begin PBXFileReference section */
 		063D6B1AA3F526EC06E8E602 /* Pods_Bike_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bike_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		085B0026D8831DEE9D805EDC /* Pods-Bike iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bike iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bike iOS/Pods-Bike iOS.release.xcconfig"; sourceTree = "<group>"; };
-		1853EABFF949000A74D38DE4 /* Pods_Bike_V1_1Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bike_V1_1Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1FFC932701DDECF5A43867E9 /* Pods-Bike V1.1Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bike V1.1Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bike V1.1Tests/Pods-Bike V1.1Tests.release.xcconfig"; sourceTree = "<group>"; };
 		270D5FBB1D52D4090032B01A /* Bike V1.1.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Bike V1.1.entitlements"; sourceTree = "<group>"; };
 		270FCB1D1D23405D003DFCF9 /* Bike-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bike-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		270FCB201D23405D003DFCF9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -76,14 +72,10 @@
 		279A01381D63C2B2007A8B9E /* announcementClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = announcementClass.swift; sourceTree = "<group>"; };
 		27B721A31D6FD0DD0084544C /* announcementsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = announcementsTableViewController.swift; sourceTree = "<group>"; };
 		27CA42E31D42BF56005FEEE1 /* realGoRideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = realGoRideViewController.swift; sourceTree = "<group>"; };
-		2A2559F3A7B9396C3C19C33E /* Pods-Bike V1.1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bike V1.1.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bike V1.1/Pods-Bike V1.1.release.xcconfig"; sourceTree = "<group>"; };
 		4670166FE1683B47B39BDB10 /* Pods-Bike iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bike iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bike iOS/Pods-Bike iOS.debug.xcconfig"; sourceTree = "<group>"; };
-		6DD976B14511F57E3C89903F /* Pods-Bike V1.1Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bike V1.1Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bike V1.1Tests/Pods-Bike V1.1Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		77D318C7CD6439DA30B16F0A /* Pods_Bike_iOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bike_iOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D58EA21D90680B2B574C856 /* Pods-Bike iOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bike iOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bike iOSTests/Pods-Bike iOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C13C3C7E19269547A683EC88 /* Pods-Bike iOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bike iOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bike iOSTests/Pods-Bike iOSTests.release.xcconfig"; sourceTree = "<group>"; };
-		CD4E4C7AB69A12893695AEDE /* Pods-Bike V1.1.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bike V1.1.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bike V1.1/Pods-Bike V1.1.debug.xcconfig"; sourceTree = "<group>"; };
-		D8DBDEA353CED0BE004CED65 /* Pods_Bike_V1_1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bike_V1_1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,7 +83,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FE042283AB1B5FB0CE77A14A /* Pods_Bike_V1_1.framework in Frameworks */,
 				FB5AC96E203021E606B2B477 /* Pods_Bike_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -100,7 +91,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1B5A7582251F46A7CCDE4C2B /* Pods_Bike_V1_1Tests.framework in Frameworks */,
 				AA00341CC2143F3C9E49DCA1 /* Pods_Bike_iOSTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -111,10 +101,6 @@
 		137B771FE6524D76AF5F86FA /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				CD4E4C7AB69A12893695AEDE /* Pods-Bike V1.1.debug.xcconfig */,
-				2A2559F3A7B9396C3C19C33E /* Pods-Bike V1.1.release.xcconfig */,
-				6DD976B14511F57E3C89903F /* Pods-Bike V1.1Tests.debug.xcconfig */,
-				1FFC932701DDECF5A43867E9 /* Pods-Bike V1.1Tests.release.xcconfig */,
 				4670166FE1683B47B39BDB10 /* Pods-Bike iOS.debug.xcconfig */,
 				085B0026D8831DEE9D805EDC /* Pods-Bike iOS.release.xcconfig */,
 				7D58EA21D90680B2B574C856 /* Pods-Bike iOSTests.debug.xcconfig */,
@@ -187,8 +173,6 @@
 		DFEBCB41142EA420D13A1C45 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D8DBDEA353CED0BE004CED65 /* Pods_Bike_V1_1.framework */,
-				1853EABFF949000A74D38DE4 /* Pods_Bike_V1_1Tests.framework */,
 				063D6B1AA3F526EC06E8E602 /* Pods_Bike_iOS.framework */,
 				77D318C7CD6439DA30B16F0A /* Pods_Bike_iOSTests.framework */,
 			);

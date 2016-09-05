@@ -37,7 +37,8 @@ class BikeTableViewController: UITableViewController {
             for child in snapshot.children {
                 // Creating bikeClass object from FB DB data
                 
-                let bikeName = child.value["name"] as! String
+                let bikeShortName = child.value["shortName"] as! String
+                let bikeFullName = child.value["fullName"] as! String
                 let size = child.value["size"] as! String
                 let status = child.value["status"] as! String
                 var riders = [String:String]()
@@ -53,7 +54,7 @@ class BikeTableViewController: UITableViewController {
                 let childsnap = child as! FIRDataSnapshot
                 let bikeUsername = childsnap.key
                 
-                let bikeObject = bikeClass(bikeName: bikeName, size: size, riders: riders, status: status, bikeUsername: bikeUsername)
+                let bikeObject = bikeClass(bikeShortName: bikeShortName, bikeFullName: bikeFullName, size: size, riders: riders, status: status, bikeUsername: bikeUsername)
                 //print(bikeObject.bikeUsername)
                 
                 tempBikeList.append(bikeObject)
@@ -95,7 +96,7 @@ class BikeTableViewController: UITableViewController {
         
         let bike = bikeList[indexPath.row]
 
-        cell.bikeNameDisplay.text = bike.bikeName
+        cell.bikeNameDisplay.text = bike.bikeShortName
         cell.statusLabel.text = bike.status
 
 

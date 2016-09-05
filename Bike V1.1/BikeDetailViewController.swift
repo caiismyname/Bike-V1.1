@@ -17,6 +17,7 @@ class BikeDetailViewController: UIViewController {
     var thisBike: bikeClass?
     
     // Variable visuals
+    @IBOutlet weak var modelLabel: UILabel!
     @IBOutlet weak var sizeLabel: UILabel!
     @IBOutlet weak var statusButton: UIButton!
     @IBOutlet weak var ridersLabel: UILabel!
@@ -26,6 +27,7 @@ class BikeDetailViewController: UIViewController {
     @IBOutlet weak var staticSizeLabel: UILabel!
     @IBOutlet weak var staticStatusLabel: UILabel!
     @IBOutlet weak var staticRidersLabel: UILabel!
+    @IBOutlet weak var staticModelLabel: UILabel!
     
     
     
@@ -37,7 +39,8 @@ class BikeDetailViewController: UIViewController {
         // Listener is used to live update the info as the user manipulates the information from the detailview
         bikeRef.observeEventType(.Value, withBlock: { snapshot in
             // Creating bikeClass object from FB DB data
-            let bikeName = snapshot.value!["name"] as! String
+            let bikeShortName = snapshot.value!["shortName"] as! String
+            let bikeFullName = snapshot.value!["fullName"] as! String
             let size = snapshot.value!["size"] as! String
             let status = snapshot.value!["status"] as! String
             let bikeUsername = snapshot.key
@@ -51,16 +54,17 @@ class BikeDetailViewController: UIViewController {
                 }
             }
             
-            let bikeObject = bikeClass(bikeName: bikeName, size: size, riders: riders, status: status, bikeUsername: bikeUsername)
+            let bikeObject = bikeClass(bikeShortName: bikeShortName, bikeFullName: bikeFullName, size: size, riders: riders, status: status, bikeUsername: bikeUsername)
             self.thisBike = bikeObject
             self.updateRiderList()
             
         })
         
         // Setting titles
-        self.title = thisBike?.bikeName
+        self.title = thisBike?.bikeShortName
         sizeLabel.text = thisBike?.size
         statusButton.setTitle(thisBike?.status, forState: .Normal)
+        modelLabel.text = thisBike?.bikeFullName
         
         // Setting appropriate color for status label/button
         if thisBike?.status == "Ready" {
