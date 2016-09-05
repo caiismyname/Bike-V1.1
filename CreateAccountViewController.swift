@@ -373,7 +373,9 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
                 let unit = child.value["unit"] as! String
                 let duration = child.value["duration"] as! [Int]
                 let reps = child.value["reps"] as! [Int]
+                let rest = child.value["rest"] as! [Int]
                 let week = child.value["week"] as! [String]
+                let notes = child.value["notes"] as! String
                 
                 let childSnap = child as! FIRDataSnapshot
                 let workoutUsername = childSnap.key as! String
@@ -387,7 +389,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate, UIPick
                     }
                 }
                 
-                let workoutObject = workoutClass(type: type, duration: duration, reps: reps, unit: unit, usersHaveCompleted: usersHaveCompleted, week: week, workoutUsername: workoutUsername)
+                let workoutObject = workoutClass(type: type, duration: duration, reps: reps, rest: rest,unit: unit, usersHaveCompleted: usersHaveCompleted, week: week, workoutUsername: workoutUsername, notes: notes)
                 tempWorkoutList.append(workoutObject)
                 
                 // Save as you go, otherwise it'll just save an empty list b/c asycnchrony.

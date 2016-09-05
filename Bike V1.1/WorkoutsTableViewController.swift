@@ -37,8 +37,10 @@ class WorkoutsTableViewController: UITableViewController{
                 let unit = child.value!["unit"] as! String
                 let duration = child.value!["duration"] as! [Int]
                 let reps = child.value!["reps"] as! [Int]
+                let rest = child.value!["rest"] as! [Int]
                 let week = child.value!["week"] as! [String]
-            
+                let notes = child.value!["notes"] as! String
+                
                 let childSnap = child as! FIRDataSnapshot
                 let workoutUsername = childSnap.key
                 
@@ -50,7 +52,7 @@ class WorkoutsTableViewController: UITableViewController{
                     }
                 }
             
-                let workoutObject = workoutClass(type: type, duration: duration, reps: reps, unit: unit, usersHaveCompleted: usersHaveCompleted, week: week, workoutUsername: workoutUsername)
+                let workoutObject = workoutClass(type: type, duration: duration, reps: reps, rest: rest, unit: unit, usersHaveCompleted: usersHaveCompleted, week: week, workoutUsername: workoutUsername, notes: notes)
                 tempWorkoutList.append(workoutObject)
                 
                 // To avoid callbacks, the new (refreshed) bikeList is saved, loaded, and the view is reloaded

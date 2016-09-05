@@ -108,11 +108,7 @@ class announcementsTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         let announcement = announcements[indexPath.row]
         if announcement.getAnnouncementType() == "ride" {
-            if announcement.hostOneSignalUserId != thisUser.oneSignalUserId {
-                return true
-            } else {
-                return false
-            }
+            return true
         } else {
             return false
         }
@@ -140,10 +136,20 @@ class announcementsTableViewController: UITableViewController {
             OneSignal.postNotification(["contents": ["en": "\(thisUser.fullName) has left your ride!"], "include_player_ids": [announcement.hostOneSignalUserId], "data": ["senderOneSignalUserId": thisUser.oneSignalUserId!, "notificationType": "rideJoined", "rideName":"\(announcement.announcementTitle)"]])
         }
         
-        if announcement.ridersUsernames.contains(thisUser.userName) {
-            return [leaveAction]
-        } else {
-            return [joinAction]
+        let cancelAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Cancel") { (action:UITableViewRowAction!, index:NSIndexPath) in
+            
+            let announcementRef = self.ref.child("colleges/\(thisUser.college)/announcements/\(announcementName)")
+            announcementRef.removeValue()
+
+        }
+        if announcement.hostOneSignalUserId == thisUser.oneSignalUserId {
+            return [cancelAction]
+        } else {            
+            if announcement.ridersUsernames.contains(thisUser.userName) {
+                return [leaveAction]
+            } else {
+                return [joinAction]
+            }
         }
     }
 

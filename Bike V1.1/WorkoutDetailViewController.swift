@@ -24,6 +24,7 @@ class WorkoutDetailViewController: UIViewController {
     @IBOutlet weak var payloadLabel: UILabel!
     @IBOutlet weak var usersHaveCompletedLabel: UILabel!
     @IBOutlet weak var completionButtonLabel: UIBarButtonItem!
+    @IBOutlet weak var notesLabel: UILabel!
     
     
     
@@ -52,6 +53,9 @@ class WorkoutDetailViewController: UIViewController {
         weekNumberLabel.text = weekNumber
         typeLabel.text = thisWorkout?.type
         payloadLabel.text = thisWorkout?.getPayload()
+        if thisWorkout?.notes != "none" {
+            notesLabel.text = thisWorkout?.notes
+        }
         updateUserList()
         
     }
@@ -112,7 +116,9 @@ class WorkoutDetailViewController: UIViewController {
             let unit = snapshot.value!["unit"] as! String
             let duration = snapshot.value!["duration"] as! [Int]
             let reps = snapshot.value!["reps"] as! [Int]
+            let rest = snapshot.value!["rest"] as! [Int]
             let week = snapshot.value!["week"] as! [String]
+            let notes = snapshot.value!["notes"] as! String
             
             let workoutUsername = snapshot.key
             
@@ -124,7 +130,7 @@ class WorkoutDetailViewController: UIViewController {
                 }
             }
             
-            let workoutObject = workoutClass(type: type, duration: duration, reps: reps, unit: unit, usersHaveCompleted: usersHaveCompleted, week: week, workoutUsername: workoutUsername)
+            let workoutObject = workoutClass(type: type, duration: duration, reps: reps, rest: rest, unit: unit, usersHaveCompleted: usersHaveCompleted, week: week, workoutUsername: workoutUsername, notes: notes)
             self.thisWorkout = workoutObject
             
             // This call is placed here so that the userList will be updated *after* the database is updated.

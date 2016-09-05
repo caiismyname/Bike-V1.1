@@ -790,6 +790,27 @@
                                                             <constraint firstItem="zA6-SZ-RX1" firstAttribute="leading" secondItem="U3d-6x-2yj" secondAttribute="leading" id="ZbC-6A-fFY"/>
                                                         </constraints>
                                                     </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="vFT-1Y-Cep">
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NOTES" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HOk-uI-0Qh">
+                                                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="30"/>
+                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Additional Notes" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xz4-6Z-BTI">
+                                                                <accessibility key="accessibilityConfiguration">
+                                                                    <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
+                                                                </accessibility>
+                                                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="30"/>
+                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstAttribute="trailing" secondItem="Xz4-6Z-BTI" secondAttribute="trailing" id="j03-ug-HgM"/>
+                                                            <constraint firstItem="Xz4-6Z-BTI" firstAttribute="leading" secondItem="vFT-1Y-Cep" secondAttribute="leading" id="swJ-A3-JR3"/>
+                                                        </constraints>
+                                                    </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="DRW-yU-1k8">
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FINISHED" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V0L-tF-Y06">
@@ -856,6 +877,7 @@
                     <connections>
                         <outlet property="completionButtonLabel" destination="5PM-6b-UZ4" id="7c7-at-mpc"/>
                         <outlet property="infoStack" destination="ZeC-Eo-P8b" id="bim-kj-kAW"/>
+                        <outlet property="notesLabel" destination="Xz4-6Z-BTI" id="AIf-KE-4fz"/>
                         <outlet property="payloadLabel" destination="zA6-SZ-RX1" id="aoc-ex-kQO"/>
                         <outlet property="typeLabel" destination="SHN-af-c8R" id="6tR-41-KtX"/>
                         <outlet property="usersHaveCompletedLabel" destination="B9W-h6-2KW" id="E4O-b0-zJv"/>

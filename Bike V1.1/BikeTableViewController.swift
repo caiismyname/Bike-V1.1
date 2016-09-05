@@ -22,7 +22,7 @@ class BikeTableViewController: UITableViewController {
         print("viewdidload")
         
         // Loading the saved list of bikes, to avoid FB calls
-        bikeList = loadBikeList()!
+        //bikeList = loadBikeList()!
         
         // Watcher thing that auto refreshes when FB DB changes
         // As of right now, it replaces the whole bike list
