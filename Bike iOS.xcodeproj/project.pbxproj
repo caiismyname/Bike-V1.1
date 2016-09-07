@@ -21,10 +21,10 @@
 		270FCB5F1D26EB51003DFCF9 /* workoutClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270FCB5E1D26EB51003DFCF9 /* workoutClass.swift */; };
 		270FCB611D26EDEB003DFCF9 /* WorkoutsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270FCB601D26EDEB003DFCF9 /* WorkoutsTableViewController.swift */; };
 		270FCB631D26EDFF003DFCF9 /* WorkoutsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270FCB621D26EDFF003DFCF9 /* WorkoutsTableViewCell.swift */; };
-		270FCB651D283209003DFCF9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 270FCB641D283209003DFCF9 /* Main.storyboard */; };
 		270FCB671D297342003DFCF9 /* BikeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270FCB661D297342003DFCF9 /* BikeDetailViewController.swift */; };
 		27131CB51D6FD896004C4CC8 /* announcementsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27131CB41D6FD896004C4CC8 /* announcementsTableViewCell.swift */; };
 		272AB3DB1D3D5B6100AAB067 /* WorkoutDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272AB3DA1D3D5B6100AAB067 /* WorkoutDetailViewController.swift */; };
+		2760ABE61D7FDA1600A90A89 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2760ABE51D7FDA1600A90A89 /* Main.storyboard */; };
 		279A01391D63C2B2007A8B9E /* announcementClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279A01381D63C2B2007A8B9E /* announcementClass.swift */; };
 		27A84DB61D7DD20400B2ACA5 /* addAnnouncementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A84DB51D7DD20400B2ACA5 /* addAnnouncementViewController.swift */; };
 		27B721A41D6FD0DD0084544C /* announcementsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B721A31D6FD0DD0084544C /* announcementsTableViewController.swift */; };
@@ -65,11 +65,11 @@
 		270FCB5E1D26EB51003DFCF9 /* workoutClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = workoutClass.swift; sourceTree = "<group>"; };
 		270FCB601D26EDEB003DFCF9 /* WorkoutsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutsTableViewController.swift; sourceTree = "<group>"; };
 		270FCB621D26EDFF003DFCF9 /* WorkoutsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutsTableViewCell.swift; sourceTree = "<group>"; };
-		270FCB641D283209003DFCF9 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		270FCB661D297342003DFCF9 /* BikeDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BikeDetailViewController.swift; sourceTree = "<group>"; };
 		27131CB41D6FD896004C4CC8 /* announcementsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = announcementsTableViewCell.swift; sourceTree = "<group>"; };
 		272AB3DA1D3D5B6100AAB067 /* WorkoutDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutDetailViewController.swift; sourceTree = "<group>"; };
 		272F1C181D3F2BC4009DF18B /* Bike-iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Bike-iOS-Bridging-Header.h"; path = "../Bike-iOS-Bridging-Header.h"; sourceTree = "<group>"; };
+		2760ABE51D7FDA1600A90A89 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		279A01381D63C2B2007A8B9E /* announcementClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = announcementClass.swift; sourceTree = "<group>"; };
 		27A84DB51D7DD20400B2ACA5 /* addAnnouncementViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addAnnouncementViewController.swift; sourceTree = "<group>"; };
 		27B721A31D6FD0DD0084544C /* announcementsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = announcementsTableViewController.swift; sourceTree = "<group>"; };
@@ -135,7 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				270D5FBB1D52D4090032B01A /* Bike V1.1.entitlements */,
-				270FCB641D283209003DFCF9 /* Main.storyboard */,
+				2760ABE51D7FDA1600A90A89 /* Main.storyboard */,
 				27B721A31D6FD0DD0084544C /* announcementsTableViewController.swift */,
 				27131CB41D6FD896004C4CC8 /* announcementsTableViewCell.swift */,
 				27A84DB51D7DD20400B2ACA5 /* addAnnouncementViewController.swift */,
@@ -283,7 +283,7 @@
 				270FCB2B1D23405D003DFCF9 /* LaunchScreen.storyboard in Resources */,
 				270FCB281D23405D003DFCF9 /* Assets.xcassets in Resources */,
 				270FCB5B1D24D6A0003DFCF9 /* GoogleService-Info.plist in Resources */,
-				270FCB651D283209003DFCF9 /* Main.storyboard in Resources */,
+				2760ABE61D7FDA1600A90A89 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

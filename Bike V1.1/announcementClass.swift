@@ -14,6 +14,8 @@ class announcementClass {
     var announcementType:String
     var announcementTitle:String
     var announcementMessage:String
+    var authorUsername: String
+    var authorFullname: String
     var rideTime:String
     var formattedTime: String
     var hostOneSignalUserId:String
@@ -29,6 +31,8 @@ class announcementClass {
         self.rideTime = ""
         self.formattedTime = ""
         self.hostOneSignalUserId = ""
+        self.authorFullname = ""
+        self.authorUsername = ""
         
     }
     
@@ -45,9 +49,18 @@ class announcementClass {
     }
     
     //Initializer and methods for general messages
-    func initGeneralVars(announcementMessage: String) { self.announcementMessage = announcementMessage}
+    func initGeneralVars(announcementMessage: String, authorFullname: String, authorUsername: String) {
+        self.announcementMessage = announcementMessage
+        self.authorFullname = authorFullname
+        self.authorUsername = authorUsername
+    }
     
-    func getMessage() -> String { return self.announcementMessage};
+    func getMessage() -> String {
+        return self.announcementMessage}
+    
+    func getAuthor() -> String {return self.authorFullname}
+    
+    func getAuthorUsername() -> String {return self.authorUsername}
     
     //Initializer and general setup for rides
     func initRideVars(rideTime: String, hostOneSignalUserId: String, riders:[String:String]) {

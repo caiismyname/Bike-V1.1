@@ -410,7 +410,7 @@
             </objects>
             <point key="canvasLocation" x="966" y="341"/>
         </scene>
-        <!--Announcements Table View Controller-->
+        <!--Announcements-->
         <scene sceneID="w7N-Lf-NWl">
             <objects>
                 <tableViewController id="Coc-rV-5s9" customClass="announcementsTableViewController" customModule="Bike_iOS" customModuleProvider="target" sceneMemberID="viewController">
@@ -428,9 +428,14 @@
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="5oI-YM-Pgl">
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2sk-pn-6Z0">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" verticalCompressionResistancePriority="753" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2sk-pn-6Z0">
                                                     <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="36"/>
                                                     <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" text="author" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0zW-EI-n1h">
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="payload" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GDk-3O-ydG">
@@ -449,6 +454,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="authorLabel" destination="0zW-EI-n1h" id="G24-He-9FL"/>
                                     <outlet property="payloadLabel" destination="GDk-3O-ydG" id="qwf-XR-oae"/>
                                     <outlet property="titleLabel" destination="2sk-pn-6Z0" id="c2j-SO-HaL"/>
                                 </connections>
@@ -459,7 +465,7 @@
                             <outlet property="delegate" destination="Coc-rV-5s9" id="uAl-nP-KS4"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="QCJ-y3-12h">
+                    <navigationItem key="navigationItem" title="Announcements" id="QCJ-y3-12h">
                         <barButtonItem key="leftBarButtonItem" systemItem="done" id="OKq-Ud-yst">
                             <connections>
                                 <action selector="doneButton:" destination="Coc-rV-5s9" id="q8c-Qc-kkk"/>
@@ -467,7 +473,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="r8x-DT-B9t">
                             <connections>
-                                <segue destination="Pfz-vh-0o9" kind="presentation" id="RiJ-mc-fHV"/>
+                                <segue destination="Pfz-vh-0o9" kind="presentation" id="MPW-Ta-eyz"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -476,7 +482,7 @@
             </objects>
             <point key="canvasLocation" x="-79.200000000000003" y="1938.9805097451276"/>
         </scene>
-        <!--Add Announcement View Controller-->
+        <!--Add New Annoucement-->
         <scene sceneID="9Qa-LS-xmq">
             <objects>
                 <viewController id="U7D-HH-yEi" customClass="addAnnouncementViewController" customModule="Bike_iOS" customModuleProvider="target" sceneMemberID="viewController">
@@ -487,17 +493,56 @@
                     <view key="view" contentMode="scaleToFill" id="Gxp-75-yvh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="6Ho-e0-nGD">
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Announcement Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fHE-NT-XNa">
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="26"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="interactive" translatesAutoresizingMaskIntoConstraints="NO" id="0S9-5L-kEo">
+                                        <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="0S9-5L-kEo" firstAttribute="top" secondItem="fHE-NT-XNa" secondAttribute="bottom" constant="12" id="3kj-qI-RdV"/>
+                                    <constraint firstItem="0S9-5L-kEo" firstAttribute="leading" secondItem="6Ho-e0-nGD" secondAttribute="leading" id="5Ps-RZ-9jM"/>
+                                    <constraint firstItem="fHE-NT-XNa" firstAttribute="leading" secondItem="6Ho-e0-nGD" secondAttribute="leading" id="9ca-M7-zti"/>
+                                    <constraint firstItem="0S9-5L-kEo" firstAttribute="top" secondItem="fHE-NT-XNa" secondAttribute="bottom" constant="12" id="BfZ-u3-dAS"/>
+                                    <constraint firstAttribute="trailing" secondItem="0S9-5L-kEo" secondAttribute="trailing" id="fdb-g3-1FU"/>
+                                    <constraint firstAttribute="bottom" secondItem="0S9-5L-kEo" secondAttribute="bottom" id="ulW-2F-vVi"/>
+                                    <constraint firstItem="fHE-NT-XNa" firstAttribute="top" secondItem="6Ho-e0-nGD" secondAttribute="top" id="vPt-6o-38i"/>
+                                    <constraint firstAttribute="trailing" secondItem="fHE-NT-XNa" secondAttribute="trailing" id="wib-oM-LFL"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="6Ho-e0-nGD" firstAttribute="top" secondItem="cYG-5q-V9y" secondAttribute="bottom" constant="16" id="2P0-E4-8DG"/>
+                            <constraint firstItem="Pez-4e-BxN" firstAttribute="top" secondItem="6Ho-e0-nGD" secondAttribute="bottom" constant="405" id="8xC-Dp-e0k"/>
+                            <constraint firstItem="6Ho-e0-nGD" firstAttribute="trailing" secondItem="Gxp-75-yvh" secondAttribute="trailingMargin" id="YHE-OR-HM4"/>
+                            <constraint firstItem="6Ho-e0-nGD" firstAttribute="leading" secondItem="Gxp-75-yvh" secondAttribute="leadingMargin" id="rtg-Nr-92Y"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="RVi-dz-dzd">
+                    <navigationItem key="navigationItem" title="Add New Annoucement" id="RVi-dz-dzd">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="54J-fr-6jM">
                             <connections>
                                 <action selector="cancelButton:" destination="U7D-HH-yEi" id="pAT-IS-iR9"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="3G1-ew-mvD"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="3G1-ew-mvD">
+                            <connections>
+                                <action selector="saveAction:" destination="U7D-HH-yEi" id="riQ-Wr-KiL"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="messageTextView" destination="0S9-5L-kEo" id="xYu-vg-eae"/>
+                        <outlet property="saveButtonOutlet" destination="3G1-ew-mvD" id="Sxg-O2-ePn"/>
+                        <outlet property="titleTextField" destination="fHE-NT-XNa" id="IPn-H9-LwG"/>
                         <segue destination="hlG-qz-eHP" kind="unwind" identifier="unwindToAnnouncements" unwindAction="unwindBackToAnnouncementsWithSegue:" id="Z5C-My-nIJ"/>
                     </connections>
                 </viewController>

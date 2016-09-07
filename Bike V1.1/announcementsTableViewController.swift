@@ -52,7 +52,7 @@ class announcementsTableViewController: UITableViewController {
                             self.tableView.reloadData()
                         }
                     } else {
-                        currentAnnouncement.initGeneralVars(announcement.value["message"] as! String)
+                        currentAnnouncement.initGeneralVars(announcement.value["message"] as! String, authorFullname: announcement.value["authorFullname"] as! String, authorUsername:  announcement.value["authorUsername"] as! String)
                         self.announcements.append(currentAnnouncement)
                         self.tableView.reloadData()
                     }
@@ -98,6 +98,8 @@ class announcementsTableViewController: UITableViewController {
         
         if announcement.getAnnouncementType() == "ride" {
             cell.titleLabel.textColor = UIColor(red: CGFloat(1.0/255.0), green: CGFloat(65.0/255.0), blue: CGFloat(129.0/255.0), alpha: CGFloat(1))
+        } else if announcement.getAnnouncementType() == "general" {
+            cell.authorLabel.text = announcement.getAuthor()
         }
         
         return cell
@@ -108,6 +110,8 @@ class announcementsTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         let announcement = announcements[indexPath.row]
         if announcement.getAnnouncementType() == "ride" {
+            return true
+        } else  if announcement.getAuthorUsername() == thisUser.userName {
             return true
         } else {
             return false
@@ -136,19 +140,34 @@ class announcementsTableViewController: UITableViewController {
             OneSignal.postNotification(["contents": ["en": "\(thisUser.fullName) has left your ride!"], "include_player_ids": [announcement.hostOneSignalUserId], "data": ["senderOneSignalUserId": thisUser.oneSignalUserId!, "notificationType": "rideJoined", "rideName":"\(announcement.announcementTitle)"]])
         }
         
-        let cancelAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Cancel") { (action:UITableViewRowAction!, index:NSIndexPath) in
+        let cancelRideAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Cancel") { (action:UITableViewRowAction!, index:NSIndexPath) in
             
             let announcementRef = self.ref.child("colleges/\(thisUser.college)/announcements/\(announcementName)")
             announcementRef.removeValue()
 
         }
-        if announcement.hostOneSignalUserId == thisUser.oneSignalUserId {
-            return [cancelAction]
-        } else {            
-            if announcement.ridersUsernames.contains(thisUser.userName) {
-                return [leaveAction]
+        
+        let deleteGeneralAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Delete") { (action:UITableViewRowAction!, index:NSIndexPath) in
+            
+            let announcementRef = self.ref.child("colleges/\(thisUser.college)/announcements/\(announcementName)")
+            announcementRef.removeValue()
+            
+        }
+        if announcement.getAnnouncementType() == "ride" {
+            if announcement.hostOneSignalUserId == thisUser.oneSignalUserId {
+                return [cancelRideAction]
             } else {
-                return [joinAction]
+                if announcement.ridersUsernames.contains(thisUser.userName) {
+                    return [leaveAction]
+                } else {
+                    return [joinAction]
+                }
+            }
+        } else {
+            if announcement.getAuthorUsername() == thisUser.userName {
+                return [deleteGeneralAction]
+            } else {
+                return nil
             }
         }
     }
@@ -189,8 +208,8 @@ class announcementsTableViewController: UITableViewController {
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        ref.removeAllObservers()
+        
     }
     
     
